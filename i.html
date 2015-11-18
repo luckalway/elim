@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery.cycle2.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/galleriffic-4.css" type="text/css" />
+</head>
+<body>
+	<div class="cycle-slideshow">
+		<img src="http://localhost:8080/elim/app/products/curtain/m149/m149%20(2).jpg" width="200px" height="200px" alt="Title #1" /> <img
+			src="http://localhost:8080/elim/app/products/curtain/m149/m149%20(3).jpg" width="200px" height="200px" alt="Title #2" /> <img
+			src="http://localhost:8080/elim/app/products/curtain/m149/m149%20(4).jpg" width="200px" height="200px" alt="Title #2" /> <img
+			src="http://localhost:8080/elim/app/products/curtain/m149/m149%20(5).jpg" width="200px" height="200px" alt="Title #2" />
+	</div>
+	<div style="clear: both;"></div>
+
+	<div id="item-image-popup">
+		<img src="http://localhost:8080/elim/app/products/curtain/m149/m149%20(2).jpg" width="550px" height="550px" alt="Title #2" />
+	</div>
+</body>
+<script type="text/javascript">
+$('ul').children().each(function(i,e){
+	$(e).mouseover(function(){
+		$(e).removeClass('glass_layer');
+	});
+
+	$(e).mouseout(function(){
+		$(e).addClass('glass_layer');
+	});
+});
+</script>
+</html>

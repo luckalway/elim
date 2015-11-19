@@ -43,8 +43,19 @@ app.directive('productShow', function() {
 app.directive('relatedProducts', function() {
 	return {
 		restrict : 'E',
-		templateUrl : 'app/template/related-products.html',
+		templateUrl : 'app/template/related-products.html?=1',
 		link : function(scope, element, attr, ctrl) {
 		}
 	};
 });
+
+app.directive('productImages', function() {
+	return {
+		restrict : 'E',
+		templateUrl : 'app/template/product-images.html?=1',
+		link : function(scope, element, attr, ctrl) {
+		}
+	};
+});
+
+

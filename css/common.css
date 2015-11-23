@@ -3,12 +3,9 @@ body {
 }
 
 .main-container {
-	border: 1px solid blue;
-	width: 1000px;
+	width: 1200px;
 	text-align: center;
-	float: left;
-}
-
+	margin:0 auto;
 }
 
 /* jssor slider arrow navigator skin 05 css */

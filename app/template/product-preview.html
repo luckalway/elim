@@ -1,0 +1,85 @@
+<style>
+.preview {
+	border: 1px solid red;
+	width: 400px;
+	float: left;
+}
+
+.preview img {
+	border: 1px solid red;
+	width: 380px;
+}
+
+.price-calculate {
+	border: 1px solid blue;
+	height: 380px;
+	float: left;
+	width: 65%;
+	margin-left: 20px;
+}
+
+.clear {
+	clear: left;
+}
+
+.preview-single img {
+	width: 400px;
+	height: 400px;
+	border: 10px solid #AFFFFE;
+}
+
+.thumbnails {
+	width: 400px;
+}
+
+.thumbnails img {
+	width: 80px;
+	height: 80px;
+}
+</style>
+
+
+<script>
+$(document).ready(function () {
+     $(".preview-single img").each(function(i,e){
+        if(i != 0){
+          $(e).hide();
+        }
+     })
+     
+     $(".thumbnails img").each(function(i,e){
+         $(e).mouseover(function(){
+            $(e).css("border","2px solid red");
+            
+            $(".preview-single img").each(function(i2,e){
+                if(i2 == i){
+                  $(e).show();
+                }else{
+                  $(e).hide();
+                }
+            })
+            
+         }); 
+         
+         $(e).mouseout(function(){
+            $(e).css("border","");
+         });
+         
+     });
+   })
+</script>
+
+
+<div class="product-show">
+	<div class="preview">
+		<div class="preview-single">
+			<img data-u="image" src="img/05.jpg" /> <img data-u="image" src="img/001.jpg" /> <img data-u="image" src="img/004.jpg" />
+		</div>
+
+		<div class="thumbnails">
+			<img src="img/landscape.jpg" /> <img src="img/motor.jpg" /> <img src="img/photography.jpg" />
+		</div>
+	</div>
+	<div class="price-calculate"></div>
+	<div class="clear"></div>
+</div>

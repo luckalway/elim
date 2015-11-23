@@ -31,10 +31,10 @@ app.directive('productItem', function() {
 	};
 });
 
-app.directive('productShow', function() {
+app.directive('productPreview', function() {
 	return {
-		restrict : 'E',
-		templateUrl : 'app/template/product-show.html',
+		restrict : 'EC',
+		templateUrl : 'app/template/product-preview.html?=1',
 		link : function(scope, element, attr, ctrl) {
 		}
 	};
@@ -51,7 +51,7 @@ app.directive('relatedProducts', function() {
 
 app.directive('productImages', function() {
 	return {
-		restrict : 'E',
+		restrict : 'EC',
 		templateUrl : 'app/template/product-images.html?=1',
 		link : function(scope, element, attr, ctrl) {
 		}

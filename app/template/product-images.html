@@ -45,7 +45,7 @@ $(document).ready(function () {
 })
 </script>
 
-<div class="product-images-container">
+<div class="product-images-container" style="display:none;">
 	<ul>
 		<li><img src="img/thumb-01.jpg" /></li>
 		<li><img src="img/thumb-02.jpg" /></li>
@@ -64,3 +64,12 @@ $(document).ready(function () {
 	</ul>
 </div>
 
+<div class="bss-slides slide-show" tabindex="2" style="position: absolute;z-index: 99;width: 500px;border:10px solid #123ddd;">
+	<figure>
+	</figure>
+</div>
+
+
+<script>
+	$(".product-images-container").gallerySlide();
+</script>

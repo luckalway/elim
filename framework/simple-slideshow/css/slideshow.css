@@ -5,21 +5,11 @@
 .bss-slides:focus{
  outline: 0;
 }
-.bss-slides figure{
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
+
 .bss-slides figure:first-child{
   position: relative;
 }
-.bss-slides figure img{
-  opacity: 0;
-  -webkit-transition: opacity 1.2s;
-  transition: opacity 1.2s;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+
 .bss-slides .bss-show{
   z-index: 2;
 }

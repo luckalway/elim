@@ -1,32 +1,3 @@
-<style>
-.product-images-container {
-	width: 950px;
-	background-color: #24262e;
-	margin-top: 20px;
-	height: 400px;
-	text-align: left;
-	float: left;
-}
-
-.product-images-container li {
-	float: left;
-	margin: 5px;
-	list-style: none;
-}
-
-.product-images-container li.focus {
-	border: 3px solid #FFFFFF;
-}
-
-.product-images-container li.unfocus {
-	border: 3px solid #000000;
-}
-
-.product-images-container ul li img {
-	width: 160px;
-}
-</style>
-
 <script>
 $(document).ready(function () {
      $(".product-images-container li").each(function(i,e){
@@ -41,11 +12,24 @@ $(document).ready(function () {
         	$(e).removeClass("focus");
             $(e).addClass("unfocus");
          });
-     })     
+
+         $(e).click(function(){
+        	 $(".product-images-container").play($(this));
+         });
+     });
+
+     $(".product-images-container").gallerySlide();     
 })
 </script>
 
-<div class="product-images-container" style="display:none;">
+<div id="slide-show" class="bss-slides slide-show" tabindex="2">
+	<figure>
+	</figure>
+	<span class="bss-prev">«</span><span class="bss-next">»</span>
+	<span class="bss-close">X</span>
+</div>
+
+<div class="product-images-container">
 	<ul>
 		<li><img src="img/thumb-01.jpg" /></li>
 		<li><img src="img/thumb-02.jpg" /></li>
@@ -63,13 +47,3 @@ $(document).ready(function () {
 		<li><img src="img/thumb-14.jpg" /></li>
 	</ul>
 </div>
-
-<div class="bss-slides slide-show" tabindex="2" style="position: absolute;z-index: 99;width: 500px;border:10px solid #123ddd;">
-	<figure>
-	</figure>
-</div>
-
-
-<script>
-	$(".product-images-container").gallerySlide();
-</script>

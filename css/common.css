@@ -14,6 +14,45 @@ body {
 }
 
 .slide-show {
-	width: 600px;
-	margin: 2em auto;
+	position: absolute;
+	width: 520px;
+	height: 520px;
+	border: 10px solid #FFF0F5;
+	display: none;
+}
+
+.slide-show figure img {
+	width: 500px;
+	height: 500px;
+}
+
+.product-images-container {
+	width: 950px;
+	background-color: #24262e;
+	margin-top: 20px;
+	height: 400px;
+	text-align: left;
+	float: left;
+}
+
+.product-images-container li {
+	float: left;
+	margin: 5px;
+	list-style: none;
+}
+
+.product-images-container li.focus {
+	border: 3px solid #FFFFFF;
+}
+
+.product-images-container li.unfocus {
+	border: 3px solid #000000;
+}
+
+.product-images-container li.active {
+	border: 3px solid #FFFFFF;
+}
+
+.product-images-container ul li img {
+	width: 160px;
 }

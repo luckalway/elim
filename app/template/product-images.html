@@ -1,6 +1,6 @@
 <script>
 $(document).ready(function () {
-     $(".product-images-container li").each(function(i,e){
+     $(".product-images-container div li").each(function(i,e){
     	 $(e).addClass("unfocus");
          
         $(e).mouseover(function(){
@@ -18,7 +18,9 @@ $(document).ready(function () {
          });
      });
 
+     $( "#tabs" ).tabs();
      $(".product-images-container").gallerySlide();     
+     
 })
 </script>
 
@@ -29,21 +31,36 @@ $(document).ready(function () {
 	<span class="bss-close">X</span>
 </div>
 
-<div class="product-images-container">
+<div id="tabs" class="product-images-container">
 	<ul>
-		<li><img src="img/thumb-01.jpg" /></li>
-		<li><img src="img/thumb-02.jpg" /></li>
-		<li><img src="img/thumb-03.jpg" /></li>
-		<li><img src="img/thumb-04.jpg" /></li>
-		<li><img src="img/thumb-05.jpg" /></li>
-		<li><img src="img/thumb-06.jpg" /></li>
-		<li><img src="img/thumb-07.jpg" /></li>
-		<li><img src="img/thumb-08.jpg" /></li>
-		<li><img src="img/thumb-09.jpg" /></li>
-		<li><img src="img/thumb-10.jpg" /></li>
-		<li><img src="img/thumb-11.jpg" /></li>
-		<li><img src="img/thumb-12.jpg" /></li>
-		<li><img src="img/thumb-13.jpg" /></li>
-		<li><img src="img/thumb-14.jpg" /></li>
+		<li><a href="#tabs-1">Nunc tincidunt</a></li>
+		<li><a href="#tabs-2">Proin dolor</a></li>
 	</ul>
+	<div id="tabs-1">
+		<ul>
+			<li><img src="img/thumb-01.jpg" /></li>
+			<li><img src="img/thumb-02.jpg" /></li>
+			<li><img src="img/thumb-03.jpg" /></li>
+			<li><img src="img/thumb-13.jpg" /></li>
+			<li><img src="img/thumb-14.jpg" /></li>
+		</ul>
+	</div>
+	<div id="tabs-2">
+		<ul>
+			<li><img src="img/thumb-01.jpg" /></li>
+			<li><img src="img/thumb-02.jpg" /></li>
+			<li><img src="img/thumb-03.jpg" /></li>
+			<li><img src="img/thumb-04.jpg" /></li>
+			<li><img src="img/thumb-05.jpg" /></li>
+			<li><img src="img/thumb-06.jpg" /></li>
+			<li><img src="img/thumb-07.jpg" /></li>
+			<li><img src="img/thumb-08.jpg" /></li>
+			<li><img src="img/thumb-09.jpg" /></li>
+			<li><img src="img/thumb-10.jpg" /></li>
+			<li><img src="img/thumb-11.jpg" /></li>
+			<li><img src="img/thumb-12.jpg" /></li>
+			<li><img src="img/thumb-13.jpg" /></li>
+			<li><img src="img/thumb-14.jpg" /></li>
+		</ul>
+	</div>
 </div>

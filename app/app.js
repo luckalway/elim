@@ -5,7 +5,9 @@ app.config(function($routeProvider) {
 		templateUrl : 'app/item-list/item-list.html'
 	}).when('/item', {
 		templateUrl : 'app/item-detail/item-detail.html'
+	}).when('/index', {
+		templateUrl : 'app/home.html'
 	}).otherwise({
-		redirectTo : '/list/a'
+		redirectTo : '/index'
 	})
 });

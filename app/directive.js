@@ -5,10 +5,10 @@ app.directive('footer', function() {
 	};
 });
 
-app.directive('categoryNav', function() {
+app.directive('topNav', function() {
 	return {
 		restrict : 'ECA',
-		templateUrl : 'app/template/category-nav.html',
+		templateUrl : 'app/template/top-nav.html',
 		scope : true,
 		link : function(scope, element, attr, ctrl) {
 			scope.categories = categories;

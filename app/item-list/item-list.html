@@ -1,8 +1,0 @@
-<div ng-controller="itemListCtrl">
-	<category-nav></category-nav>
-	<div class="product-list-container" style="margin-top: 10px;">
-		<div class="row" ng-repeat="group in productGroups">
-			<product-item ng-repeat="item in group" id="{{item.id}}" image="{{item.image}}" title="{{item.title}}"></product-item>
-		</div>
-	</div>
-</div>

@@ -14,6 +14,10 @@ body {
 }
 
 
+.clear{
+	clear: left;
+}
+
 /* use navbar-wrapper to wrap navigation bar, the purpose is to overlay navigation bar above slider */
 .navbar-wrapper {
 	position: absolute;
@@ -32,6 +36,10 @@ body {
 		position: relative;
 		top: 0px;
 	}
+}
+
+.navbar-nav li{
+	border-right: 1px solid #e7e7e7;
 }
 
 /* Home page slide show */

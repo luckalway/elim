@@ -1,21 +1,76 @@
 <style>
 .preview {
-	border: 1px solid red;
 	width: 400px;
 	float: left;
 }
 
 .preview img {
-	border: 1px solid red;
 	width: 380px;
+	float: left;
+	margin: 2px;
 }
 
-.price-calculate {
-	border: 1px solid blue;
-	height: 380px;
+.preview img.unfocus {
+	border: 3px solid #FFFFFF;
+}
+
+.preview img.focus {
+	border: 3px solid #c9033b;
+}
+
+.preview .thumbnails {
+	margin-top: 5px;
+}
+
+.product-parameter {
 	float: left;
-	width: 65%;
+	width: 63%;
 	margin-left: 20px;
+}
+
+.product-parameter .title {
+	color: #3c3c3c;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 8px;
+	text-align: left;
+}
+
+.product-parameter .sub-title {
+	color: #c9033b;
+	font-weight: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+	font-weight: 700;
+	text-align: left;
+	padding-left: 8px;
+}
+
+.product-parameter .price {
+	background-color: #fff2e8;
+	margin: 8px;
+	width: 400px;
+	padding: 20px 0 20px 15px;
+	text-align: left;
+}
+
+.product-parameter .price li {
+	list-style: none;
+}
+
+.product-parameter .price li span {
+	margin-left: 35px;
+}
+
+.product-parameter .price li.promotion-price {
+	line-height: 26px;
+}
+
+.product-parameter .price li.promotion-price span {
+	color: #f40;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 26px;
+	font-weight: 700;
 }
 
 .clear {
@@ -48,8 +103,11 @@ $(document).ready(function () {
      })
      
      $(".thumbnails img").each(function(i,e){
+    	 $(e).addClass('unfocus');	
+         
          $(e).mouseover(function(){
-            $(e).css("border","2px solid red");
+        	 $(e).removeClass('unfocus');
+             $(e).addClass('focus');
             
             $(".preview-single img").each(function(i2,e){
                 if(i2 == i){
@@ -62,7 +120,8 @@ $(document).ready(function () {
          }); 
          
          $(e).mouseout(function(){
-            $(e).css("border","");
+            $(e).removeClass('focus');
+            $(e).addClass('unfocus');
          });
          
      });
@@ -80,6 +139,15 @@ $(document).ready(function () {
 			<img src="img/landscape.jpg" /> <img src="img/motor.jpg" /> <img src="img/photography.jpg" />
 		</div>
 	</div>
-	<div class="price-calculate"></div>
-	<div class="clear"></div>
+	<div class="product-parameter">
+		<div class="title">
+			<a href="#" target="_blank">定制全遮光窗帘布料成品卧室温馨落地窗窗帘欧式客厅纯色飘窗窗帘</a>
+		</div>
+		<div class="sub-title">标价为1米单价，幅宽2.7M，免辅料加工费</div>
+		<ul class="price">
+			<li class="original-price"><label>原价：</label><span>¥35.00</span></li>
+			<li class="promotion-price"><label>促销价：</label><span>¥35.00</span></li>
+	</div>
+</div>
+<div class="clear"></div>
 </div>

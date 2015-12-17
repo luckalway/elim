@@ -127,10 +127,10 @@ body {
 }
 
 .product-images-container {
-	width: 950px;
+	width: 100%;
 	background-color: #24262e;
 	margin-top: 20px;
-	height: 400px;
+	height: auto;
 	text-align: left;
 	float: left;
 }

@@ -135,6 +135,8 @@ $(document).ready(function () {
          });
          
      });
+
+     $( "#cal-tabs" ).tabs();
    })
 </script>
 
@@ -158,20 +160,28 @@ $(document).ready(function () {
 			<li class="original-price"><label>原价：</label><span>¥35.00</span></li>
 			<li class="promotion-price"><label>促销价：</label><span>¥35.00</span></li>
 		</ul>
-		<div class="delivery">配送（快递） 浙江杭州 至 江浙沪 免运费</div>
-		<fieldset form="ddd">
-			<legend>详细参数</legend>
-			<ul class="detail-parameter">
-				<li><lable>颜色分类:</lable></li>
-				<li><lable>遮光率:</lable></li>
-				<li><lable>材料:</lable></li>
-				<li><lable>风格:</lable></li>
-			</ul>
-		</fieldset>
 		<div>
-		<h3>价格计算</h3>
+			<h3>价格计算</h3>
+			<div id="cal-tabs">
+				<ul>
+					<li><a href="#tabs-1">已安装轨道</a></li>
+					<li><a href="#tabs-2">已安装罗马杆</a></li>
+					<li><a href="#tabs-2">未安装轨道/罗马杆</a></li>
+				</ul>
+				<div id="tabs-1"></div>
+				<div id="tabs-2"></div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="clear"></div>
+	<div class="clear"></div>
+	<div>
+		<legend>详细参数</legend>
+		<ul class="detail-parameter">
+			<li><lable>颜色分类:</lable></li>
+			<li><lable>遮光率:</lable></li>
+			<li><lable>材料:</lable></li>
+			<li><lable>风格:</lable></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
 </div>

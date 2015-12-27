@@ -3,7 +3,7 @@ package com._10yilin.elim.entity;
 import java.util.List;
 import java.util.Map;
 
-public class Product {
+public class CurtainProduct {
 	private String id;
 	private double price;
 	private int shadingPercent;

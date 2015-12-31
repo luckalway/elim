@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class CurtainProduct {
 	private String id;
+	private String title;
 	private double price;
 	private int shadingPercent;
 	private String material;
@@ -67,6 +68,14 @@ public class CurtainProduct {
 
 	public void setPreviewImages(List<String> previewImages) {
 		this.previewImages = previewImages;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

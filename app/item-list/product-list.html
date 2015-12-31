@@ -1,76 +1,79 @@
 <style>
-	.category_filter {
-		width: 800px;
-		border: 1px solid #e6e6e6;
-		border-bottom: 5px solid #e6e6e6;
-	}
-	
-	.category_filter  table {
-		width: 800px;
-	}
-	
-	.category_filter td {
-		padding: 10px;
-		border: 0px;
-		border-top: 1px dotted #e6e6e6;
-		border-top: 1px dotted #e6e6e6;
-	}
-	
-	.category_name {
-		width: 120px;
-		background: #f5f5f5 none repeat scroll 0 0;
-	}
-	
-	.sort_panel {
-		height: 40px;
-		margin-top: 3px;
-		border: 1px solid #e6e6e6;
-	}
-	
-	.list-panel {
-		margin-top: 5px;
-		border: 1px solid #e6e6e6;
-		height: 400px;
-	}
+.category_filter {
+	width: 800px;
+	border: 1px solid #e6e6e6;
+	border-bottom: 5px solid #e6e6e6;
+}
+
+.category_filter  table {
+	width: 800px;
+}
+
+.category_filter td {
+	padding: 10px;
+	border: 0px;
+	border-top: 1px dotted #e6e6e6;
+	border-top: 1px dotted #e6e6e6;
+}
+
+.category_name {
+	width: 120px;
+	background: #f5f5f5 none repeat scroll 0 0;
+}
+
+.sort_panel {
+	height: 40px;
+	margin-top: 3px;
+	border: 1px solid #e6e6e6;
+}
+
+.list-panel {
+	margin-top: 5px;
+	border: 1px solid #e6e6e6;
+	height: 400px;
+}
 </style>
 
 <div ng-controller="itemListCtrl">
 
-<div class="category_filter">
-	<div class="category">
-		<table cellspacing="0px">
-			<tr>
-				<td class="category_name">布料</td>
-				<td>提花窗帘</td>
-				<td>提花窗帘</td>
-				<td>提花窗帘</td>
-				<td>提花窗帘</td>
-				<td>提花窗帘</td>
-			</tr>
-			<tr>
-				<td class="category_name">价格</td>
-				<td>0-29</td>
-				<td>30-39</td>
-				<td>40-49</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td class="category_name">风格</td>
-				<td>地中海</td>
-				<td>简约风格</td>
-				<td>欧式风格</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
+	<div class="category_filter">
+		<div class="category">
+			<table cellspacing="0px">
+				<tr>
+					<td class="category_name">å¸ƒæ–™</td>
+					<td>æ��èŠ±çª—å¸˜</td>
+					<td>æ��èŠ±çª—å¸˜</td>
+					<td>æ��èŠ±çª—å¸˜</td>
+					<td>æ��èŠ±çª—å¸˜</td>
+					<td>æ��èŠ±çª—å¸˜</td>
+				</tr>
+				<tr>
+					<td class="category_name">ä»·æ ¼</td>
+					<td>0-29</td>
+					<td>30-39</td>
+					<td>40-49</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="category_name">é£Žæ ¼</td>
+					<td>åœ°ä¸­æµ·</td>
+					<td>ç®€çº¦é£Žæ ¼</td>
+					<td>æ¬§å¼�é£Žæ ¼</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-</div>
-<div class="sort_panel"></div>
-<div class="product-list-container" style="margin-top: 10px;">
-	<div class="row" ng-repeat="group in productGroups">
-		<product-item ng-repeat="item in group" id="{{item.id}}" image="{{item.image}}" title="{{item.title}}"></product-item>
+	<div class="sort_panel"></div>
+	<div class="product-list-container" style="margin-top: 10px;">
+		<div class="row" ng-repeat="group in productGroups">
+			<div class="col-xs-6 col-md-3" ng-repeat="item in group">
+				<a href="#/item?id={{item.id}}" class="thumbnail"><img src="{{item.previewImages[0]}}" width="280px" height="280px" alt="...">
+					{{item.title}}</a>
+			</div>
+		</div>
 	</div>
-</div>
 
 </div>

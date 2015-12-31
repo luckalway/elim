@@ -1,59 +1,4 @@
-<script type="text/javascript">
-    jQuery(document).ready(function ($) {
-        var jssor_1_SlideoTransitions = [
-          [{b:0.0,d:600.0,y:-290.0,e:{y:27.0}}],
-          [{b:0.0,d:1000.0,y:185.0},{b:1000.0,d:500.0,o:-1.0},{b:1500.0,d:500.0,o:1.0},{b:2000.0,d:1500.0,r:360.0},{b:3500.0,d:1000.0,rX:30.0},{b:4500.0,d:500.0,rX:-30.0},{b:5000.0,d:1000.0,rY:30.0},{b:6000.0,d:500.0,rY:-30.0},{b:6500.0,d:500.0,sX:1.0},{b:7000.0,d:500.0,sX:-1.0},{b:7500.0,d:500.0,sY:1.0},{b:8000.0,d:500.0,sY:-1.0},{b:8500.0,d:500.0,kX:30.0},{b:9000.0,d:500.0,kX:-30.0},{b:9500.0,d:500.0,kY:30.0},{b:10000.0,d:500.0,kY:-30.0},{b:10500.0,d:500.0,c:{x:87.50,t:-87.50}},{b:11000.0,d:500.0,c:{x:-87.50,t:87.50}}],
-          [{b:0.0,d:600.0,x:410.0,e:{x:27.0}}],
-          [{b:-1.0,d:1.0,o:-1.0},{b:0.0,d:600.0,o:1.0,e:{o:5.0}}],
-          [{b:-1.0,d:1.0,c:{x:175.0,t:-175.0}},{b:0.0,d:800.0,c:{x:-175.0,t:175.0},e:{c:{x:7.0,t:7.0}}}],
-          [{b:-1.0,d:1.0,o:-1.0},{b:0.0,d:600.0,x:-570.0,o:1.0,e:{x:6.0}}],
-          [{b:-1.0,d:1.0,o:-1.0,r:-180.0},{b:0.0,d:800.0,o:1.0,r:180.0,e:{r:7.0}}],
-          [{b:0.0,d:1000.0,y:80.0,e:{y:24.0}},{b:1000.0,d:1100.0,x:570.0,y:170.0,o:-1.0,r:30.0,sX:9.0,sY:9.0,e:{x:2.0,y:6.0,r:1.0,sX:5.0,sY:5.0}}],
-          [{b:2000.0,d:600.0,rY:30.0}],
-          [{b:0.0,d:500.0,x:-105.0},{b:500.0,d:500.0,x:230.0},{b:1000.0,d:500.0,y:-120.0},{b:1500.0,d:500.0,x:-70.0,y:120.0},{b:2600.0,d:500.0,y:-80.0},{b:3100.0,d:900.0,y:160.0,e:{y:24.0}}],
-          [{b:0.0,d:1000.0,o:-0.4,rX:2.0,rY:1.0},{b:1000.0,d:1000.0,rY:1.0},{b:2000.0,d:1000.0,rX:-1.0},{b:3000.0,d:1000.0,rY:-1.0},{b:4000.0,d:1000.0,o:0.4,rX:-1.0,rY:-1.0}]
-        ];
-        
-        
-        var jssor_1_slider = new $JssorSlider$("jssor_1", {
-            $AutoPlay: true,
-            $Idle: 2000,
-            $CaptionSliderOptions: {
-              $Class: $JssorCaptionSlideo$,
-              $Transitions: jssor_1_SlideoTransitions,
-              $Breaks: [
-                [{d:2000,b:1000}]
-              ]
-            },
-            $ArrowNavigatorOptions: {
-              $Class: $JssorArrowNavigator$
-            },
-            $BulletNavigatorOptions: {
-              $Class: $JssorBulletNavigator$
-            }
-          });
-        
-        //responsive code begin
-        //you can remove responsive code if you don't want the slider scales while window resizing
-        function ScaleSlider() {
-            var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-            if (refSize) {
-                refSize = Math.min(refSize, 1000);
-                jssor_1_slider.$ScaleWidth(refSize);
-            }
-            else {
-                window.setTimeout(ScaleSlider, 30);
-            }
-        }
-        ScaleSlider();
-        $(window).bind("load", ScaleSlider);
-        $(window).bind("resize", ScaleSlider);
-        $(window).bind("orientationchange", ScaleSlider);
-        //responsive code end
-    });
-</script>
-
-
+<div ng-controller="homeCtrl">
 
 <div id="jssor_1"
 	style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1000px; height: 400px; overflow: hidden; visibility: hidden;">
@@ -65,76 +10,11 @@
 		style="position: absolute; display: block; background: url('img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
 </div>
 <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1000px; height: 400px; overflow: hidden;">
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/002.jpg" />
-		<div data-u="caption" data-t="0"
-			style="position: absolute; top: 320px; left: 30px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">mobile
-			ready, touch swipe</div>
-	</div>
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/007.jpg" />
-		<div data-u="caption" data-t="1"
-			style="position: absolute; top: -50px; left: 125px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">time
-			lined layer animation</div>
-	</div>
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/003.jpg" />
-		<div data-u="caption" data-t="2"
-			style="position: absolute; top: 30px; left: -380px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">finger
-			catchable right to left</div>
-	</div>
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/004.jpg" />
-		<div data-u="caption" data-t="3"
-			style="position: absolute; top: 30px; left: 30px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">responsive,
-			scale smoothly</div>
-	</div>
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/005.jpg" />
-		<div data-u="caption" data-t="4"
-			style="position: absolute; top: 30px; left: 30px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.6); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">image,
-			text, and custom layers</div>
-	</div>
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/006.jpg" />
-		<div data-u="caption" data-t="5"
-			style="position: absolute; top: 30px; left: 600px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">tons
-			of transition type</div>
-	</div>
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/009.jpg" />
+	<div data-p="112.50" style="display: none;" ng-repeat="item in slideShows">
+		<img data-u="image" src="app/data/promotion/slide/002.jpg" />
 		<div data-u="caption" data-t="6"
 			style="position: absolute; top: 30px; left: 30px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">visual
 			slider maker</div>
-	</div>
-	<div data-b="0" data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/008.jpg" />
-		<div data-u="caption" data-t="7"
-			style="position: absolute; top: -50px; left: 30px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">play
-			in and play out</div>
-	</div>
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/011.jpg" />
-		<div data-u="caption" data-t="8"
-			style="position: absolute; top: 25px; left: 150px; width: 250px; height: 250px; background-color: rgba(40, 177, 255, 0.6); overflow: hidden;">
-			<div data-u="caption" data-t="9"
-				style="position: absolute; top: 100px; left: 25px; width: 200px; height: 50px; font-size: 24px; line-height: 50px;">A Child
-				Layer</div>
-		</div>
-	</div>
-	<div data-p="112.50" style="display: none;">
-		<img data-u="image" src="framework/jssor/img/010.jpg" />
-		<div data-u="caption" data-t="10"
-			style="position: absolute; top: 25px; left: 100px; width: 250px; height: 250px; background-color: rgba(40, 177, 255, 0.6);">
-			<div style="margin: 15px; font-size: 20px;">
-				<p>
-					This is full customized content layer.<br />
-				</p>
-				<p>Everything is allowed</p>
-				You can put <a href="http://wwww.jssor.com"> a link </a> or an image <img src="framework/jssor/img/icon_chrome.png" /> here.
-
-			</div>
-		</div>
 	</div>
 </div>
 <!-- Bullet Navigator -->
@@ -149,32 +29,9 @@
 
 <div style="height: 20px;"></div>
 
+<div class="col-xs-6 col-md-3" ng-repeat="item in curtainItems">
+	<a class="thumbnail ng-binding" href="#/item?id={{item.id}}"><img width="280px" height="280px" alt="..."
+		src="{{item.previewImages[0]}}">{{item.title}}</a>
+</div>
 
-<div class="col-xs-6 col-md-3">
-	<a class="thumbnail ng-binding" href="#/item?id=m149"><img width="280px" height="280px" alt="..."
-		src="app/products/curtain/m149/m149 (2).jpg"> 成品窗帘特价定制窗帘纱简约现代加厚高档客厅卧室提花全遮光清仓</a>
-</div>
-<div class="col-xs-6 col-md-3">
-	<a class="thumbnail ng-binding" href="#/item?id=m149"><img width="280px" height="280px" alt="..."
-		src="app/products/curtain/m149/m149 (2).jpg"> 成品窗帘特价定制窗帘纱简约现代加厚高档客厅卧室提花全遮光清仓</a>
-</div>
-<div class="col-xs-6 col-md-3">
-	<a class="thumbnail ng-binding" href="#/item?id=m149"><img width="280px" height="280px" alt="..."
-		src="app/products/curtain/m149/m149 (2).jpg"> 成品窗帘特价定制窗帘纱简约现代加厚高档客厅卧室提花全遮光清仓</a>
-</div>
-<div class="col-xs-6 col-md-3">
-	<a class="thumbnail ng-binding" href="#/item?id=m149"><img width="280px" height="280px" alt="..."
-		src="app/products/curtain/m149/m149 (2).jpg"> 成品窗帘特价定制窗帘纱简约现代加厚高档客厅卧室提花全遮光清仓</a>
-</div>
-<div class="col-xs-6 col-md-3">
-	<a class="thumbnail ng-binding" href="#/item?id=m149"><img width="280px" height="280px" alt="..."
-		src="app/products/curtain/m149/m149 (2).jpg"> 成品窗帘特价定制窗帘纱简约现代加厚高档客厅卧室提花全遮光清仓</a>
-</div>
-<div class="col-xs-6 col-md-3">
-	<a class="thumbnail ng-binding" href="#/item?id=m149"><img width="280px" height="280px" alt="..."
-		src="app/products/curtain/m149/m149 (2).jpg"> 成品窗帘特价定制窗帘纱简约现代加厚高档客厅卧室提花全遮光清仓</a>
-</div>
-<div class="col-xs-6 col-md-3">
-	<a class="thumbnail ng-binding" href="#/item?id=m149"><img width="280px" height="280px" alt="..."
-		src="app/products/curtain/m149/m149 (2).jpg"> 成品窗帘特价定制窗帘纱简约现代加厚高档客厅卧室提花全遮光清仓</a>
 </div>

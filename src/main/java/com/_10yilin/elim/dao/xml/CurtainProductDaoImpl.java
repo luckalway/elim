@@ -36,13 +36,25 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 				CurtainProduct product = new CurtainProduct();
 				product.setId(itemFolder.getName());
 				Element item = document.getRootElement();
-				product.setPrice(Double.valueOf(item.getChild("price").getText()));
-				product.setShadingPercent(Integer.valueOf(item.getChild("shading-percent").getText()));
-				product.setStyle(item.getChild("style").getText());
-				String[] colors = item.getChild("colors").getText().split(";");
+				product.setPrice(Double.valueOf(item.getChildText("price")));
+				product.setShadingPercent(Integer.valueOf(item.getChildText("shading-percent")));
+				product.setStyle(item.getChildText("style"));
+				product.setTitle(item.getChildText("title"));
+				String[] colors = item.getChildText("colors").split(";");
 
 				product.setPreviewImages(getPreviewImages(itemFolder));
 				product.setImageGroups(getImageGroups(itemFolder, colors));
+				curtainProducts.add(product);
+
+				curtainProducts.add(product);
+				curtainProducts.add(product);
+				curtainProducts.add(product);
+				curtainProducts.add(product);
+				curtainProducts.add(product);
+				curtainProducts.add(product);
+				curtainProducts.add(product);
+				curtainProducts.add(product);
+				curtainProducts.add(product);
 				curtainProducts.add(product);
 			}
 		} catch (IOException e) {
@@ -66,7 +78,7 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 			throw new IllegalStateException("Preivew images must be < 5 and > 0, " + itemFolder.getName());
 
 		for (File imageFile : imageFiles) {
-			previewImages.add(toPath(itemFolder, imageFile));
+			previewImages.add(BASE_URL + "/" + itemFolder.getName() + "/p/" + imageFile.getName());
 		}
 		return previewImages;
 	}
@@ -96,8 +108,5 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 		}
 		return recommendProductIds;
 	}
-
-	private String toPath(File folder, File imageFile) {
-		return BASE_URL + "/" + folder.getName() + "/" + imageFile.getName();
-	}
+	
 }

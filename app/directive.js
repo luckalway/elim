@@ -11,22 +11,7 @@ app.directive('topNav', function() {
 		templateUrl : 'app/template/top-nav.html',
 		scope : true,
 		link : function(scope, element, attr, ctrl) {
-			scope.categories = categories;
-		}
-	};
-});
-
-app.directive('productItem', function() {
-	return {
-		restrict : 'ECA',
-		templateUrl : 'app/template/product-item.html',
-		scope : {
-			title : '@',
-			id : '@',
-			image : '@'
-		},
-		link : function(scope, element, attr, ctrl) {
-			scope.link = '#/item?id=' + scope.id;
+			//scope.categories = categories;
 		}
 	};
 });

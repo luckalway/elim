@@ -5,9 +5,11 @@ public class Constants {
 
 	public static final String PROJECT_HOME = "C:/Users/malachi.ye/git/elim/";
 
-	public static final String FOLDER_OUTPUT_JS = PROJECT_HOME + "js/data";
+	public static final String FOLDER_OUTPUT_JS = PROJECT_HOME + "app/data.js";
 
-	public static final String FOLDER_CURTAIN_DATA = "data/curtain";
+	public static final String FOLDER_CURTAIN_DATA = "app/data/curtain";
 
-	public static final String FOLDER_SALE_SHOW_DATA = "data/sale-show";
+	public static final String FOLDER_SALE_SHOW_DATA = "app/data/sale-show";
+
+	public static final String FOLDER_SLIDE = "app/data/promotion/slide";
 }

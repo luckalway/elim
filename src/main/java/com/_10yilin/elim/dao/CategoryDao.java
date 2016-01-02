@@ -1,14 +1,7 @@
 package com._10yilin.elim.dao;
 
-import java.util.List;
-
-import com._10yilin.elim.entity.Category;
+import com._10yilin.elim.entity.CategoryData;
 
 public interface CategoryDao {
-	List<Category> getStyleCategories();
-
-	List<Category> getPriceCategories();
-
-	List<Category> getClothCategories();
-
+	CategoryData getCategoryData();
 }

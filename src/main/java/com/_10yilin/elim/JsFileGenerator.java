@@ -34,7 +34,7 @@ public class JsFileGenerator {
 			jsFileWriter.write("var slideShows=" + JsonUtils.toJson(slideItemDao.getAllSlideItems()) + ";");
 
 			jsFileWriter.write("var categoryObj=" + JsonUtils.toJson(categoryDao.getCategoryData()) + ";");
-			log(JsonUtils.toJson(categoryDao.getCategoryData()));
+			log(JsonUtils.toJson(saleShowDao.getAllSaleShowList()));
 			jsFileWriter.flush();
 			jsFileWriter.close();
 		} catch (IOException e) {

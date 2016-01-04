@@ -41,6 +41,7 @@ public class SaleShowDaoImpl implements SaleShowDao {
 					DateFormat dateFormat = new SimpleDateFormat("yyyy/MM");
 					saleShow.setDate(dateFormat.parse(item.getChildText("date")));
 					saleShow.setDescription(item.getChildText("desc"));
+					saleShow.setTitle(item.getChildText("title"));
 				} catch (JDOMException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

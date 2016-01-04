@@ -18,9 +18,6 @@ app.controller('itemListCtrl', function($scope) {
 		}
 	}
 
-	console.log($scope.categoryObj);
-	
-
 	var groups = new Array();
 	var group = null;
 	for (var i = 0; i < curtainItems.length; i++) {

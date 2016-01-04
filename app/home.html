@@ -1,37 +1,20 @@
 <div ng-controller="homeCtrl">
 
-<div id="jssor_1"
-	style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1000px; height: 400px; overflow: hidden; visibility: hidden;">
-<!-- Loading Screen -->
-<div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-	<div
-		style="filter: alpha(opacity = 70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-	<div
-		style="position: absolute; display: block; background: url('img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-</div>
-<div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1000px; height: 400px; overflow: hidden;">
-	<div data-p="112.50" style="display: none;" ng-repeat="item in slideShows">
-		<img data-u="image" src="app/data/promotion/slide/002.jpg" />
-		<div data-u="caption" data-t="6"
-			style="position: absolute; top: 30px; left: 30px; width: 350px; height: 30px; background-color: rgba(235, 81, 0, 0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center;">visual
-			slider maker</div>
+
+	<div id="slide-show" class="owl-carousel owl-theme">
+		<div class="item" ng-repeat="item in slideShows">
+			<img src="{{item.image}}" alt="The Last of us">
+		</div>
 	</div>
-</div>
-<!-- Bullet Navigator -->
-<div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
-	<div data-u="prototype" style="width: 12px; height: 12px;"></div>
-</div>
-<!-- Arrow Navigator -->
-<span data-u="arrowleft" class="jssora02l" style="top: 0px; left: 8px; width: 55px; height: 55px;" data-autocenter="2"></span> <span
-	data-u="arrowright" class="jssora02r" style="top: 0px; right: 8px; width: 55px; height: 55px;" data-autocenter="2"></span>
-</div>
+	<div ng-init="slideShow()"></div>
 
 
-<div style="height: 20px;"></div>
 
-<div class="col-xs-6 col-md-3" ng-repeat="item in curtainItems">
-	<a class="thumbnail ng-binding" href="#/item?id={{item.id}}"><img width="280px" height="280px" alt="..."
-		src="{{item.previewImages[0]}}">{{item.title}}</a>
-</div>
+	<div style="height: 20px;"></div>
+
+	<div class="col-xs-6 col-md-3" ng-repeat="item in curtainItems">
+		<a class="thumbnail ng-binding" href="#/item?id={{item.id}}"><img width="280px" height="280px" alt="..."
+			src="{{item.previewImages[0]}}">{{item.title}}</a>
+	</div>
 
 </div>

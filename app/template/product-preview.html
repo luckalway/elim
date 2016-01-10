@@ -101,6 +101,12 @@
 	text-align: left;
 	list-style-type: none;
 }
+
+#elim-slider{
+	position: relative;
+	border: 1px solid red;
+	height: 300px;
+}
 </style>
 
 
@@ -136,7 +142,29 @@ $(document).ready(function () {
          
      });
 
-     $( "#cal-tabs" ).tabs();
+	$("#installed-track").click(function(){
+		$("#elim-slider-container").children().not(":first").remove();
+		$("#elim-slider-container").append($("#installed-track-items").html());
+
+		$("#elim-slider").elimSlider();
+		$("#elim-slider").elimSlider("next");
+	});
+
+	$("#installed-pipe").click(function(){
+		$("#elim-slider-container").children().not(":first").remove();
+		$("#elim-slider-container").append($("#installed-pipe-items").html());
+		$("#elim-slider").elimSlider();
+		$("#elim-slider").elimSlider("next");
+	});
+	
+	$("#no-install").click(function(){
+		$("#elim-slider-container").children().not(":first").remove();
+		$("#elim-slider-container").append($("#no-install").html());
+		$("#elim-slider").elimSlider();
+		$("#elim-slider").elimSlider("next");
+	});
+	
+	
    })
 </script>
 
@@ -162,18 +190,32 @@ $(document).ready(function () {
 		</ul>
 		<div>
 			<h3>价格计算</h3>
-			<div id="cal-tabs">
-				<ul>
-					<li><a href="#tabs-1">已安装轨道</a></li>
-					<li><a href="#tabs-2">已安装罗马杆</a></li>
-					<li><a href="#tabs-2">未安装轨道/罗马杆</a></li>
-				</ul>
-				<div id="tabs-1"></div>
-				<div id="tabs-2"></div>
+			<div id="elim-slider">
+				<div id="elim-slider-container" class="elim-slider-container">
+					<div class="elim-slider-item">
+						<p id="installed-track">
+							已安装轨道
+						</p>
+						<p id="installed-pipe">
+							已安装罗马杆
+						</p>
+						<p id="no-install">
+							未安装
+						</p>
+					</div>
+				</div>
 			</div>
+
+			<div id="installed-track-items" style="display: none;">
+				<div class="elim-slider-item">已经安装轨道</div>
+			</div>
+
+			<div id="installed-pipe-items" style="display: none;">
+				<div class="elim-slider-item">已经安装罗马杆</div>
+			</div>
+
 		</div>
 	</div>
-	<div class="clear"></div>
 	<div>
 		<legend>详细参数</legend>
 		<ul class="detail-parameter">

@@ -1,0 +1,23 @@
+.elim-slider {
+	position: relative;
+	border-radius: 4px;
+	border: 1px solid blue;
+	margin-left: 400px;
+	overflow: hidden;
+}
+
+.elim-slider-container {
+	position: absolute;
+	left: -1500px;
+}
+
+.elim-slider-container .elim-slider-item {
+	position: relative;
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+	background: #ccc;
+	text-align: center;
+	line-height: 300px;
+}

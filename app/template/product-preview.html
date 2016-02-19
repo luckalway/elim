@@ -102,10 +102,33 @@
 	list-style-type: none;
 }
 
-#elim-slider{
+#elim-slider {
 	position: relative;
 	border: 1px solid red;
-	height: 300px;
+	height: 350px;
+}
+
+#elim-slider {
+	text-align: center;
+}
+
+.arrow-guide {
+	text-align: center;
+	border-top-right-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	background-color: #333333;
+	height: 50px;
+	line-height: 50px;
+	margin-left: 30px;
+	width: 200px;
+	margin-top: 20px;
+	font-size: 30px;
+	font-family: fantasy;
+	color: fuchsia;
 }
 </style>
 
@@ -189,29 +212,23 @@ $(document).ready(function () {
 			<li class="promotion-price"><label>促销价：</label><span>¥35.00</span></li>
 		</ul>
 		<div>
-			<h3>价格计算</h3>
+			<h3>尺寸测量/价格计算</h3>
 			<div id="elim-slider">
 				<div id="elim-slider-container" class="elim-slider-container">
 					<div class="elim-slider-item">
-						<p id="installed-track">
-							已安装轨道
-						</p>
-						<p id="installed-pipe">
-							已安装罗马杆
-						</p>
-						<p id="no-install">
-							未安装
-						</p>
+						<p id="installed-track" class="arrow-guide">已安装轨道</p>
+						<p id="installed-pipe" class="arrow-guide">已安装罗马杆</p>
+						<p id="no-install" class="arrow-guide">未安装</p>
 					</div>
 				</div>
 			</div>
 
 			<div id="installed-track-items" style="display: none;">
-				<div class="elim-slider-item">已经安装轨道</div>
+				<div class="elim-slider-item"><img src="images/how-size/size-guidao.jpg"></div>
 			</div>
 
 			<div id="installed-pipe-items" style="display: none;">
-				<div class="elim-slider-item">已经安装罗马杆</div>
+				<div class="elim-slider-item"><img src="images/how-size/size-luomagan.jpg"></div>
 			</div>
 
 		</div>

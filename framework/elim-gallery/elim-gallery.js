@@ -1,76 +1,122 @@
 (function($) {
+	var defaults = {
+		animateSpeed:'fast'
+	};
+	
+	var getDocmentHeight = function() {
+		var B = document.body;
+		var H = document.documentElement;
+		if (typeof document.height !== 'undefined')
+			return document.height; // For webkit browsers
+
+		return Math.max(B.scrollHeight, B.offsetHeight, H.clientHeight,
+				H.scrollHeight, H.offsetHeight);
+	}
+
+	var ElimGallery = function(container) {
+		this.container = container;
+	};
+
+	ElimGallery.prototype.init = function() {
+		var self = this;
+		var container = this.container;
+		container.tabs();
+
+		var allLiElements = container.find("div li");
+		allLiElements.addClass("unfocus");
+
+		allLiElements.mouseover(function() {
+			$(this).removeClass("unfocus").addClass("focus");
+		});
+
+		allLiElements.mouseout(function() {
+			$(this).removeClass("focus").addClass("unfocus");
+		});
+
+		allLiElements.click(function() {
+			self.openSlider();
+		});
+	};
+
+	ElimGallery.prototype.openSlider = function() {
+		var self = this;
+
+		var sliderContainer = $(".elim-gallery-slider");
+		if (sliderContainer.size() == 0) {
+			sliderContainer = $('<div class="elim-gallery-slider"></div>');
+			$(document.body).append(sliderContainer);
+		}
+		var activeGalleryId = this.container.find("ul>.ui-tabs-active").attr(
+				'aria-controls');
+		sliderContainer.empty();
+		sliderContainer.height(getDocmentHeight());
+		sliderContainer.append($("#" + activeGalleryId).html());
+		sliderContainer.find("img").width(sliderContainer.innerWidth());
+		sliderContainer.show();
+
+		if ($(".elim-gallery-cover-shade").size() == 0) {
+			$(document.body).append($('<div class="elim-gallery-cover-shade"></div><div class="elim-gallery-close"></div>'));
+			$('.elim-gallery-cover-shade').click(function(){
+				self.closeSlider();
+			});
+			$(".elim-gallery-close").click(function(){
+				self.closeSlider();
+			});
+		}
+		$(".elim-gallery-cover-shade").show();
+		$(".elim-gallery-close").show();
+		
+
+		var perMove = getDocmentHeight() / 2;
+
+		var lock = false;
+		var bottomNone = false;
+		$(document.body).mousewheel(function(event, delta, deltaX, deltaY) {
+			if (lock)
+				return false;
+
+			var animateDone = function() {
+				lock = false;
+			}
+
+			var containerInner = sliderContainer.children("ul:first");
+			if (delta == -1) {
+				var top = containerInner.position().top;
+				var availableSteps = containerInner.height()-Math.abs(top)-getDocmentHeight();
+				var moveSteps = availableSteps <= perMove?availableSteps:perMove;
+				if(moveSteps <= 0)
+					return false;
+
+				lock = true;
+				containerInner.animate({
+					top : '-=' + moveSteps
+				}, defaults.animateSpeed, animateDone);
+			} else if (delta == 1) {
+				var availableSteps = -containerInner.position().top;
+				var moveSteps = availableSteps < perMove ? availableSteps : perMove;
+
+				lock = true;
+				containerInner.animate({
+					top : '+=' + moveSteps
+				}, defaults.animateSpeed, animateDone);
+			}
+			return false;
+		});
+	};
+	
+	ElimGallery.prototype.closeSlider = function(){
+		var self = this;
+		$(".elim-gallery-slider").remove();
+		$('.elim-gallery-cover-shade').hide();
+		$(".elim-gallery-close").hide();
+		$(document.body).unbind('mousewheel');
+	}
 
 	$.fn.extend({
 		elimGallery : function(options) {
-			var thisObj = this;
-			var images = $(thisObj).find("img");
-			var slideShow = $("#slide-show");
-			var current = images.first();
-
-			var showImage = $('<img/>').attr('src', current.attr('src'));
-			slideShow.find('figure').append(showImage);
-
-			var screenWidth = $(window).width(), screenHeight = $(window)
-					.height();
-			var scrolltop = $(document).scrollTop();
-			var left = (screenWidth - 500) / 2;
-			var top = (screenHeight - 500) / 2 + scrolltop;
-			slideShow.css('top', top).css('left', left);
-
-			slideShow.find('.bss-prev').click(
-					function() {
-						var activeLiElement = thisObj.find('li.active');
-						activeLiElement.removeClass('active');
-						var newActiveLiElement = activeLiElement.prev();
-
-						var noMoreElement = newActiveLiElement.size() == 0;
-						if (noMoreElement) {
-							newActiveLiElement = thisObj.find('li').last();
-						}
-						newActiveLiElement.addClass('active');
-						slideShow.find('img').attr('src',
-								newActiveLiElement.find('img').attr('src'));
-					});
-
-			slideShow.find('.bss-next').click(
-					function() {
-						var activeLiElement = thisObj.find('li.active');
-						activeLiElement.removeClass('active');
-						var newActiveLiElement = activeLiElement.next();
-
-						var noMoreElement = newActiveLiElement.size() == 0;
-						if (noMoreElement) {
-							newActiveLiElement = thisObj.find('li').first();
-						}
-						newActiveLiElement.addClass('active');
-						slideShow.find('img').attr('src',
-								newActiveLiElement.find('img').attr('src'));
-					});
-
-			slideShow.find('.bss-close').click(function() {
-				slideShow.hide();
-			});
-		},
-
-		play : function(liElement) {
-			var thisObj = $(this);
-			if (!liElement) {
-				liElement = thisObj.find('li').first();
-			}
-			thisObj.find('li.active').each(function(i, e) {
-				$(e).removeClass('active');
-			});
-
-			liElement.addClass('active');
-
-			var allImages = $(thisObj).find("img");
-			var slideShow = $("#slide-show");
-			slideShow.find('img')
-					.attr('src', liElement.find('img').attr('src'));
-
-			slideShow.show();
+			var elimGallery = new ElimGallery(this);
+			elimGallery.init();
 		}
-
 	});
 
 }(jQuery));

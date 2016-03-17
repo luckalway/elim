@@ -1,13 +1,21 @@
-package com._10yilin.elim;
+package com._10yilin.elim.gallery;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 import org.imgscalr.Scalr;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 public class Compressor {
 	private static final Logger LOG = Logger.getLogger(Compressor.class);
@@ -50,7 +58,56 @@ public class Compressor {
 				}
 				processGallery(sku, target);
 			}
+			generateItemXml(product, outFolder);
 		}
+	}
+
+	private static void generateItemXml(File product, File outFolder) throws IOException {
+		File xmlFile = new File(new File(outFolder, product.getName()), "item.xml");
+		SAXBuilder builder = new SAXBuilder();
+		Document doc = null;
+		if (xmlFile.exists()) {
+			try {
+				doc = builder.build(new FileInputStream(xmlFile));
+			} catch (JDOMException e) {
+				throw new IOException(e);
+			}
+		} else {
+			doc = new Document();
+			Element rootElement = new Element("item");
+			doc.setRootElement(rootElement);
+			rootElement.addContent(createEmptyElement("title"));
+			rootElement.addContent(createEmptyElement("shading-percent"));
+			rootElement.addContent(createEmptyElement("material"));
+			rootElement.addContent(createEmptyElement("style"));
+			rootElement.addContent(createEmptyElement("price"));
+		}
+		Element rootElement = doc.getRootElement();
+
+		// if not exist
+		rootElement.removeChild("color");
+		StringBuilder colors = new StringBuilder();
+		for (File sku : product.listFiles()) {
+			if (sku.getName().equals("preview"))
+				continue;
+			colors.append(sku.getName()).append(";");
+		}
+		Element colorElement = new Element("color");
+		colorElement.setText(colors.toString());
+		rootElement.addContent(colorElement);
+
+		XMLOutputter xmlOutput = new XMLOutputter();
+
+		xmlOutput.setFormat(Format.getPrettyFormat());
+
+		xmlOutput.output(doc, new FileWriter(xmlFile));
+		LOG.info("Generated the item xml file - " + xmlFile.getAbsolutePath());
+	}
+
+	private static Element createEmptyElement(String name) {
+		Element element = new Element(name);
+		element.setText("null");
+		return element;
 	}
 
 	private static void processGallery(File sku, File target) throws IOException {

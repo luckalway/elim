@@ -21,7 +21,7 @@ public class Compressor {
 	private static final Logger LOG = Logger.getLogger(Compressor.class);
 
 	public static void main(String[] args) throws IOException {
-		final File outFolder = new File("G:\\demo");
+		final File outFolder = new File("C:\\Users\\malachi.ye\\git\\elim\\app\\data\\curtain");
 		File inFolder = new File("G:\\BaiduYunDownload");
 		process(inFolder, outFolder);
 	}

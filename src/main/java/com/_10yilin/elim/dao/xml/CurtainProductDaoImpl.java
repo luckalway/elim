@@ -2,6 +2,7 @@ package com._10yilin.elim.dao.xml;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +33,7 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 		SAXBuilder builder = new SAXBuilder();
 		try {
 			for (File itemFolder : this.rootFolder.listFiles()) {
-				Document document = builder.build(new FileInputStream(new File(itemFolder, "i.xml")));
+				Document document = builder.build(new FileInputStream(new File(itemFolder, "item.xml")));
 				CurtainProduct product = new CurtainProduct();
 				product.setId(itemFolder.getName());
 				Element item = document.getRootElement();
@@ -40,7 +41,7 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 				product.setShadingPercent(Integer.valueOf(item.getChildText("shading-percent")));
 				product.setStyle(item.getChildText("style"));
 				product.setTitle(item.getChildText("title"));
-				String[] colors = item.getChildText("colors").split(";");
+				String[] colors = item.getChildText("color").split(";");
 
 				product.setPreviewImages(getPreviewImages(itemFolder));
 				product.setImageGroups(getImageGroups(itemFolder, colors));
@@ -68,17 +69,21 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 	}
 
 	private List<String> getPreviewImages(File itemFolder) {
-		File previewImageFolder = new File(itemFolder, "p");
+		File previewImageFolder = new File(itemFolder, "preview");
 		if (!previewImageFolder.exists())
 			throw new IllegalStateException("Can not found the preivew folder of, " + itemFolder.getName());
 
 		List<String> previewImages = new ArrayList<String>();
-		File[] imageFiles = previewImageFolder.listFiles();
+		File[] imageFiles = previewImageFolder.listFiles(new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				return name.indexOf("jpg_") == -1;
+			}
+		});
 		if (imageFiles.length == 0 || imageFiles.length > 5)
-			throw new IllegalStateException("Preivew images must be < 5 and > 0, " + itemFolder.getName());
+			throw new IllegalStateException("Preivew images must be < 5 and > 0, " + itemFolder.getAbsolutePath());
 
 		for (File imageFile : imageFiles) {
-			previewImages.add(BASE_URL + "/" + itemFolder.getName() + "/p/" + imageFile.getName());
+			previewImages.add(BASE_URL + "/" + itemFolder.getName() + "/preview/" + imageFile.getName());
 		}
 		return previewImages;
 	}
@@ -108,5 +113,5 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 		}
 		return recommendProductIds;
 	}
-	
+
 }

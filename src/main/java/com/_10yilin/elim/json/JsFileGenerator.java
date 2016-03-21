@@ -1,8 +1,9 @@
-package com._10yilin.elim;
+package com._10yilin.elim.json;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.CategoryDao;
 import com._10yilin.elim.dao.CurtainProductDao;
 import com._10yilin.elim.dao.SaleShowDao;

@@ -11,7 +11,7 @@ public class CurtainProduct {
 	private String material;
 	private String style;
 
-	public Map<String, List<String>> imageGroups;
+	public Map<String, List<String>> galleryGroups;
 	public List<String> previewImages;
 
 	public String getId() {
@@ -54,12 +54,12 @@ public class CurtainProduct {
 		this.style = style;
 	}
 
-	public Map<String, List<String>> getImageGroups() {
-		return imageGroups;
+	public Map<String, List<String>> getGalleryGroups() {
+		return galleryGroups;
 	}
 
-	public void setImageGroups(Map<String, List<String>> imageGroups) {
-		this.imageGroups = imageGroups;
+	public void setGalleryGroups(Map<String, List<String>> galleryGroups) {
+		this.galleryGroups = galleryGroups;
 	}
 
 	public List<String> getPreviewImages() {

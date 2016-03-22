@@ -79,13 +79,13 @@
 }
 
 .preview-single img {
-	width: 400px;
-	height: 400px;
+	width: 410px;
+	height: 410px;
 	border: 10px solid #AFFFFE;
 }
 
 .thumbnails {
-	width: 400px;
+	width: 420px;
 }
 
 .thumbnails img {
@@ -108,56 +108,19 @@
 </style>
 
 
-<script>
-$(document).ready(function () {
-     $(".preview-single img").each(function(i,e){
-        if(i != 0){
-          $(e).hide();
-        }
-     })
-     
-     $(".thumbnails img").each(function(i,e){
-    	 $(e).addClass('unfocus');	
-         
-         $(e).mouseover(function(){
-        	 $(e).removeClass('unfocus');
-             $(e).addClass('focus');
-            
-            $(".preview-single img").each(function(i2,e){
-                if(i2 == i){
-                  $(e).show();
-                }else{
-                  $(e).hide();
-                }
-            })
-            
-         }); 
-         
-         $(e).mouseout(function(){
-            $(e).removeClass('focus');
-            $(e).addClass('unfocus');
-         });
-     });	
-
-     $('#wizard').smartWizard();
-  	
-   })
-</script>
-
-
 <div class="product-show">
 	<div class="preview">
 		<div class="preview-single">
-			<img data-u="image" src="img/05.jpg" /> <img data-u="image" src="img/001.jpg" /> <img data-u="image" src="img/004.jpg" />
+			<img ng-repeat="image in item.previewImages" data-u="image" src="{{image}}" />
 		</div>
 
 		<div class="thumbnails">
-			<img src="img/landscape.jpg" /> <img src="img/motor.jpg" /> <img src="img/photography.jpg" />
+			<img ng-repeat="image in item.previewImages" data-u="image" src="{{image}}_80x80.jpg" repeat-done="initPreviewImages()"/>
 		</div>
 	</div>
 	<div class="product-parameter">
 		<div class="title">
-			<a href="#" target="_blank">定制全遮光窗帘布料成品卧室温馨落地窗窗帘欧式客厅纯色飘窗窗帘</a>
+			<a href="#" target="_blank">{{item.title}}</a>
 		</div>
 		<div class="sub-title">标价为1米单价，幅宽2.7M，免辅料加工费</div>
 		<ul class="price">
@@ -179,10 +142,7 @@ $(document).ready(function () {
 				</ul>
 				<div id="step-1">
 					<h2 class="StepTitle">请选择</h2>
-					<a href="#">我已安装好轨道</a><br/>
-					<a href="#">我已安装好罗马杆</a><br/>
-					<a href="#">还没安装，准备用罗马杆</a><br/>
-					<a href="#">还没安装，准备安装轨道</a><br/>
+					<a href="#">我已安装好轨道</a><br /> <a href="#">我已安装好罗马杆</a><br /> <a href="#">还没安装，准备用罗马杆</a><br /> <a href="#">还没安装，准备安装轨道</a><br />
 				</div>
 				<div id="step-2">
 					<h2 class="StepTitle">Step 2 Content</h2>
@@ -211,3 +171,7 @@ $(document).ready(function () {
 	</div>
 	<div class="clear"></div>
 </div>
+
+<script type="text/javascript">
+	$('#wizard').smartWizard();
+</script>

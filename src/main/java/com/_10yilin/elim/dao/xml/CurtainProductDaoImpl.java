@@ -44,7 +44,7 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 				String[] colors = item.getChildText("color").split(";");
 
 				product.setPreviewImages(getPreviewImages(itemFolder));
-				product.setImageGroups(getImageGroups(itemFolder, colors));
+				product.setGalleryGroups(getImageGroups(itemFolder, colors));
 				curtainProducts.add(product);
 
 				curtainProducts.add(product);

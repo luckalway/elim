@@ -1,61 +1,11 @@
-<script>
-$(document).ready(function () {
-     $(".product-images-container div li").each(function(i,e){
-    	 $(e).addClass("unfocus");
-         
-        $(e).mouseover(function(){
-        	$(e).removeClass("unfocus");
-            $(e).addClass("focus");
-         }); 
-         
-         $(e).mouseout(function(){
-        	$(e).removeClass("focus");
-            $(e).addClass("unfocus");
-         });
-
-         $(e).click(function(){
-        	 $(".product-images-container").play($(this));
-         });
-     });
-
-     $(".elim-gallery").elimGallery();     
-     
-})
-</script>
-
 <div id="tabs" class="elim-gallery">
 	<ul>
-		<li><a href="#tabs-1">红色</a></li>
-		<li><a href="#tabs-2">蓝色</a></li>
+		<li ng-repeat="(colorId, images) in item.galleryGroups"><a href="#{{colorId}}">{{colorId}}</a></li>
 	</ul>
-	<div id="tabs-1">
+	
+	<div ng-repeat="(colorId, images) in item.galleryGroups" id="{{colorId}}" repeat-done="initGallery()">
 		<ul>
-			<li><img src="img/thumb-01.jpg" /></li>
-			<li><img src="img/thumb-02.jpg" /></li>
-			<li><img src="img/thumb-03.jpg" /></li>
-			<li><img src="img/thumb-13.jpg" /></li>
-			<li><img src="img/thumb-14.jpg" /></li>
-			<li><img src="img/thumb-01.jpg" /></li>
-			<li><img src="img/thumb-02.jpg" /></li>
-			<li><img src="img/thumb-03.jpg" /></li>
-		</ul>
-	</div>
-	<div id="tabs-2">
-		<ul>
-			<li><img src="img/thumb-01.jpg" /></li>
-			<li><img src="img/thumb-02.jpg" /></li>
-			<li><img src="img/thumb-03.jpg" /></li>
-			<li><img src="img/thumb-04.jpg" /></li>
-			<li><img src="img/thumb-05.jpg" /></li>
-			<li><img src="img/thumb-06.jpg" /></li>
-			<li><img src="img/thumb-07.jpg" /></li>
-			<li><img src="img/thumb-08.jpg" /></li>
-			<li><img src="img/thumb-09.jpg" /></li>
-			<li><img src="img/thumb-10.jpg" /></li>
-			<li><img src="img/thumb-11.jpg" /></li>
-			<li><img src="img/thumb-12.jpg" /></li>
-			<li><img src="img/thumb-13.jpg" /></li>
-			<li><img src="img/thumb-14.jpg" /></li>
+			<li ng-repeat="image in images"><img src="{{image}}" /></li>
 		</ul>
 	</div>
 </div>

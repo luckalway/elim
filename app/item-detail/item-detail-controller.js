@@ -37,5 +37,11 @@ app.controller('itemDetailCtrl', function($scope, $routeParams) {
 				$(e).addClass('unfocus');
 			});
 		});
+
+		$scope.initGallery = function() {
+			setTimeout(function() {
+				$(".elim-gallery").elimGallery();
+			}, 1000);
+		}
 	}
 })

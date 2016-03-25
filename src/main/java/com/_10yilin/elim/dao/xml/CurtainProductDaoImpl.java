@@ -96,8 +96,13 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 				throw new IllegalStateException("Can not found " + oneColorImageFolder);
 
 			List<String> images = new ArrayList<String>();
-			for (String imageName : oneColorImageFolder.list()) {
-				images.add(BASE_URL + "/" + color + "/" + imageName);
+			String[] imageList = oneColorImageFolder.list(new FilenameFilter() {
+				public boolean accept(File dir, String name) {
+					return name.indexOf("160") == -1;
+				}
+			});
+			for (String imageName : imageList) {
+				images.add(BASE_URL + "/" + itemFolder.getName() + "/" + color + "/" + imageName);
 			}
 			imageGroups.put(color, images);
 		}

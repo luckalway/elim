@@ -2,10 +2,10 @@
 	<ul>
 		<li ng-repeat="(colorId, images) in item.galleryGroups"><a href="#{{colorId}}">{{colorId}}</a></li>
 	</ul>
-	
+
 	<div ng-repeat="(colorId, images) in item.galleryGroups" id="{{colorId}}" repeat-done="initGallery()">
-		<ul>
-			<li ng-repeat="image in images"><img src="{{image}}" /></li>
+		<ul class="gallery-container">
+			<li ng-repeat="image in images"><span><img src="{{image}}_160x160.jpg" /></span></li>
 		</ul>
 	</div>
 </div>

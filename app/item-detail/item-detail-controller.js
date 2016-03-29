@@ -41,7 +41,7 @@ app.controller('itemDetailCtrl', function($scope, $routeParams) {
 		$scope.initGallery = function() {
 			setTimeout(function() {
 				$(".elim-gallery").elimGallery();
-			}, 1000);
+			}, 2000);
 		}
 	}
 })

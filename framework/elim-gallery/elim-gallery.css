@@ -6,12 +6,6 @@
 	float: left;
 }
 
-.elim-gallery li {
-	float: left;
-	margin: 5px;
-	list-style: none;
-}
-
 .elim-gallery li.focus {
 	border: 3px solid #FFFFFF;
 }
@@ -24,8 +18,27 @@
 	border: 3px solid #FFFFFF;
 }
 
-.elim-gallery ul li img {
-	width: 160px;
+.elim-gallery ul.gallery-container {
+	display: table;
+}
+
+.elim-gallery ul.gallery-container li {
+	display: table;
+	vertical-align: middle;
+	text-align: center;
+	width: 166px;
+	height: 166px;
+	float: left;
+	margin: 5px;
+	list-style: none;
+	overflow: hidden;
+}
+
+.elim-gallery ul.gallery-container li span {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+	float: none;
 }
 
 .elim-gallery-slider {

@@ -3,14 +3,8 @@
 		animateSpeed:'fast'
 	};
 	
-	var getDocmentHeight = function() {
-		var B = document.body;
-		var H = document.documentElement;
-		if (typeof document.height !== 'undefined')
-			return document.height; // For webkit browsers
-
-		return Math.max(B.scrollHeight, B.offsetHeight, H.clientHeight,
-				H.scrollHeight, H.offsetHeight);
+	var getWindowHeight = function() {
+		return $(window).height();
 	}
 
 	var ElimGallery = function(container) {
@@ -49,7 +43,7 @@
 		var activeGalleryId = this.container.find("ul>.ui-tabs-active").attr(
 				'aria-controls');
 		sliderContainer.empty();
-		sliderContainer.height(getDocmentHeight());
+		sliderContainer.height(getWindowHeight());
 		var containerInner = $("<ul/>")
 		$("#" + activeGalleryId).find("img").each(function(i,element){
 			var liElement = $("<li/>")
@@ -75,7 +69,7 @@
 		$(".elim-gallery-close").show();
 		
 
-		var perMove = getDocmentHeight() / 2;
+		var perMove = getWindowHeight() / 2;
 
 		var lock = false;
 		var bottomNone = false;
@@ -90,7 +84,7 @@
 			var containerInner = sliderContainer.children("ul:first");
 			if (delta == -1) {
 				var top = containerInner.position().top;
-				var availableSteps = containerInner.height()-Math.abs(top)-getDocmentHeight();
+				var availableSteps = containerInner.height()-Math.abs(top)-getWindowHeight();
 				var moveSteps = availableSteps <= perMove?availableSteps:perMove;
 				if(moveSteps <= 0)
 					return false;

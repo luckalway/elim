@@ -41,6 +41,9 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 				product.setShadingPercent(Integer.valueOf(item.getChildText("shading-percent")));
 				product.setStyle(item.getChildText("style"));
 				product.setTitle(item.getChildText("title"));
+				product.setColors(item.getChildText("color"));
+				product.setMaterial(item.getChildText("material"));
+
 				String[] colors = item.getChildText("color").split(";");
 
 				product.setPreviewImages(getPreviewImages(itemFolder));

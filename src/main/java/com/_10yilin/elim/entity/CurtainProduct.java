@@ -10,6 +10,7 @@ public class CurtainProduct {
 	private int shadingPercent;
 	private String material;
 	private String style;
+	private String colors;
 
 	public Map<String, List<String>> galleryGroups;
 	public List<String> previewImages;
@@ -76,6 +77,14 @@ public class CurtainProduct {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getColors() {
+		return colors;
+	}
+
+	public void setColors(String colors) {
+		this.colors = colors;
 	}
 
 }

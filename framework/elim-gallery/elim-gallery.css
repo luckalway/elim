@@ -46,8 +46,8 @@
 	border-right: 10px solid red;
 	width: 600px;
 	z-index: 999;
-	position: absolute;
-	z-index: 999;
+	position: fixed;
+	z-index: 1200;
 	left: 25%;
 	top: 0px;
 	display: none;

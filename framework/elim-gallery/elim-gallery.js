@@ -50,8 +50,16 @@
 				'aria-controls');
 		sliderContainer.empty();
 		sliderContainer.height(getDocmentHeight());
-		sliderContainer.append($("#" + activeGalleryId).html());
-		sliderContainer.find("img").width(sliderContainer.innerWidth());
+		var containerInner = $("<ul/>")
+		$("#" + activeGalleryId).find("img").each(function(i,element){
+			var liElement = $("<li/>")
+			var imageElement = $("<img/>");
+			imageElement.attr('src',element.src.replace("_160x160.jpg",""));
+			imageElement.width(sliderContainer.innerWidth());
+			liElement.append(imageElement);
+			containerInner.append(liElement);
+		});
+		sliderContainer.append(containerInner);
 		sliderContainer.show();
 
 		if ($(".elim-gallery-cover-shade").size() == 0) {

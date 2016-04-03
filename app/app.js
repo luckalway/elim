@@ -1,10 +1,14 @@
 var app = angular.module('elimApp', [ 'ngRoute' ]);
 
 app.config(function($routeProvider) {
-	$routeProvider.when('/product-list', {
-		templateUrl : 'app/item-list/product-list.html'
+	$routeProvider.when('/buyi', {
+		templateUrl : 'app/buyi/product-list.html'
 	}).when('/item', {
 		templateUrl : 'app/item-detail/item-detail.html'
+	}).when('/baiye', {
+		templateUrl : 'app/baiye/baiye-list.html'
+	}).when('/peijian', {
+		templateUrl : 'app/peijian/peijian-list.html'
 	}).when('/index', {
 		templateUrl : 'app/home.html'
 	}).when('/aboutus', {

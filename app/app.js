@@ -13,6 +13,8 @@ app.config(function($routeProvider) {
 		templateUrl : 'app/home.html'
 	}).when('/aboutus', {
 		templateUrl : 'app/about-us/about-us.html'
+	}).when('/case-detail', {
+		templateUrl : 'app/case/detail.html'
 	}).when('/case', {
 		templateUrl : 'app/case/case.html'
 	}).otherwise({

@@ -6,6 +6,7 @@ public class Luomagan {
 	private String id;
 	private double price;
 	private List<String> images;
+	private String title;
 
 	public double getPrice() {
 		return price;
@@ -29,5 +30,13 @@ public class Luomagan {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

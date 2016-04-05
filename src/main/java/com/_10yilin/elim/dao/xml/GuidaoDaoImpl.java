@@ -35,6 +35,7 @@ public class GuidaoDaoImpl implements GuidaoDao {
 				Element rootElement = document.getRootElement();
 				guidao.setId(item.getName());
 				guidao.setPrice(Double.valueOf(rootElement.getChildText("price")));
+				guidao.setTitle(rootElement.getChildText("title"));
 				guidao.setImages(getImages(item));
 				guidaos.add(guidao);
 			}

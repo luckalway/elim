@@ -36,6 +36,7 @@ public class LuomaganDaoImpl implements LuomaganDao {
 				double price = Double.valueOf(rootElement.getChildText("price"));
 				luomagan.setId(itemFolder.getName());
 				luomagan.setPrice(price);
+				luomagan.setTitle(rootElement.getChildText("title"));
 				luomagan.setImages(getImages(itemFolder));
 				luomagans.add(luomagan);
 			}

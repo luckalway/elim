@@ -9,6 +9,8 @@ app.config(function($routeProvider) {
 		templateUrl : 'app/baiye/baiye-list.html'
 	}).when('/peijian', {
 		templateUrl : 'app/peijian/peijian-list.html'
+	}).when('/peijian/detail', {
+		templateUrl : 'app/peijian/peijian-detail.html'
 	}).when('/index', {
 		templateUrl : 'app/home.html'
 	}).when('/aboutus', {

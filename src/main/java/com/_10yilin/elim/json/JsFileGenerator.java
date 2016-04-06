@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com._10yilin.elim.Constants;
+import com._10yilin.elim.dao.BaiyeDao;
 import com._10yilin.elim.dao.CategoryDao;
 import com._10yilin.elim.dao.CurtainProductDao;
 import com._10yilin.elim.dao.GuidaoDao;
@@ -11,6 +12,7 @@ import com._10yilin.elim.dao.LuomaganDao;
 import com._10yilin.elim.dao.SaleShowDao;
 import com._10yilin.elim.dao.SlideItemDao;
 import com._10yilin.elim.dao.SlideItemDaoImpl;
+import com._10yilin.elim.dao.xml.BaiyeDaoImpl;
 import com._10yilin.elim.dao.xml.CategoryDaoImpl;
 import com._10yilin.elim.dao.xml.CurtainProductDaoImpl;
 import com._10yilin.elim.dao.xml.GuidaoDaoImpl;
@@ -26,6 +28,7 @@ public class JsFileGenerator {
 	private static CategoryDao categoryDao = new CategoryDaoImpl();
 	private static GuidaoDao guidaoDao = new GuidaoDaoImpl();
 	private static LuomaganDao luomaganDao = new LuomaganDaoImpl();
+	private static BaiyeDao baiyeDao = new BaiyeDaoImpl();
 
 	public static void main(String[] args) {
 		try {
@@ -45,6 +48,7 @@ public class JsFileGenerator {
 
 			jsFileWriter.write("var guidaos=" + JsonUtils.toJson(guidaoDao.getGuidaos()) + ";");
 			jsFileWriter.write("var luomagans=" + JsonUtils.toJson(luomaganDao.getLuomagans()) + ";");
+			jsFileWriter.write("var baiyes=" + JsonUtils.toJson(baiyeDao.getBaiyes()));
 
 			jsFileWriter.flush();
 			jsFileWriter.close();

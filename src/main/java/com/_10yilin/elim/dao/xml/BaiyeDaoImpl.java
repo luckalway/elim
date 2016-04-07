@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.filechooser.FileSystemView;
+
 import org.apache.log4j.Logger;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -69,7 +71,7 @@ public class BaiyeDaoImpl implements BaiyeDao {
 	private List<String> getImages(File itemFolder) {
 		List<String> images = new ArrayList<String>();
 		for (String imageName : itemFolder.list()) {
-			if (imageName.startsWith("preview"))
+			if (imageName.startsWith("preview") || !imageName.endsWith(".jpg"))
 				continue;
 			images.add(BASE_URL + "/" + itemFolder.getName() + "/" + imageName);
 		}

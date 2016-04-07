@@ -3,7 +3,7 @@
 
 	<div id="slide-show" class="owl-carousel owl-theme">
 		<div class="item" ng-repeat="item in slideShows">
-			<img src="{{item.image}}" alt="The Last of us">
+			<img ng-src="{{item.image}}" alt="The Last of us">
 		</div>
 	</div>
 	<div ng-init="slideShow()"></div>
@@ -14,7 +14,7 @@
 
 	<div class="col-xs-6 col-md-3" ng-repeat="item in curtainItems">
 		<a class="thumbnail ng-binding" href="#/item?id={{item.id}}"><img width="280px" height="280px" alt="..."
-			src="{{item.previewImages[0]}}">{{item.title}}</a>
+			ng-src="{{item.previewImages[0]}}">{{item.title}}</a>
 	</div>
 
 </div>

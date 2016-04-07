@@ -48,7 +48,7 @@ public class JsFileGenerator {
 
 			jsFileWriter.write("var guidaos=" + JsonUtils.toJson(guidaoDao.getGuidaos()) + ";");
 			jsFileWriter.write("var luomagans=" + JsonUtils.toJson(luomaganDao.getLuomagans()) + ";");
-			jsFileWriter.write("var baiyes=" + JsonUtils.toJson(baiyeDao.getBaiyes()));
+			jsFileWriter.write("var baiyes=" + JsonUtils.toJson(baiyeDao.getBaiyes()) + ";");
 
 			jsFileWriter.flush();
 			jsFileWriter.close();

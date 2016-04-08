@@ -3,7 +3,6 @@ package com._10yilin.elim.dao.xml;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +12,14 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.BaiyeDao;
+import com._10yilin.elim.data.handler.BuyiDataHandler;
 import com._10yilin.elim.entity.Baiye;
-import com._10yilin.elim.gallery.Compressor;
 
 public class BaiyeDaoImpl implements BaiyeDao {
-	private static final Logger LOG = Logger.getLogger(Compressor.class);
+	private static final Logger LOG = Logger.getLogger(BuyiDataHandler.class);
 	private File rootFolder = null;
 	private String BASE_FOLDER = Constants.PROJECT_HOME + "/app/data/baiye";
 	private String BASE_URL = Constants.BASE_URL + "/app/data/baiye";
@@ -39,7 +36,6 @@ public class BaiyeDaoImpl implements BaiyeDao {
 				Baiye baiye = new Baiye();
 				File xmlFile = new File(itemFolder, "item.xml");
 				if (!xmlFile.exists()) {
-					init(itemFolder);
 					throw new IllegalArgumentException("Please create item.xml for " + itemFolder.getAbsolutePath()
 							+ " first");
 				}
@@ -74,27 +70,6 @@ public class BaiyeDaoImpl implements BaiyeDao {
 			images.add(BASE_URL + "/" + itemFolder.getName() + "/" + imageName);
 		}
 		return images;
-	}
-
-	private void init(File itemFolder) {
-		File xmlFile = new File(itemFolder, "item.xml");
-		Document doc = new Document();
-		Element rootElement = new Element("item");
-		doc.setRootElement(rootElement);
-		rootElement.addContent(createEmptyElement("title"));
-		rootElement.addContent(createEmptyElement("material"));
-		rootElement.addContent(createEmptyElement("price"));
-
-		XMLOutputter xmlOutput = new XMLOutputter();
-
-		xmlOutput.setFormat(Format.getPrettyFormat());
-
-		try {
-			xmlOutput.output(doc, new FileWriter(xmlFile));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		LOG.info("Generated the item xml file - " + xmlFile.getAbsolutePath());
 	}
 
 	private static Element createEmptyElement(String name) {

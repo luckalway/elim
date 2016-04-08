@@ -1,9 +1,8 @@
-package com._10yilin.elim.gallery;
+package com._10yilin.elim.data.handler;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -14,21 +13,20 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
 
-public class Compressor {
-	private static final Logger LOG = Logger.getLogger(Compressor.class);
+import com._10yilin.elim.util.ImageUtils;
+import com._10yilin.elim.util.XmlUtils;
 
-	public static void main(String[] args) throws IOException {
-		final File outFolder = new File("C:\\Users\\malachi.ye\\git\\elim\\app\\data\\curtain");
-		File inFolder = new File("G:\\BaiduYunDownload");
-		process(inFolder, outFolder);
-	}
+public class BuyiDataHandler extends AbstractDataHandler {
+	private static final Logger LOG = Logger.getLogger(BuyiDataHandler.class);
 
-	private static void process(File inFolder, File outFolder) throws IOException {
+	public void _process(File inFolder, File outFolder) {
 		if (hasFile(inFolder, "flag")) {
-			traverseProcess(inFolder, outFolder);
+			try {
+				traverseProcess(inFolder, outFolder);
+			} catch (IOException e) {
+				throw new DataHandleException(e);
+			}
 			return;
 		}
 
@@ -37,11 +35,11 @@ public class Compressor {
 				LOG.warn("No flag file found for the path[" + inFolder.getAbsolutePath() + "]");
 				break;
 			}
-			process(child, outFolder);
+			_process(child, outFolder);
 		}
 	}
 
-	private static void traverseProcess(File inFolder, File outFolder) throws IOException {
+	private void traverseProcess(File inFolder, File outFolder) throws IOException {
 		for (File product : inFolder.listFiles()) {
 			if (product.isFile())
 				continue;
@@ -62,7 +60,7 @@ public class Compressor {
 		}
 	}
 
-	private static void generateItemXml(File product, File outFolder) throws IOException {
+	private void generateItemXml(File product, File outFolder) throws IOException {
 		File xmlFile = new File(new File(outFolder, product.getName()), "item.xml");
 		SAXBuilder builder = new SAXBuilder();
 		Document doc = null;
@@ -76,11 +74,11 @@ public class Compressor {
 			doc = new Document();
 			Element rootElement = new Element("item");
 			doc.setRootElement(rootElement);
-			rootElement.addContent(createEmptyElement("title"));
-			rootElement.addContent(createEmptyElement("shading-percent"));
-			rootElement.addContent(createEmptyElement("material"));
-			rootElement.addContent(createEmptyElement("style"));
-			rootElement.addContent(createEmptyElement("price"));
+			rootElement.addContent(XmlUtils.createEmptyElement("title"));
+			rootElement.addContent(XmlUtils.createEmptyElement("shading-percent"));
+			rootElement.addContent(XmlUtils.createEmptyElement("material"));
+			rootElement.addContent(XmlUtils.createEmptyElement("style"));
+			rootElement.addContent(XmlUtils.createEmptyElement("price"));
 		}
 		Element rootElement = doc.getRootElement();
 
@@ -96,18 +94,7 @@ public class Compressor {
 		colorElement.setText(colors.toString());
 		rootElement.addContent(colorElement);
 
-		XMLOutputter xmlOutput = new XMLOutputter();
-
-		xmlOutput.setFormat(Format.getPrettyFormat());
-
-		xmlOutput.output(doc, new FileWriter(xmlFile));
-		LOG.info("Generated the item xml file - " + xmlFile.getAbsolutePath());
-	}
-
-	private static Element createEmptyElement(String name) {
-		Element element = new Element(name);
-		element.setText("null");
-		return element;
+		XmlUtils.outputXmlFile(doc, xmlFile);
 	}
 
 	private static void processGallery(File sku, File target) throws IOException {
@@ -115,10 +102,10 @@ public class Compressor {
 			BufferedImage scaledImage = Scalr.resize(ImageIO.read(originImage), 750);
 			String newImageName = originImage.getName().toLowerCase();
 			File compressedImage = new File(target, newImageName);
-			ImageIO.write(scaledImage, "jpg", compressedImage);
+			ImageUtils.generateJPGImage(scaledImage, compressedImage);
 
-			BufferedImage scaled160Image = Scalr.resize(ImageIO.read(originImage), 160);
-			ImageIO.write(scaled160Image, "jpg", new File(target, newImageName + "_160x160.jpg"));
+			ImageUtils.generateJPGImage(Scalr.resize(ImageIO.read(originImage), 160), target, newImageName
+					+ "_160x160.jpg");
 
 			LOG.info(originImage.getAbsolutePath() + " ----> " + compressedImage.getAbsolutePath());
 		}

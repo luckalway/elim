@@ -2,7 +2,6 @@ package com._10yilin.elim.data.handler;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -11,8 +10,6 @@ import org.apache.log4j.Logger;
 import org.imgscalr.Scalr;
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.util.ImageUtils;
 import com._10yilin.elim.util.XmlUtils;
@@ -21,6 +18,7 @@ public class BuyiDataHandler extends AbstractDataHandler {
 	private static final Logger LOG = Logger.getLogger(BuyiDataHandler.class);
 
 	public void _process(File inFolder, File outFolder) {
+		LOG.info("Start process " + inFolder);
 		if (hasFile(inFolder, "flag")) {
 			try {
 				traverseProcess(inFolder, outFolder);
@@ -37,50 +35,43 @@ public class BuyiDataHandler extends AbstractDataHandler {
 			}
 			_process(child, outFolder);
 		}
+		LOG.info("Processed finished, out to " + outFolder);
 	}
 
 	private void traverseProcess(File inFolder, File outFolder) throws IOException {
 		for (File product : inFolder.listFiles()) {
-			if (product.isFile())
+			File productOut = new File(outFolder, product.getName());
+			if (product.isFile() || !generateItemXml(product, productOut))
 				continue;
 
 			LOG.info("Start process product:" + product.getName());
 			for (File sku : product.listFiles()) {
-				File target = new File(outFolder, product.getName() + "/" + sku.getName());
-				target.mkdirs();
+				File skuOutFolder = new File(productOut, sku.getName());
+				skuOutFolder.mkdirs();
 				LOG.info("Start process sku:" + sku.getName());
 
 				if (sku.getName().equals("preview")) {
-					processPreviewImages(sku, target);
+					processPreviewImages(sku, skuOutFolder);
 					continue;
 				}
-				processGallery(sku, target);
+				processGallery(sku, skuOutFolder);
 			}
-			generateItemXml(product, outFolder);
 		}
 	}
 
-	private void generateItemXml(File product, File outFolder) throws IOException {
-		File xmlFile = new File(new File(outFolder, product.getName()), "item.xml");
-		SAXBuilder builder = new SAXBuilder();
-		Document doc = null;
-		if (xmlFile.exists()) {
-			try {
-				doc = builder.build(new FileInputStream(xmlFile));
-			} catch (JDOMException e) {
-				throw new IOException(e);
-			}
-		} else {
-			doc = new Document();
-			Element rootElement = new Element("item");
-			doc.setRootElement(rootElement);
-			rootElement.addContent(XmlUtils.createEmptyElement("title"));
-			rootElement.addContent(XmlUtils.createEmptyElement("shading-percent"));
-			rootElement.addContent(XmlUtils.createEmptyElement("material"));
-			rootElement.addContent(XmlUtils.createEmptyElement("style"));
-			rootElement.addContent(XmlUtils.createEmptyElement("price"));
-		}
-		Element rootElement = doc.getRootElement();
+	private boolean generateItemXml(File product, File productOut) throws IOException {
+		File xmlFile = new File(productOut, "item.xml");
+		if (xmlFile.exists())
+			return false;
+
+		Document doc = new Document();
+		Element rootElement = new Element("item");
+		doc.setRootElement(rootElement);
+		rootElement.addContent(XmlUtils.createEmptyElement("title"));
+		rootElement.addContent(XmlUtils.createEmptyElement("shading-percent"));
+		rootElement.addContent(XmlUtils.createEmptyElement("material"));
+		rootElement.addContent(XmlUtils.createEmptyElement("style"));
+		rootElement.addContent(XmlUtils.createEmptyElement("price"));
 
 		// if not exist
 		rootElement.removeChild("color");
@@ -95,6 +86,7 @@ public class BuyiDataHandler extends AbstractDataHandler {
 		rootElement.addContent(colorElement);
 
 		XmlUtils.outputXmlFile(doc, xmlFile);
+		return true;
 	}
 
 	private static void processGallery(File sku, File target) throws IOException {

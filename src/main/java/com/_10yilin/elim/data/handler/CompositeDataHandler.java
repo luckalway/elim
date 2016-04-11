@@ -28,10 +28,13 @@ public class CompositeDataHandler extends AbstractDataHandler {
 	}
 
 	public void _process(File inFolder, File outFolder) {
+		if (dataHandlers.isEmpty())
+			throw new DataHandleException("No DataHandler available");
+
 		for (File folder : inFolder.listFiles()) {
 			if (dataHandlers.containsKey(folder.getName())) {
 				DataHandler dataHandler = dataHandlers.get(folder.getName());
-				dataHandler.process(inFolder, new File(outFolder, folder.getName()));
+				dataHandler.process(folder, outFolder);
 			} else {
 				LOG.warn("Cannot find a DataHander for the folder " + folder.getAbsolutePath());
 			}

@@ -7,7 +7,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
 
+import org.apache.log4j.Logger;
+
 public class ImageUtils {
+	private static final Logger LOG = Logger.getLogger(ImageUtils.class);
 
 	public static boolean isImage(File image) {
 		ImageInputStream is = null;
@@ -30,12 +33,33 @@ public class ImageUtils {
 			}
 	}
 
-	public static void generateJPGImage(BufferedImage image, File outputFolder, String imageName) throws IOException {
-		ImageIO.write(image, "jpg", new File(outputFolder, imageName));
+	public static void generateJPGImage(BufferedImage image, File outFolder, String imageName) throws IOException {
+		generateJPGImage(image, new File(outFolder, imageName));
 	}
 
 	public static void generateJPGImage(BufferedImage scaledImage, File outputFile) throws IOException {
 		ImageIO.write(scaledImage, "jpg", outputFile);
+		LOG.info("Generated an image with path " + outputFile);
 	}
 
+	public static String generateNormImageName(File folder) {
+		int max = 0;
+		for (String subFolder : folder.list()) {
+			int index = 0;
+			try {
+				index = Integer.parseInt(subFolder.substring(0, subFolder.indexOf(".")));
+			} catch (NumberFormatException e) {
+
+			}
+			if (max < index) {
+				max = index;
+			}
+		}
+		int index = max + 1;
+		if (index < 10)
+			return "00" + index;
+		if (index < 100)
+			return "0" + index;
+		return "" + index;
+	}
 }

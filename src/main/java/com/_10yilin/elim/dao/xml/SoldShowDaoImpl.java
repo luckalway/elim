@@ -17,13 +17,13 @@ import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.SaleShowDao;
 import com._10yilin.elim.entity.SaleShow;
 
-public class SaleShowDaoImpl implements SaleShowDao {
+public class SoldShowDaoImpl implements SaleShowDao {
 
 	private File rootFolder = null;
 	private String BASE_FOLDER = Constants.PROJECT_HOME + File.separatorChar + Constants.FOLDER_SALE_SHOW_DATA;
 	private String BASE_URL = Constants.BASE_URL + "/" + Constants.FOLDER_SALE_SHOW_DATA;
 
-	public SaleShowDaoImpl() {
+	public SoldShowDaoImpl() {
 		rootFolder = new File(BASE_FOLDER);
 	}
 

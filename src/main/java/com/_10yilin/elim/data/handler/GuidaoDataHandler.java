@@ -4,10 +4,10 @@ import java.io.File;
 
 public class GuidaoDataHandler extends AbstractDataHandler {
 
-	private DataHandler internalDataHandler = new LuomaganDataHandler();
+	private LuomaganDataHandler internalDataHandler = new LuomaganDataHandler();
 
 	public void _process(File inFolder, File outFolder) {
-		internalDataHandler.process(inFolder, outFolder);
+		internalDataHandler._process(inFolder, outFolder);
 	}
 
 }

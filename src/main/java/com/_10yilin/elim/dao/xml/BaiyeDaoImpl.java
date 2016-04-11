@@ -72,9 +72,4 @@ public class BaiyeDaoImpl implements BaiyeDao {
 		return images;
 	}
 
-	private static Element createEmptyElement(String name) {
-		Element element = new Element(name);
-		element.setText("null");
-		return element;
-	}
 }

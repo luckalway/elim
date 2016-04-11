@@ -17,13 +17,13 @@ import com._10yilin.elim.dao.xml.CategoryDaoImpl;
 import com._10yilin.elim.dao.xml.CurtainProductDaoImpl;
 import com._10yilin.elim.dao.xml.GuidaoDaoImpl;
 import com._10yilin.elim.dao.xml.LuomaganDaoImpl;
-import com._10yilin.elim.dao.xml.SaleShowDaoImpl;
+import com._10yilin.elim.dao.xml.SoldShowDaoImpl;
 import com._10yilin.elim.util.JsonUtils;
 
 public class JsFileGenerator {
 
 	private static CurtainProductDao curtainProductDao = new CurtainProductDaoImpl();
-	private static SaleShowDao saleShowDao = new SaleShowDaoImpl();
+	private static SaleShowDao saleShowDao = new SoldShowDaoImpl();
 	private static SlideItemDao slideItemDao = new SlideItemDaoImpl();
 	private static CategoryDao categoryDao = new CategoryDaoImpl();
 	private static GuidaoDao guidaoDao = new GuidaoDaoImpl();

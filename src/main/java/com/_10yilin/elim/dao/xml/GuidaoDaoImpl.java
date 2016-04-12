@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Document;
-import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.GuidaoDao;
 import com._10yilin.elim.entity.peijian.Guidao;
+import com._10yilin.elim.util.XmlUtils;
 
 public class GuidaoDaoImpl implements GuidaoDao {
 	private File rootFolder = null;
@@ -32,10 +32,8 @@ public class GuidaoDaoImpl implements GuidaoDao {
 			for (File item : rootFolder.listFiles()) {
 				Guidao guidao = new Guidao();
 				Document document = builder.build(new FileInputStream(new File(item, "item.xml")));
-				Element rootElement = document.getRootElement();
 				guidao.setId(item.getName());
-				guidao.setPrice(Double.valueOf(rootElement.getChildText("price")));
-				guidao.setTitle(rootElement.getChildText("title"));
+				XmlUtils.convertDocumentToEntity(document, guidao);
 				guidao.setImages(getImages(item));
 				guidaos.add(guidao);
 			}

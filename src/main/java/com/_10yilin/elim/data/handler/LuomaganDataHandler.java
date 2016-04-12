@@ -74,9 +74,9 @@ public class LuomaganDataHandler extends AbstractDataHandler {
 		Document doc = new Document();
 		Element rootElement = new Element("item");
 		doc.setRootElement(rootElement);
-		rootElement.addContent(XmlUtils.createEmptyElement("title"));
-		rootElement.addContent(XmlUtils.createEmptyElement("material"));
-		rootElement.addContent(XmlUtils.createEmptyElement("price"));
+		rootElement.addContent(XmlUtils.createElement("title"));
+		rootElement.addContent(XmlUtils.createElement("material"));
+		rootElement.addContent(XmlUtils.createElement("price"));
 
 		XmlUtils.outputXmlFile(doc, xmlFile);
 		return true;

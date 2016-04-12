@@ -87,4 +87,11 @@ public class CurtainProduct {
 		this.colors = colors;
 	}
 
+	@Override
+	public String toString() {
+		return "CurtainProduct [id=" + id + ", title=" + title + ", price=" + price + ", shadingPercent="
+				+ shadingPercent + ", material=" + material + ", style=" + style + ", colors=" + colors
+				+ ", galleryGroups=" + galleryGroups + ", previewImages=" + previewImages + "]";
+	}
+
 }

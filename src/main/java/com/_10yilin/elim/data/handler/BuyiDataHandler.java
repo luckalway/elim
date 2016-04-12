@@ -19,44 +19,35 @@ public class BuyiDataHandler extends AbstractDataHandler {
 
 	public void _process(File inFolder, File outFolder) {
 		LOG.info("Start process " + inFolder);
-		if (hasFile(inFolder, "flag")) {
-			try {
-				traverseProcess(inFolder, outFolder);
-			} catch (IOException e) {
-				throw new DataHandleException(e);
-			}
-			return;
-		}
+		try {
+			for (File product : inFolder.listFiles()) {
+				if (product.isFile() || isProcessed(product))
+					continue;
 
-		for (File child : inFolder.listFiles()) {
-			if (child.isFile()) {
-				LOG.warn("No flag file found for the path[" + inFolder.getAbsolutePath() + "]");
-				break;
+				File productOut = new File(outFolder, product.getName());
+				if (!productOut.exists())
+					productOut.mkdirs();
+
+				generateItemXml(product, productOut);
+
+				LOG.info("Start process product:" + product.getName());
+				for (File sku : product.listFiles()) {
+					File skuOutFolder = new File(productOut, sku.getName());
+					skuOutFolder.mkdirs();
+					LOG.info("Start process sku:" + sku.getName());
+
+					if (sku.getName().equals("preview")) {
+						processPreviewImages(sku, skuOutFolder);
+						continue;
+					}
+					processGallery(sku, skuOutFolder);
+				}
+				markFinished(product);
 			}
-			_process(child, outFolder);
+		} catch (IOException e) {
+			throw new DataHandleException(e);
 		}
 		LOG.info("Processed finished, out to " + outFolder);
-	}
-
-	private void traverseProcess(File inFolder, File outFolder) throws IOException {
-		for (File product : inFolder.listFiles()) {
-			File productOut = new File(outFolder, product.getName());
-			if (product.isFile() || !generateItemXml(product, productOut))
-				continue;
-
-			LOG.info("Start process product:" + product.getName());
-			for (File sku : product.listFiles()) {
-				File skuOutFolder = new File(productOut, sku.getName());
-				skuOutFolder.mkdirs();
-				LOG.info("Start process sku:" + sku.getName());
-
-				if (sku.getName().equals("preview")) {
-					processPreviewImages(sku, skuOutFolder);
-					continue;
-				}
-				processGallery(sku, skuOutFolder);
-			}
-		}
 	}
 
 	private boolean generateItemXml(File product, File productOut) throws IOException {
@@ -67,21 +58,20 @@ public class BuyiDataHandler extends AbstractDataHandler {
 		Document doc = new Document();
 		Element rootElement = new Element("item");
 		doc.setRootElement(rootElement);
-		rootElement.addContent(XmlUtils.createEmptyElement("title"));
-		rootElement.addContent(XmlUtils.createEmptyElement("shading-percent"));
-		rootElement.addContent(XmlUtils.createEmptyElement("material"));
-		rootElement.addContent(XmlUtils.createEmptyElement("style"));
-		rootElement.addContent(XmlUtils.createEmptyElement("price"));
+		rootElement.addContent(XmlUtils.createElement("title"));
+		rootElement.addContent(XmlUtils.createElement("shading-percent", 85));
+		rootElement.addContent(XmlUtils.createElement("material"));
+		rootElement.addContent(XmlUtils.createElement("style"));
+		rootElement.addContent(XmlUtils.createElement("price", 0));
 
 		// if not exist
-		rootElement.removeChild("color");
 		StringBuilder colors = new StringBuilder();
 		for (File sku : product.listFiles()) {
 			if (sku.getName().equals("preview"))
 				continue;
 			colors.append(sku.getName()).append(";");
 		}
-		Element colorElement = new Element("color");
+		Element colorElement = new Element("colors");
 		colorElement.setText(colors.toString());
 		rootElement.addContent(colorElement);
 
@@ -91,6 +81,10 @@ public class BuyiDataHandler extends AbstractDataHandler {
 
 	private static void processGallery(File sku, File target) throws IOException {
 		for (File originImage : sku.listFiles()) {
+			if (!ImageUtils.isImage(originImage)) {
+				LOG.warn("Expect Image file but [" + originImage.getAbsolutePath() + "]");
+				continue;
+			}
 			BufferedImage scaledImage = Scalr.resize(ImageIO.read(originImage), 750);
 			String newImageName = originImage.getName().toLowerCase();
 			File compressedImage = new File(target, newImageName);
@@ -117,7 +111,4 @@ public class BuyiDataHandler extends AbstractDataHandler {
 		}
 	}
 
-	private static boolean hasFile(File folder, String fileName) {
-		return new File(folder, fileName).exists();
-	}
 }

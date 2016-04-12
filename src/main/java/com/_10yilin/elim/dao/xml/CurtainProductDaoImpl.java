@@ -10,19 +10,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.jdom2.Document;
-import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.CurtainProductDao;
 import com._10yilin.elim.entity.CurtainProduct;
+import com._10yilin.elim.util.XmlUtils;
 
 public class CurtainProductDaoImpl implements CurtainProductDao {
 
 	private File rootFolder = null;
-	private String BASE_FOLDER = Constants.PROJECT_HOME + "/" + Constants.FOLDER_CURTAIN_DATA;
-	private String BASE_URL = Constants.BASE_URL + "/" + Constants.FOLDER_CURTAIN_DATA;
+	private String BASE_FOLDER = Constants.PROJECT_HOME + "/app/data/buyi/";
+	private String BASE_URL = Constants.BASE_URL + "/app/data/buyi/";
 
 	public CurtainProductDaoImpl() {
 		this.rootFolder = new File(BASE_FOLDER);
@@ -36,29 +36,11 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 				Document document = builder.build(new FileInputStream(new File(itemFolder, "item.xml")));
 				CurtainProduct product = new CurtainProduct();
 				product.setId(itemFolder.getName());
-				Element item = document.getRootElement();
-				product.setPrice(Double.valueOf(item.getChildText("price")));
-				product.setShadingPercent(Integer.valueOf(item.getChildText("shading-percent")));
-				product.setStyle(item.getChildText("style"));
-				product.setTitle(item.getChildText("title"));
-				product.setColors(item.getChildText("color"));
-				product.setMaterial(item.getChildText("material"));
-
-				String[] colors = item.getChildText("color").split(";");
+				XmlUtils.convertDocumentToEntity(document, product);
+				String[] colors = product.getColors().split(";");
 
 				product.setPreviewImages(getPreviewImages(itemFolder));
 				product.setGalleryGroups(getImageGroups(itemFolder, colors));
-				curtainProducts.add(product);
-
-				curtainProducts.add(product);
-				curtainProducts.add(product);
-				curtainProducts.add(product);
-				curtainProducts.add(product);
-				curtainProducts.add(product);
-				curtainProducts.add(product);
-				curtainProducts.add(product);
-				curtainProducts.add(product);
-				curtainProducts.add(product);
 				curtainProducts.add(product);
 			}
 		} catch (IOException e) {

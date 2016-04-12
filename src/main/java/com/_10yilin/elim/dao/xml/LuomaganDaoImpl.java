@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.Document;
-import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.LuomaganDao;
 import com._10yilin.elim.entity.peijian.Luomagan;
+import com._10yilin.elim.util.XmlUtils;
 
 public class LuomaganDaoImpl implements LuomaganDao {
 	private File rootFolder = null;
@@ -32,11 +32,8 @@ public class LuomaganDaoImpl implements LuomaganDao {
 			for (File itemFolder : this.rootFolder.listFiles()) {
 				Luomagan luomagan = new Luomagan();
 				Document document = builder.build(new FileInputStream(new File(itemFolder, "item.xml")));
-				Element rootElement = document.getRootElement();
-				double price = Double.valueOf(rootElement.getChildText("price"));
+				XmlUtils.convertDocumentToEntity(document, luomagan);
 				luomagan.setId(itemFolder.getName());
-				luomagan.setPrice(price);
-				luomagan.setTitle(rootElement.getChildText("title"));
 				luomagan.setImages(getImages(itemFolder));
 				luomagans.add(luomagan);
 			}

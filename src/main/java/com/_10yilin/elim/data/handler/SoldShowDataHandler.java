@@ -60,9 +60,9 @@ public class SoldShowDataHandler extends AbstractDataHandler implements DataHand
 		Document doc = new Document();
 		Element rootElement = new Element("item");
 		doc.setRootElement(rootElement);
-		rootElement.addContent(XmlUtils.createEmptyElement("title"));
-		rootElement.addContent(XmlUtils.createEmptyElement("date"));
-		rootElement.addContent(XmlUtils.createEmptyElement("desc"));
+		rootElement.addContent(XmlUtils.createElement("title"));
+		rootElement.addContent(XmlUtils.createElement("date"));
+		rootElement.addContent(XmlUtils.createElement("desc"));
 
 		XmlUtils.outputXmlFile(doc, xmlFile);
 		return true;

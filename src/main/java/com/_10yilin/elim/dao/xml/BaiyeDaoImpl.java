@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.jdom2.Document;
-import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
@@ -17,6 +16,7 @@ import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.BaiyeDao;
 import com._10yilin.elim.data.handler.BuyiDataHandler;
 import com._10yilin.elim.entity.Baiye;
+import com._10yilin.elim.util.XmlUtils;
 
 public class BaiyeDaoImpl implements BaiyeDao {
 	private static final Logger LOG = Logger.getLogger(BuyiDataHandler.class);
@@ -40,13 +40,8 @@ public class BaiyeDaoImpl implements BaiyeDao {
 							+ " first");
 				}
 				Document document = builder.build(new FileInputStream(xmlFile));
-				Element rootElement = document.getRootElement();
 				baiye.setId(itemFolder.getName());
-				double price = Double.valueOf(rootElement.getChildText("price"));
-				baiye.setPrice(price);
-				baiye.setTitle(rootElement.getChildText("title"));
-				baiye.setColors(rootElement.getChildText("colors"));
-				baiye.setMaterial(rootElement.getChildText("material"));
+				XmlUtils.convertDocumentToEntity(document, baiye);
 				baiye.setPreviewImage(BASE_URL + "/" + itemFolder.getName() + "/preview.jpg");
 				baiye.setGallery(getImages(itemFolder));
 

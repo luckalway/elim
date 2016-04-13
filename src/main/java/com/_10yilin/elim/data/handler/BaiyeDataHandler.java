@@ -18,27 +18,24 @@ public class BaiyeDataHandler extends AbstractDataHandler {
 	private static final int EXPECTED_IMAGE_WITH = 800;
 	private static final int EXPECTED_PREVIEW_IMAGE_WITH = 800;
 
+	@Override
+	protected boolean precheck(File inFolder, File outFolder) {
+		if (!new File(inFolder, "preview.jpg").exists())
+			throw new DataHandleException("Preview image is not exist in " + inFolder.getAbsolutePath());
+
+		return super.precheck(inFolder, outFolder);
+	}
+
 	public void _process(File inFolder, File outFolder) {
 		try {
-			for (File baiyeFolder : inFolder.listFiles()) {
-				checkIfDirectory(inFolder, baiyeFolder);
-				if (!baiyeFolder.getName().startsWith("b")) {
-					throw new DataHandleException("Illegal folder name for baiye item: " + baiyeFolder.getName());
-				}
-
-				File itemOutFolder = new File(outFolder, baiyeFolder.getName());
-				if (generateItemXmlFile(itemOutFolder)) {
-					processImages(baiyeFolder, itemOutFolder);
-				}
-			}
+			generateItemXmlFile(outFolder);
+			processImages(inFolder, outFolder);
 		} catch (IOException e) {
 			throw new DataHandleException(e);
 		}
 	}
 
 	private void processImages(File inFolder, File outFolder) throws IOException {
-		checkIfExitPreview(inFolder);
-
 		for (File image : inFolder.listFiles()) {
 			if (!ImageUtils.isImage(image)) {
 				LOG.warn(image.getName() + " not a image type, skip it");

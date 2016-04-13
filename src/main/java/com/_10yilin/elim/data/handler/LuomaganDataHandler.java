@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.apache.log4j.Logger;
 import org.imgscalr.Scalr;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -14,32 +13,27 @@ import com._10yilin.elim.util.ImageUtils;
 import com._10yilin.elim.util.XmlUtils;
 
 public class LuomaganDataHandler extends AbstractDataHandler {
-	private static final Logger LOG = Logger.getLogger(LuomaganDataHandler.class);
 	private static final int EXPECTED_IMAGE_WITH = 800;
 	private static final int EXPECTED_PREVIEW_IMAGE_WITH = 800;
 
-	public void _process(File inFolder, File outFolder) {
-		LOG.info("Start process " + inFolder.getAbsolutePath());
-		try {
-			for (File luomaganFolder : inFolder.listFiles()) {
-				checkIfDirectory(inFolder, luomaganFolder);
+	@Override
+	protected boolean precheck(File inFolder, File outFolder) {
+		if (!new File(inFolder, "preview.jpg").exists())
+			throw new DataHandleException("Preview image is not exist in " + inFolder.getAbsolutePath());
 
-				File luomaganOut = new File(outFolder, luomaganFolder.getName());
-				generateItemXmlFile(luomaganOut);
-				if (!isProcessed(luomaganFolder)) {
-					processImages(luomaganFolder, luomaganOut);
-				}
-				markFinished(luomaganFolder);
-			}
+		return super.precheck(inFolder, outFolder);
+	}
+
+	public void _process(File inFolder, File outFolder) {
+		try {
+			generateItemXmlFile(outFolder);
+			processImages(inFolder, outFolder);
 		} catch (IOException e) {
 			throw new DataHandleException(e);
 		}
-		LOG.info("Processed finished, out to " + outFolder.getAbsolutePath());
 	}
 
 	private void processImages(File inFolder, File outFolder) throws IOException {
-		checkIfExitPreview(inFolder);
-
 		for (File image : inFolder.listFiles()) {
 			if (!ImageUtils.isImage(image))
 				continue;

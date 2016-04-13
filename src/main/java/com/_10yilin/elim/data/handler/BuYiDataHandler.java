@@ -14,40 +14,35 @@ import org.jdom2.Element;
 import com._10yilin.elim.util.ImageUtils;
 import com._10yilin.elim.util.XmlUtils;
 
-public class BuyiDataHandler extends AbstractDataHandler {
-	private static final Logger LOG = Logger.getLogger(BuyiDataHandler.class);
+public class BuYiDataHandler extends AbstractDataHandler {
+	private static final Logger LOG = Logger.getLogger(BuYiDataHandler.class);
 
-	public void _process(File inFolder, File outFolder) {
-		LOG.info("Start process " + inFolder);
+	@Override
+	protected boolean precheck(File inFolder, File outFolder) {
+		File previewFolder = new File(inFolder, "preview");
+		if (!previewFolder.exists() || previewFolder.isFile())
+			throw new DataHandleException(previewFolder.getAbsolutePath() + " is not exist.");
+		return super.precheck(inFolder, outFolder);
+	}
+
+	@Override
+	void _process(File inFolder, File outFolder) {
 		try {
-			for (File product : inFolder.listFiles()) {
-				if (product.isFile() || isProcessed(product))
+			generateItemXml(inFolder, outFolder);
+
+			for (File sku : inFolder.listFiles()) {
+				File skuOutFolder = new File(outFolder, sku.getName());
+				skuOutFolder.mkdirs();
+
+				if (sku.getName().equals("preview")) {
+					processPreviewImages(sku, skuOutFolder);
 					continue;
-
-				File productOut = new File(outFolder, product.getName());
-				if (!productOut.exists())
-					productOut.mkdirs();
-
-				generateItemXml(product, productOut);
-
-				LOG.info("Start process product:" + product.getName());
-				for (File sku : product.listFiles()) {
-					File skuOutFolder = new File(productOut, sku.getName());
-					skuOutFolder.mkdirs();
-					LOG.info("Start process sku:" + sku.getName());
-
-					if (sku.getName().equals("preview")) {
-						processPreviewImages(sku, skuOutFolder);
-						continue;
-					}
-					processGallery(sku, skuOutFolder);
 				}
-				markFinished(product);
+				processGallery(sku, skuOutFolder);
 			}
 		} catch (IOException e) {
 			throw new DataHandleException(e);
 		}
-		LOG.info("Processed finished, out to " + outFolder);
 	}
 
 	private boolean generateItemXml(File product, File productOut) throws IOException {

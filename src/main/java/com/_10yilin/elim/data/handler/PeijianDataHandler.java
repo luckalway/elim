@@ -2,28 +2,23 @@ package com._10yilin.elim.data.handler;
 
 import java.io.File;
 
-import org.apache.log4j.Logger;
-
 public class PeijianDataHandler extends AbstractDataHandler {
-	private static final Logger LOG = Logger.getLogger(PeijianDataHandler.class);
 
 	public void _process(File inFolder, File outFolder) {
-		LOG.info("Start process " + inFolder.getAbsolutePath());
-		for (File folder : inFolder.listFiles()) {
-			DataHandler dataHandler = getDataHandler(folder);
+		for (File subFolder : inFolder.listFiles()) {
+			DataHandler dataHandler = getDataHandler(subFolder);
 			if (dataHandler == null) {
-				throw new DataHandleException("Can not find a DataHander for the folder " + folder.getAbsolutePath());
+				throw new DataHandleException("Can not find a DataHander for the folder " + subFolder.getAbsolutePath());
 			}
-			dataHandler.process(folder, outFolder);
+			dataHandler.process(subFolder, outFolder);
 		}
-		LOG.info("Processed finished, out to " + outFolder.getAbsolutePath());
 	}
 
 	private DataHandler getDataHandler(File folder) {
 		if (folder.getName().equals("guidao")) {
-			return new GuidaoDataHandler();
+			return new CollectionDataHandler(new GuidaoDataHandler());
 		} else if (folder.getName().equals("luomagan")) {
-			return new LuomaganDataHandler();
+			return new CollectionDataHandler(new LuomaganDataHandler());
 		}
 		return null;
 	}

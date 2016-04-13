@@ -14,12 +14,12 @@ import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.BaiyeDao;
-import com._10yilin.elim.data.handler.BuyiDataHandler;
+import com._10yilin.elim.data.handler.CollectionDataHandler;
 import com._10yilin.elim.entity.Baiye;
 import com._10yilin.elim.util.XmlUtils;
 
 public class BaiyeDaoImpl implements BaiyeDao {
-	private static final Logger LOG = Logger.getLogger(BuyiDataHandler.class);
+	private static final Logger LOG = Logger.getLogger(CollectionDataHandler.class);
 	private File rootFolder = null;
 	private String BASE_FOLDER = Constants.PROJECT_HOME + "/app/data/baiye";
 	private String BASE_URL = Constants.BASE_URL + "/app/data/baiye";

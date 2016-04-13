@@ -13,11 +13,11 @@ public class CompositeDataHandler extends AbstractDataHandler {
 
 	public void init() {
 		LOG.info("CompositeDataHandler initializing");
-		registerDataHandler("baiye", new BaiyeDataHandler());
-		registerDataHandler("buyi", new BuyiDataHandler());
+		registerDataHandler("baiye", new CollectionDataHandler(new BaiyeDataHandler()));
+		registerDataHandler("buyi", new CollectionDataHandler(new BuYiDataHandler()));
 		registerDataHandler("peijian", new PeijianDataHandler());
-		registerDataHandler("promotion", new PromotionDataHandler());
-		registerDataHandler("sold-show", new SoldShowDataHandler());
+		registerDataHandler("promotion", new CollectionDataHandler(new PromotionDataHandler()));
+		registerDataHandler("sold-show", new CollectionDataHandler(new SoldShowDataHandler()));
 		LOG.info("CompositeDataHandler initialized finished");
 	}
 
@@ -31,12 +31,12 @@ public class CompositeDataHandler extends AbstractDataHandler {
 		if (dataHandlers.isEmpty())
 			throw new DataHandleException("No DataHandler available");
 
-		for (File folder : inFolder.listFiles()) {
-			if (dataHandlers.containsKey(folder.getName())) {
-				DataHandler dataHandler = dataHandlers.get(folder.getName());
-				dataHandler.process(folder, outFolder);
+		for (File subFolder : inFolder.listFiles()) {
+			if (dataHandlers.containsKey(subFolder.getName())) {
+				DataHandler dataHandler = dataHandlers.get(subFolder.getName());
+				dataHandler.process(subFolder, new File(outFolder, subFolder.getName()));
 			} else {
-				LOG.warn("Cannot find a DataHander for the folder " + folder.getAbsolutePath());
+				LOG.warn("Cannot find a DataHander for the folder " + subFolder.getAbsolutePath());
 			}
 		}
 	}

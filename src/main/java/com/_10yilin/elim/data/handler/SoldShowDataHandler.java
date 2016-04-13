@@ -18,12 +18,8 @@ public class SoldShowDataHandler extends AbstractDataHandler implements DataHand
 
 	public void _process(File inFolder, File outFolder) {
 		try {
-			for (File itemFolder : inFolder.listFiles()) {
-				File itemOutFolder = new File(outFolder, itemFolder.getName());
-				if (generateItemXmlFile(itemOutFolder)) {
-					processImages(itemFolder, itemOutFolder);
-				}
-			}
+			generateItemXml(outFolder);
+			processImages(inFolder, outFolder);
 		} catch (IOException e) {
 			throw new DataHandleException(e);
 		}
@@ -52,7 +48,7 @@ public class SoldShowDataHandler extends AbstractDataHandler implements DataHand
 				.getName().toLowerCase());
 	}
 
-	private boolean generateItemXmlFile(File itemOut) {
+	private boolean generateItemXml(File itemOut) {
 		File xmlFile = new File(itemOut, "item.xml");
 		if (xmlFile.exists()) {
 			return false;

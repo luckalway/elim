@@ -7,6 +7,7 @@ public class Guidao {
 	private double price;
 	private List<String> images;
 	private String title;
+	private String material;
 
 	public double getPrice() {
 		return price;
@@ -38,5 +39,13 @@ public class Guidao {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
 	}
 }

@@ -59,7 +59,7 @@ public class XmlUtils {
 			} catch (SecurityException e1) {
 				throw new RuntimeException(e1);
 			} catch (NoSuchFieldException e1) {
-				LOG.warn(e1.getMessage());
+				LOG.warn("No such field of " + e.getClass().getSimpleName() + "," + e1.getMessage());
 			} catch (IllegalArgumentException e1) {
 				e1.printStackTrace();
 				LOG.error(e1.getMessage());

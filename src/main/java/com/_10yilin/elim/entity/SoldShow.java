@@ -1,14 +1,13 @@
 package com._10yilin.elim.entity;
 
-import java.util.Date;
 import java.util.List;
 
-public class SaleShow {
+public class SoldShow {
 	private String id;
 	private String description;
 	private String title;
 	private String previewImage;
-	private Date date;
+	private String date;
 
 	private List<String> moreImages;
 
@@ -52,11 +51,11 @@ public class SaleShow {
 		this.moreImages = moreImages;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

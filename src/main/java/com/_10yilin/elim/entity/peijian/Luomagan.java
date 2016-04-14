@@ -7,6 +7,15 @@ public class Luomagan {
 	private double price;
 	private List<String> images;
 	private String title;
+	private String material;
+
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
+	}
 
 	public double getPrice() {
 		return price;

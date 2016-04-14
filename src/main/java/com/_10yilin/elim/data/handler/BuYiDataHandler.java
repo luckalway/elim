@@ -73,28 +73,25 @@ public class BuYiDataHandler extends AbstractDataHandler {
 		return true;
 	}
 
-	private static void processGallery(File sku, File target) throws IOException {
+	private static void processGallery(File sku, File outFolder) throws IOException {
 		for (File originImage : sku.listFiles()) {
 			if (!ImageUtils.isImage(originImage)) {
 				LOG.warn("Expect Image file but [" + originImage.getAbsolutePath() + "]");
 				continue;
 			}
 			BufferedImage scaledImage = Scalr.resize(ImageIO.read(originImage), 750);
-			String newImageName = originImage.getName().toLowerCase();
-			File compressedImage = new File(target, newImageName);
+			String newImageName = ImageUtils.generateNormImageName(outFolder);
+			File compressedImage = new File(outFolder, newImageName);
 			ImageUtils.generateJPGImage(scaledImage, compressedImage);
-
-			ImageUtils.generateJPGImage(Scalr.resize(ImageIO.read(originImage), 160), target, newImageName
+			ImageUtils.generateJPGImage(Scalr.resize(ImageIO.read(originImage), 160), outFolder, newImageName
 					+ "_160x160.jpg");
-
-			LOG.info(originImage.getAbsolutePath() + " ----> " + compressedImage.getAbsolutePath());
 		}
 	}
 
 	private static void processPreviewImages(File sku, File outFolder) throws IOException {
 		for (File originImage : sku.listFiles()) {
 			BufferedImage scaledImage = Scalr.resize(ImageIO.read(originImage), 400);
-			String newImageName = originImage.getName().toLowerCase();
+			String newImageName = ImageUtils.generateNormImageName(outFolder);
 			File compressedImage = new File(outFolder, newImageName);
 			ImageUtils.generateJPGImage(scaledImage, compressedImage);
 

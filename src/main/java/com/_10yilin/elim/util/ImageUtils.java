@@ -57,9 +57,9 @@ public class ImageUtils {
 		}
 		int index = max + 1;
 		if (index < 10)
-			return "00" + index;
+			return "00" + index + ".jpg";
 		if (index < 100)
-			return "0" + index;
-		return "" + index;
+			return "0" + index + ".jpg";
+		return "" + index + ".jpg";
 	}
 }

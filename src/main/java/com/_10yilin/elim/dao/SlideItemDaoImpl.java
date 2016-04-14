@@ -18,6 +18,8 @@ public class SlideItemDaoImpl implements SlideItemDao {
 
 	public List<SlideItem> getAllSlideItems() {
 		List<SlideItem> items = new ArrayList<SlideItem>();
+		if (folder.list() == null)
+			return items;
 
 		for (String imageName : folder.list()) {
 			SlideItem slideItem = new SlideItem();

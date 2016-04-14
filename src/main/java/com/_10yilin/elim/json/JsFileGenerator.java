@@ -34,17 +34,13 @@ public class JsFileGenerator {
 		try {
 			FileWriter jsFileWriter = new FileWriter(Constants.FOLDER_OUTPUT_JS);
 			jsFileWriter.write("var curtainItems=" + JsonUtils.toJson(curtainProductDao.getAllProducts()) + ";");
-			log("wrote curtain items to data.js");
 			jsFileWriter.write("var recommendItemIds=" + JsonUtils.toJson(curtainProductDao.getRecommendProductIds())
 					+ ";");
-			log("wrote recommend items to data.js");
 			jsFileWriter.write("var saleShows=" + JsonUtils.toJson(saleShowDao.getAllSaleShowList()) + ";");
-			log("wrote sale shows to data.js");
 
 			jsFileWriter.write("var slideShows=" + JsonUtils.toJson(slideItemDao.getAllSlideItems()) + ";");
 
 			jsFileWriter.write("var categoryObj=" + JsonUtils.toJson(categoryDao.getCategoryData()) + ";");
-			log("wrote categories to data.js");
 
 			jsFileWriter.write("var guidaos=" + JsonUtils.toJson(guidaoDao.getGuidaos()) + ";");
 			jsFileWriter.write("var luomagans=" + JsonUtils.toJson(luomaganDao.getLuomagans()) + ";");
@@ -55,10 +51,6 @@ public class JsFileGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	private static void log(String message) {
-		System.out.println(message);
 	}
 
 }

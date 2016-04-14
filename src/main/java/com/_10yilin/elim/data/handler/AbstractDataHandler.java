@@ -13,29 +13,29 @@ public abstract class AbstractDataHandler implements DataHandler {
 
 	}
 
-	public void process(File inFolder, File outFolder) {
+	public void handle(File inFolder, File outFolder) {
 		if (precheck(inFolder, outFolder)) {
-			LOG.info("Start process: " + inFolder.getName());
-			beforeHandle(outFolder);
-			_process(inFolder, outFolder);
-			afterHandle(inFolder, outFolder);
+			LOG.info("Start process the folder[" + inFolder + "]");
+			beforeProcess(outFolder);
+			process(inFolder, outFolder);
+			afterProcess(inFolder, outFolder);
 			LOG.info("Processed finished, out to " + outFolder);
 		}
 	}
 
-	private void beforeHandle(File outFolder) {
+	private void beforeProcess(File outFolder) {
 		if (!outFolder.exists()) {
 			outFolder.mkdirs();
-			LOG.info("Created a folder with path " + outFolder.getAbsolutePath());
+			LOG.info("Created a folder with path " + outFolder);
 		}
 		if (outFolder.isFile()) {
 			outFolder.delete();
 			outFolder.mkdirs();
-			LOG.info("Created a folder with path " + outFolder.getAbsolutePath());
+			LOG.info("Created a folder with path " + outFolder);
 		}
 	}
 
-	private void afterHandle(File inFolder, File outFolder) {
+	private void afterProcess(File inFolder, File outFolder) {
 		try {
 			new File(inFolder, DONE_FLAG).createNewFile();
 		} catch (IOException e) {
@@ -43,7 +43,7 @@ public abstract class AbstractDataHandler implements DataHandler {
 		}
 	}
 
-	abstract void _process(File inFolder, File outFolder);
+	abstract void process(File inFolder, File outFolder);
 
 	protected boolean precheck(File inFolder, File outFolder) {
 		if (isProcessed(inFolder))

@@ -6,8 +6,8 @@ public class GuidaoDataHandler extends AbstractDataHandler {
 
 	private LuomaganDataHandler internalDataHandler = new LuomaganDataHandler();
 
-	public void _process(File inFolder, File outFolder) {
-		internalDataHandler._process(inFolder, outFolder);
+	public void process(File inFolder, File outFolder) {
+		internalDataHandler.process(inFolder, outFolder);
 	}
 
 }

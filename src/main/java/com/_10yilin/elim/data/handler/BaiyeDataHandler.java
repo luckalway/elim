@@ -20,13 +20,11 @@ public class BaiyeDataHandler extends AbstractDataHandler {
 
 	@Override
 	protected boolean precheck(File inFolder, File outFolder) {
-		if (!new File(inFolder, "preview.jpg").exists())
-			throw new DataHandleException("Preview image is not exist in " + inFolder.getAbsolutePath());
-
+		DataHandleUtils.checkIfExistPreview(inFolder);
 		return super.precheck(inFolder, outFolder);
 	}
 
-	public void _process(File inFolder, File outFolder) {
+	public void process(File inFolder, File outFolder) {
 		try {
 			generateItemXmlFile(outFolder);
 			processImages(inFolder, outFolder);

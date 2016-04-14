@@ -15,18 +15,17 @@ import com._10yilin.elim.util.ImageUtils;
 import com._10yilin.elim.util.XmlUtils;
 
 public class BuYiDataHandler extends AbstractDataHandler {
+	private static final String PREVIEW_FOLDER = "preview";
 	private static final Logger LOG = Logger.getLogger(BuYiDataHandler.class);
 
 	@Override
 	protected boolean precheck(File inFolder, File outFolder) {
-		File previewFolder = new File(inFolder, "preview");
-		if (!previewFolder.exists() || previewFolder.isFile())
-			throw new DataHandleException(previewFolder.getAbsolutePath() + " is not exist.");
+		DataHandleUtils.checkIfExistPreview(inFolder);
 		return super.precheck(inFolder, outFolder);
 	}
 
 	@Override
-	void _process(File inFolder, File outFolder) {
+	void process(File inFolder, File outFolder) {
 		try {
 			generateItemXml(inFolder, outFolder);
 
@@ -34,7 +33,7 @@ public class BuYiDataHandler extends AbstractDataHandler {
 				File skuOutFolder = new File(outFolder, sku.getName());
 				skuOutFolder.mkdirs();
 
-				if (sku.getName().equals("preview")) {
+				if (sku.getName().equals(PREVIEW_FOLDER)) {
 					processPreviewImages(sku, skuOutFolder);
 					continue;
 				}
@@ -62,7 +61,7 @@ public class BuYiDataHandler extends AbstractDataHandler {
 		// if not exist
 		StringBuilder colors = new StringBuilder();
 		for (File sku : product.listFiles()) {
-			if (sku.getName().equals("preview"))
+			if (sku.getName().equals(PREVIEW_FOLDER))
 				continue;
 			colors.append(sku.getName()).append(";");
 		}
@@ -92,17 +91,15 @@ public class BuYiDataHandler extends AbstractDataHandler {
 		}
 	}
 
-	private static void processPreviewImages(File sku, File target) throws IOException {
+	private static void processPreviewImages(File sku, File outFolder) throws IOException {
 		for (File originImage : sku.listFiles()) {
 			BufferedImage scaledImage = Scalr.resize(ImageIO.read(originImage), 400);
 			String newImageName = originImage.getName().toLowerCase();
-			File compressedImage = new File(target, newImageName);
-			ImageIO.write(scaledImage, "jpg", compressedImage);
+			File compressedImage = new File(outFolder, newImageName);
+			ImageUtils.generateJPGImage(scaledImage, compressedImage);
 
 			BufferedImage scaled160Image = Scalr.resize(ImageIO.read(originImage), 80);
-			ImageIO.write(scaled160Image, "jpg", new File(target, newImageName + "_80x80.jpg"));
-
-			LOG.info(originImage.getAbsolutePath() + " ----> " + compressedImage.getAbsolutePath());
+			ImageUtils.generateJPGImage(scaled160Image, outFolder, newImageName + "_80x80.jpg");
 		}
 	}
 

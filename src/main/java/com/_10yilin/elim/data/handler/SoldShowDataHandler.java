@@ -16,7 +16,7 @@ public class SoldShowDataHandler extends AbstractDataHandler implements DataHand
 	private static final int EXPECTED_IMAGE_WITH = 800;
 	private static final int EXPECTED_PREVIEW_IMAGE_WITH = 800;
 
-	public void _process(File inFolder, File outFolder) {
+	public void process(File inFolder, File outFolder) {
 		try {
 			generateItemXml(outFolder);
 			processImages(inFolder, outFolder);

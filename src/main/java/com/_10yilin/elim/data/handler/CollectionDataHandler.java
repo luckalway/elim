@@ -10,9 +10,9 @@ public class CollectionDataHandler extends AbstractDataHandler {
 		this.dataHandler = dataHandler;
 	}
 
-	public void _process(File inFolder, File outFolder) {
+	public void process(File inFolder, File outFolder) {
 		for (File product : inFolder.listFiles()) {
-			dataHandler.process(product, new File(outFolder, product.getName()));
+			dataHandler.handle(product, new File(outFolder, product.getName()));
 		}
 	}
 

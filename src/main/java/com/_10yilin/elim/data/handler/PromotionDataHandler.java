@@ -4,8 +4,7 @@ import java.io.File;
 
 public class PromotionDataHandler extends AbstractDataHandler {
 
-	public void _process(File inFolder, File outFolder) {
-		// TODO Auto-generated method stub
+	public void process(File inFolder, File outFolder) {
 
 	}
 

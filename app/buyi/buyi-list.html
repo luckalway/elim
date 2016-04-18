@@ -32,6 +32,11 @@
 	border: 1px solid #e6e6e6;
 	height: 400px;
 }
+
+.thumbnail img{
+	width: 280px;
+	height: 280px;
+}
 </style>
 
 <div ng-controller="itemListCtrl">
@@ -58,7 +63,7 @@
 	<div class="product-list-container" style="margin-top: 10px;">
 		<div class="row" ng-repeat="group in productGroups">
 			<div class="col-xs-6 col-md-3" ng-repeat="item in group">
-				<a href="#/item?id={{item.id}}" class="thumbnail"><img ng-src="{{item.previewImages[0]}}" width="280px" height="280px" alt="...">
+				<a href="#/buyi/detail?id={{item.id}}" class="thumbnail"><img ng-src="{{item.previewImages[0]}}" width="280px" height="280px" alt="...">
 					{{item.title}}</a>
 			</div>
 		</div>

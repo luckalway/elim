@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -87,7 +89,14 @@ public class CurtainProductDaoImpl implements CurtainProductDao {
 				}
 			});
 			for (String imageName : imageList) {
-				images.add(BASE_URL + "/" + itemFolder.getName() + "/" + color + "/" + imageName);
+				String imageUrl = null;
+				try {
+					imageUrl = BASE_URL + "/" + URLEncoder.encode(itemFolder.getName(), "UTF-8") + "/" + color + "/"
+							+ URLEncoder.encode(imageName, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				images.add(imageUrl);
 			}
 			imageGroups.put(color, images);
 		}

@@ -114,11 +114,5 @@
 		$(document.body).unbind('mousewheel');
 	}
 
-	$.fn.extend({
-		elimGallery : function(options) {
-			var elimGallery = new ElimGallery(this);
-			elimGallery.init();
-		}
-	});
 
 }(jQuery));

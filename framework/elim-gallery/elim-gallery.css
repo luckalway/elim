@@ -6,12 +6,13 @@
 	float: left;
 }
 
-.elim-gallery li.focus {
-	border: 3px solid #FFFFFF;
+.gallery-container li {
+	border: 3px solid #FFFF40;
+	cursor: pointer;
 }
 
-.elim-gallery li.unfocus {
-	border: 3px solid #000000;
+.gallery-container li:hover img {
+	transform: scale(0.9)
 }
 
 .elim-gallery li.active {

@@ -111,11 +111,11 @@
 <div class="product-show">
 	<div class="preview">
 		<div class="preview-single">
-			<img ng-repeat="image in item.previewImages" data-u="image" src="{{image}}" />
+			<img ng-repeat="image in item.previewImages" data-u="image" ng-src="{{image}}" />
 		</div>
 
 		<div class="thumbnails">
-			<img ng-repeat="image in item.previewImages" data-u="image" src="{{image}}_80x80.jpg" repeat-done="initPreviewImages()"/>
+			<img ng-repeat="image in item.previewImages" data-u="image" ng-src="{{image}}_80x80.jpg" repeat-done="initPreviewImages()"/>
 		</div>
 	</div>
 	<div class="product-parameter">

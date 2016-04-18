@@ -3,7 +3,22 @@
 	<div class="product-container" style="margin-top: 10px;">
 		<div class="product-preview" style="border: 1px solid #e8e8e8; padding: 15px;"></div>
 
-		<product-images></product-images>
+		<div class="elim-gallery">
+			<ul class="nav nav-tabs">
+				<li role="presentation" ng-class="{'active':$index==0}" ng-repeat="colorId in colorIds"><a data-toggle="tab"
+					data-target="#{{colorId}}">{{colorId}}</a></li>
+			</ul>
+
+			<div class="tab-content" ng-switch="tab">
+				<div class="tab-pane fade in" ng-repeat="(colorId, images) in item.galleryGroups" ng-class="{'active':selectedColor==colorId}"
+					id="{{colorId}}">
+					<ul class="gallery-container">
+						<li ng-repeat="image in images" ng-click="openSlider()"><span><img ng-src="{{image}}_160x160.jpg" /></span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
 		<div class="clear"></div>
 	</div>
 </div>

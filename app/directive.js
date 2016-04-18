@@ -34,14 +34,6 @@ app.directive('relatedProducts', function() {
 	};
 });
 
-app.directive('productImages', function() {
-	return {
-		restrict : 'EC',
-		templateUrl : 'app/template/product-images.html?=1',
-		link : function(scope, element, attr, ctrl) {
-		}
-	};
-});
 
 app.directive('repeatDone', function() {
 	return {

@@ -136,3 +136,22 @@ app.controller('itemDetailCtrl', function($scope, $routeParams) {
 		alert(image);
 	}
 })
+
+
+app.directive('productPreview', function() {
+	return {
+		restrict : 'EC',
+		templateUrl : 'app/buyi/template/product-preview.html?=1',
+		link : function(scope, element, attr, ctrl) {
+		}
+	};
+});
+
+app.directive('relatedProducts', function() {
+	return {
+		restrict : 'E',
+		templateUrl : 'app/buyi/template/related-products.html?=1',
+		link : function(scope, element, attr, ctrl) {
+		}
+	};
+});

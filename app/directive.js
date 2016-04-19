@@ -16,24 +16,6 @@ app.directive('topNav', function() {
 	};
 });
 
-app.directive('productPreview', function() {
-	return {
-		restrict : 'EC',
-		templateUrl : 'app/template/product-preview.html?=1',
-		link : function(scope, element, attr, ctrl) {
-		}
-	};
-});
-
-app.directive('relatedProducts', function() {
-	return {
-		restrict : 'E',
-		templateUrl : 'app/template/related-products.html?=1',
-		link : function(scope, element, attr, ctrl) {
-		}
-	};
-});
-
 
 app.directive('repeatDone', function() {
 	return {

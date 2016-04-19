@@ -1,0 +1,215 @@
+<style>
+.preview {
+	width: 400px;
+	float: left;
+}
+
+.preview img {
+	width: 380px;
+	float: left;
+	margin: 2px;
+}
+
+.preview img.unfocus {
+	border: 3px solid #FFFFFF;
+}
+
+.preview img.focus {
+	border: 3px solid #c9033b;
+}
+
+.preview .thumbnails {
+	margin-top: 5px;
+}
+
+.product-parameter {
+	float: left;
+	width: 63%;
+	margin-left: 30px;
+	text-align: left;
+}
+
+.product-parameter .title {
+	color: #3c3c3c;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 8px;
+	text-align: left;
+}
+
+.product-parameter .sub-title {
+	color: #c9033b;
+	font-weight: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+	font-weight: 700;
+	text-align: left;
+	padding-left: 8px;
+}
+
+.product-parameter .price {
+	background-color: #fff2e8;
+	margin: 8px;
+	width: 400px;
+	padding: 20px 0 20px 15px;
+	text-align: left;
+}
+
+.product-parameter .price li {
+	list-style: none;
+}
+
+.product-parameter .price li span {
+	margin-left: 35px;
+}
+
+.product-parameter .price li.promotion-price {
+	line-height: 26px;
+}
+
+.product-parameter .price li.promotion-price span {
+	color: #f40;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 26px;
+	font-weight: 700;
+}
+
+.clear {
+	clear: left;
+}
+
+.preview-single img {
+	width: 410px;
+	height: 410px;
+	border: 10px solid #AFFFFE;
+}
+
+.thumbnails {
+	width: 420px;
+}
+
+.thumbnails img {
+	width: 80px;
+	height: 80px;
+}
+
+.delivery {
+	text-align: left;
+}
+
+.detail-parameter {
+	text-align: left;
+	list-style-type: none;
+	clear: left;
+}
+
+.detail-parameter-container {
+	clear: left;
+}
+
+.swMain ul.anchor li a {
+	width: 180px;
+}
+
+.favorable-activity {
+	border: 1px solid #ddd;
+	margin-top: 2em;
+	width: 500px;
+}
+
+.favorable-activity h1 {
+	display: inline;
+	background: #fff;
+	padding: 0px 10px;
+	position: relative;
+	top: -0.5em;
+	color: #333;
+	font-weight: bold;
+	font-family: 微软雅黑;
+	font-size: 15px;
+	text-align: left;
+	margin-left: 15px;
+}
+
+.favorable-activity p .tag {
+	margin: 10px;
+	border-radius: 0.5px;
+	background-color: inactivecaptiontext;
+	font-weight: bold;
+	font-size: 14px;
+	background: #c9033b none repeat scroll 0 0;
+	padding: 3px;
+	color: #fff;
+}
+
+.kefu-service {
+	border: 1px solid #ddd;
+	border-radius: 0.5px;
+	margin-top: 20px;
+	width: 500px;
+	padding: 5px;
+}
+
+.kefu-service li {
+	margin: 5px;
+}
+</style>
+
+
+<div class="product-show">
+	<div class="preview">
+		<div class="preview-single">
+			<img ng-repeat="image in item.previewImages" data-u="image" ng-src="{{image}}" />
+		</div>
+
+		<div class="thumbnails">
+			<img ng-repeat="image in item.previewImages" data-u="image" ng-src="{{image}}_80x80.jpg" repeat-done="initPreviewImages()" />
+		</div>
+	</div>
+	<div class="product-parameter">
+		<div class="title">
+			<a href="#" target="_blank">{{item.title}}</a>
+		</div>
+		<div class="sub-title">标价为1米单价，幅宽2.7M，免辅料加工费</div>
+		<ul class="price">
+			<li class="original-price"><label>原价：</label><span>¥35.00</span></li>
+			<li class="promotion-price"><label>促销价：</label><span>¥35.00</span></li>
+		</ul>
+		<div class="favorable-activity">
+			<h1>优惠活动</h1>
+			<p>
+				<span class="tag">(免费)上门测量</span><span class="tag">(免费)上门安装</span>
+			</p>
+		</div>
+		<div class="kefu-service">
+			<ul class="floatDqq">
+				<li><a target=blank href=tencent://message/?uin=335373989&Site=工具啦&Menu=yes><img border="0"
+						SRC=http://wpa.qq.com/pa?p=1:335373989:6 alt="点击这里给我发消息"></a></li>
+				<li><a target=blank href=tencent://message/?uin=335373989&Site=工具啦&Menu=yes><img border="0"
+						SRC=http://wpa.qq.com/pa?p=1:335373989:6 alt="点击这里给我发消息"></a></li>
+				<li><a target=blank href=tencent://message/?uin=335373989&Site=工具啦&Menu=yes><img border="0"
+						SRC=http://wpa.qq.com/pa?p=1:335373989:6 alt="点击这里给我发消息"></a></li>
+				<li><a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid=18069780350&site=cnalichn&s=10&charset=UTF-8"><img
+						border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=18069780350&site=cnalichn&s=10&charset=UTF-8" alt="在线客服" /></a></li>
+				<li><a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid=18069780350&site=cnalichn&s=10&charset=UTF-8"><img
+						border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=18069780350&site=cnalichn&s=10&charset=UTF-8" alt="在线客服" /></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="detail-parameter-container">
+	<legend>详细参数</legend>
+	<ul class="detail-parameter">
+		<li><lable>颜色分类:</lable>{{item.colors}}</li>
+		<li><lable>遮光率:</lable>{{item.shadingPercent}}</li>
+		<li><lable>材料:</lable>{{item.material}}</li>
+		<li><lable>风格:</lable>{{item.style}}</li>
+	</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+	$('#wizard').smartWizard();
+</script>

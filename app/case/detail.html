@@ -26,7 +26,8 @@
 
 .gallery-wrapper img {
 	width: 230px;
-	height: 230px; object-fit : cover;
+	height: 230px;
+	object-fit: cover;
 	background-color: #eee;
 	transition: .5s;
 	object-fit: cover;
@@ -35,15 +36,10 @@
 .gallery-wrapper a:hover img {
 	transform: scale(1.2);
 }
-
 </style>
 	<ul class="gallery-wrapper">
-		<li ng-repeat="image in caseItem.moreImages"><a href="#"><img ng-src="{{image}}">
-		</a></li>
+		<li ng-repeat="image in caseItem.images"><a href="#" onclick="return false"><img ng-src="{{image}}"> </a></li>
 	</ul>
-	<div class="clear"><br>
-	<script type="text/javascript">
-$(".gallery-wrapper").find("a").click(function(){
-	return false;
-});
-</script>
+	<div class="clear">
+		<br>
+		</script>

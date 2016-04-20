@@ -13,6 +13,9 @@ public class ImageUtils {
 	private static final Logger LOG = Logger.getLogger(ImageUtils.class);
 
 	public static boolean isImage(File image) {
+		if (image.getName().endsWith(".xml"))
+			return false;
+
 		ImageInputStream is = null;
 		try {
 			return null != ImageIO.createImageInputStream(image);

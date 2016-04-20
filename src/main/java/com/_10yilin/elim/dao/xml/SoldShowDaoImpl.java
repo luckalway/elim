@@ -12,6 +12,7 @@ import org.jdom2.input.SAXBuilder;
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.SaleShowDao;
 import com._10yilin.elim.entity.SoldShow;
+import com._10yilin.elim.util.ImageUtils;
 import com._10yilin.elim.util.XmlUtils;
 
 public class SoldShowDaoImpl implements SaleShowDao {
@@ -30,30 +31,31 @@ public class SoldShowDaoImpl implements SaleShowDao {
 		for (File folder : rootFolder.listFiles()) {
 			SoldShow saleShow = new SoldShow();
 			saleShow.setId(folder.getName());
-			for (File imageFile : folder.listFiles()) {
-				File xml = new File(folder, "item.xml");
-				try {
-					Document document = builder.build(xml);
-					XmlUtils.convertDocumentToEntity(document, saleShow);
-				} catch (JDOMException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-				if (imageFile.getName().startsWith("p.")) {
-					saleShow.setPreviewImage(toPath(folder, imageFile));
-				} else {
-					saleShow.setMoreImages(new ArrayList<String>());
-					saleShow.getMoreImages().add(toPath(folder, imageFile));
-				}
+			File xml = new File(folder, "item.xml");
+			try {
+				Document document = builder.build(xml);
+				XmlUtils.convertDocumentToEntity(document, saleShow);
+				saleShow.setPreviewImage(BASE_URL + "/" + folder.getName() + "/preview.jpg");
+				saleShow.setImages(getImages(folder));
+			} catch (JDOMException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 			soldshows.add(saleShow);
 		}
 		return soldshows;
 	}
 
-	private String toPath(File folder, File imageFile) {
-		return BASE_URL + "/" + folder.getName() + "/" + imageFile.getName();
+	private List<String> getImages(File folder) {
+		List<String> images = new ArrayList<String>();
+		for (File image : folder.listFiles()) {
+			if (ImageUtils.isImage(image) && !image.getName().equals("preview.jpg")) {
+				images.add(BASE_URL + "/" + folder.getName() + "/" + image.getName());
+			}
+		}
+
+		return images;
 	}
+
 }

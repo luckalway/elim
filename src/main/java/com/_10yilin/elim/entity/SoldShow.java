@@ -9,7 +9,7 @@ public class SoldShow {
 	private String previewImage;
 	private String date;
 
-	private List<String> moreImages;
+	private List<String> images;
 
 	public String getId() {
 		return id;
@@ -43,12 +43,12 @@ public class SoldShow {
 		this.previewImage = previewImage;
 	}
 
-	public List<String> getMoreImages() {
-		return moreImages;
+	public List<String> getImages() {
+		return images;
 	}
 
-	public void setMoreImages(List<String> moreImages) {
-		this.moreImages = moreImages;
+	public void setImages(List<String> images) {
+		this.images = images;
 	}
 
 	public String getDate() {

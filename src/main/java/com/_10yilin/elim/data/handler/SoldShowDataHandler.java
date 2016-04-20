@@ -13,6 +13,12 @@ import com._10yilin.elim.util.XmlUtils;
 
 public class SoldShowDataHandler extends AbstractDataHandler implements DataHandler {
 
+	@Override
+	protected boolean precheck(File inFolder, File outFolder) {
+		DataHandleUtils.checkIfExistPreview(inFolder);
+		return super.precheck(inFolder, outFolder);
+	}
+
 	public void process(File inFolder, File outFolder) {
 		try {
 			generateItemXml(outFolder);

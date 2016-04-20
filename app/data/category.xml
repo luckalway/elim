@@ -9,10 +9,10 @@
 		<item id="american">美式乡村</item>
 	</style>
 	<price>
-		<item id="30">30元以下</item>
+		<item id="-30">30元以下</item>
 		<item id="30-50">30元—50元</item>
-		<item id="50-80">50元—70元</item>
-		<item id="80">80元以上</item>
+		<item id="50-70">50元—70元</item>
+		<item id="80-">80元以上</item>
 	</price>
 	<cloth>
 		<item id="one-side">单面印花</item>

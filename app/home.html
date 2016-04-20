@@ -1,51 +1,4 @@
 <div ng-controller="homeCtrl">
-	<style>
-.preview-item {
-	width: 280px;
-	height: 348px;
-	margin-top: 20px;
-	float: left;
-	margin-left: 15x;
-	margin-right: 15px;
-	display: block;
-	padding-bottom: 15px;
-	background-color: #fff;
-	border-radius: 4px;
-	display: block;
-	line-height: 1.42857;
-	margin-bottom: 20px;
-	transition: border 0.2s ease-in-out 0s;
-}
-
-.preview-item:hover {
-	border: 1px solid #7f6000;
-}
-
-.preview-item-price {
-	float: left;
-	font-size: 18px;
-	font-family: arial;
-	line-height: 22px;
-	color: #f40;
-	font-family: verdana, arial;
-	font-weight: 700;
-	margin-left: 5px;
-	clear: right;
-}
-
-.preview-item-price span {
-	margin-right: 3px;
-	font-family: arial;
-}
-
-.preview-item-title {
-	color: #3d3d3d;
-	text-decoration: none;
-	font-weight: 400;
-	text-align: left;
-	float: left;
-}
-</style>
 	<div id="slide-show" class="owl-carousel owl-theme">
 		<div class="item" ng-repeat="item in slideShows">
 			<img ng-src="{{item.image}}" alt="The Last of us">
@@ -62,5 +15,4 @@
 			</div>
 			<div class="preview-item-title">{{item.title}}</div></a>
 	</div>
-
 </div>

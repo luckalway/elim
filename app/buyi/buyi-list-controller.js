@@ -18,15 +18,28 @@ app.controller('itemListCtrl', function($scope) {
 		}
 	}
 
-	var groups = new Array();
-	var group = null;
-	for (var i = 0; i < curtainItems.length; i++) {
-		if (i % 4 == 0) {
-			group = new Array();
-			groups.push(group);
-		}
-		group.push(curtainItems[i]);
-	}
+	$scope.filterCurtainItems = window.curtainItems;
+	
 
-	$scope.productGroups = groups;
+	$scope.filterItems = function(name, value) {
+		$scope.filterCurtainItems = [];
+		if(name == 'price'){
+			var minPrice = parseInt(value.split('-')[0]);
+			var maxPrice = parseInt(value.split('-')[1]);
+			console.log(minPrice);
+			
+			for(var i = 0; i < window.curtainItems.length; i++){
+				var item = window.curtainItems[i];
+				if(!isNaN(minPrice) && item.price < minPrice){
+					continue;	
+				}
+				if(!isNaN(maxPrice) && item.price >= maxPrice){
+					continue;
+				}
+				$scope.filterCurtainItems.push(item);
+			}
+		}
+		console.log($scope.filterCurtainItems);
+		return false;
+	}
 })

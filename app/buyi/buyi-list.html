@@ -33,7 +33,7 @@
 	height: 400px;
 }
 
-.thumbnail img{
+.thumbnail img {
 	width: 280px;
 	height: 280px;
 }
@@ -46,27 +46,27 @@
 			<table cellspacing="0px">
 				<tr>
 					<td class="category_name">布料</td>
-					<td ng-repeat="cat in categoryObj.clothCategories"><a href="#">{{cat.name}}</a></td>
+					<td ng-repeat="cat in categoryObj.clothCategories"><a href="#" onclick="return false">{{cat.name}}</a></td>
 				</tr>
 				<tr>
 					<td class="category_name">价格</td>
-					<td ng-repeat="cat in categoryObj.priceCategories"><a href="#">{{cat.name}}</a></td>
+					<td ng-repeat="cat in categoryObj.priceCategories"><a href="#" onclick="return false" ng-click="filterItems('price',cat.id)">{{cat.name}}</a></td>
 				</tr>
 				<tr>
 					<td class="category_name">风格</td>
-					<td ng-repeat="cat in categoryObj.styleCategories"><a href="#">{{cat.name}}</a></td>
+					<td ng-repeat="cat in categoryObj.styleCategories"><a href="#" onclick="return false">{{cat.name}}</a></td>
 				</tr>
 			</table>
 		</div>
 	</div>
 	<div class="sort_panel"></div>
-	<div class="product-list-container" style="margin-top: 10px;">
-		<div class="row" ng-repeat="group in productGroups">
-			<div class="col-xs-6 col-md-3" ng-repeat="item in group">
-				<a href="#/buyi/detail?id={{item.id}}" class="thumbnail"><img ng-src="{{item.previewImages[0]}}" width="280px" height="280px" alt="...">
-					{{item.title}}</a>
+
+	<div class="preview-item thumbnail" ng-repeat="item in filterCurtainItems">
+		<a href="#/buyi/detail?id={{item.id}}"><img style="width: 280px; height: 280px;" ng-src="{{item.previewImages[0]}}">
+			<div class="preview-item-price">
+				<span>¥</span><strong>{{item.price}}</strong>
 			</div>
-		</div>
+			<div class="preview-item-title">{{item.title}}</div></a>
 	</div>
 
 </div>

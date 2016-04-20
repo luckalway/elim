@@ -1,5 +1,6 @@
 app.controller('caseCtrl', function($scope) {
 	$scope.saleShows = window.saleShows;
+	console.log($scope.saleShows);
 });
 
 app.controller('caseDetailCtrl', function($scope, $routeParams) {

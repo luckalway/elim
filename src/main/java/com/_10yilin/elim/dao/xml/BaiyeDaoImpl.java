@@ -7,19 +7,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.BaiyeDao;
-import com._10yilin.elim.data.handler.CollectionDataHandler;
+import com._10yilin.elim.dao.support.ImageFilenameFilter;
 import com._10yilin.elim.entity.Baiye;
 import com._10yilin.elim.util.XmlUtils;
 
 public class BaiyeDaoImpl implements BaiyeDao {
-	private static final Logger LOG = Logger.getLogger(CollectionDataHandler.class);
 	private File rootFolder = null;
 	private String BASE_FOLDER = Constants.PROJECT_HOME + "/app/data/baiye";
 	private String BASE_URL = Constants.BASE_URL + "/app/data/baiye";
@@ -59,7 +57,7 @@ public class BaiyeDaoImpl implements BaiyeDao {
 
 	private List<String> getImages(File itemFolder) {
 		List<String> images = new ArrayList<String>();
-		for (String imageName : itemFolder.list()) {
+		for (String imageName : itemFolder.list(new ImageFilenameFilter())) {
 			if (imageName.startsWith("preview") || !imageName.endsWith(".jpg"))
 				continue;
 			images.add(BASE_URL + "/" + itemFolder.getName() + "/" + imageName);

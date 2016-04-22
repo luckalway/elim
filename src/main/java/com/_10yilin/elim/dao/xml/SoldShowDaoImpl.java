@@ -11,6 +11,7 @@ import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.SaleShowDao;
+import com._10yilin.elim.dao.support.ImageFilenameFilter;
 import com._10yilin.elim.entity.SoldShow;
 import com._10yilin.elim.util.ImageUtils;
 import com._10yilin.elim.util.XmlUtils;
@@ -49,7 +50,7 @@ public class SoldShowDaoImpl implements SaleShowDao {
 
 	private List<String> getImages(File folder) {
 		List<String> images = new ArrayList<String>();
-		for (File image : folder.listFiles()) {
+		for (File image : folder.listFiles(new ImageFilenameFilter())) {
 			if (ImageUtils.isImage(image) && !image.getName().equals("preview.jpg")) {
 				images.add(BASE_URL + "/" + folder.getName() + "/" + image.getName());
 			}

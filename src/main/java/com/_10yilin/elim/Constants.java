@@ -9,4 +9,6 @@ public class Constants {
 
 	public static final String FOLDER_SLIDE = "app/data/promotion/slide";
 
+	public static final String REG_EXP_IMAGE_NAME = "[0-9]{3}\\.jpg";
+
 }

@@ -13,6 +13,7 @@ import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.GuidaoDao;
+import com._10yilin.elim.dao.support.ImageFilenameFilter;
 import com._10yilin.elim.entity.peijian.Guidao;
 import com._10yilin.elim.util.XmlUtils;
 
@@ -49,7 +50,7 @@ public class GuidaoDaoImpl implements GuidaoDao {
 
 	private List<String> getImages(File itemFile) {
 		List<String> images = new ArrayList<String>();
-		for (String image : itemFile.list()) {
+		for (String image : itemFile.list(new ImageFilenameFilter())) {
 			if (image.endsWith(".xml"))
 				continue;
 			images.add(BASE_URL + "/" + itemFile.getName() + "/" + image);

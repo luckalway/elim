@@ -13,6 +13,7 @@ import org.jdom2.input.SAXBuilder;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.LuomaganDao;
+import com._10yilin.elim.dao.support.ImageFilenameFilter;
 import com._10yilin.elim.entity.peijian.Luomagan;
 import com._10yilin.elim.util.ImageUtils;
 import com._10yilin.elim.util.XmlUtils;
@@ -50,7 +51,7 @@ public class LuomaganDaoImpl implements LuomaganDao {
 
 	private List<String> getImages(File itemFolder) {
 		List<String> images = new ArrayList<String>();
-		for (File image : itemFolder.listFiles()) {
+		for (File image : itemFolder.listFiles(new ImageFilenameFilter())) {
 			if (ImageUtils.isImage(image))
 				images.add(BASE_URL + "/" + itemFolder.getName() + "/" + image.getName());
 		}

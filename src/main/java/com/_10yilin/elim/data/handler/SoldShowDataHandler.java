@@ -22,7 +22,7 @@ public class SoldShowDataHandler extends AbstractDataHandler implements DataHand
 	public void process(File inFolder, File outFolder) {
 		try {
 			generateItemXml(outFolder);
-			DataHandleUtils.optimizeImages(inFolder, outFolder);
+			DataHandleUtils.processImages(inFolder, outFolder);
 		} catch (IOException e) {
 			throw new DataHandleException(e);
 		}

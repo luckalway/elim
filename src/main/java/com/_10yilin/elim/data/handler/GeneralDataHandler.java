@@ -6,15 +6,15 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-public class CompositeDataHandler extends AbstractDataHandler {
-	private static final Logger LOG = Logger.getLogger(CompositeDataHandler.class);
+public class GeneralDataHandler extends AbstractDataHandler {
+	private static final Logger LOG = Logger.getLogger(GeneralDataHandler.class);
 
 	private Map<String, DataHandler> dataHandlers = new HashMap<String, DataHandler>();
 
 	public void init() {
 		LOG.info("CompositeDataHandler initializing");
 		registerDataHandler("baiye", new CollectionDataHandler(new BaiyeDataHandler()));
-		registerDataHandler("buyi", new CollectionDataHandler(new BuYiDataHandler()));
+		registerDataHandler("buyi", new BuyiCompositeDataHandler());
 		registerDataHandler("peijian", new PeijianDataHandler());
 		registerDataHandler("promotion", new CollectionDataHandler(new PromotionDataHandler()));
 		registerDataHandler("sold-show", new CollectionDataHandler(new SoldShowDataHandler()));

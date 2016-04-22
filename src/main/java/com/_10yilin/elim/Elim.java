@@ -2,11 +2,11 @@ package com._10yilin.elim;
 
 import java.io.File;
 
-import com._10yilin.elim.data.handler.CompositeDataHandler;
+import com._10yilin.elim.data.handler.GeneralDataHandler;
 import com._10yilin.elim.data.handler.DataHandler;
 
 public class Elim {
-	private static DataHandler compositeDataHandler = new CompositeDataHandler();
+	private static DataHandler compositeDataHandler = new GeneralDataHandler();
 	private static final String OUT_FOLDER = "C:\\Users\\malachi.ye\\git\\elim\\app\\data";
 	private static final String IN_FOLDER = "G:\\elim\\data";
 

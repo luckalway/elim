@@ -19,7 +19,7 @@ public class LuomaganDataHandler extends AbstractDataHandler {
 	public void process(File inFolder, File outFolder) {
 		try {
 			generateItemXmlFile(outFolder);
-			DataHandleUtils.optimizeImages(inFolder, outFolder);
+			DataHandleUtils.processImages(inFolder, outFolder);
 		} catch (IOException e) {
 			throw new DataHandleException(e);
 		}

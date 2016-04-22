@@ -15,11 +15,11 @@
 		<item id="80-">80元以上</item>
 	</price>
 	<cloth>
-		<item id="one-side">单面印花</item>
-		<item id="both-side">双面印花</item>
-		<item id="dobby">提花窗帘</item>
-		<item id="burn-out">烂花窗帘</item>
-		<item id="flax">亚麻窗帘</item>
+		<item id="danmian">单面印花</item>
+		<item id="shuangmian">双面印花</item>
+		<item id="tihua">提花窗帘</item>
+		<item id="lanhua">烂花窗帘</item>
+		<item id="yama">亚麻窗帘</item>
 	</cloth>
 </category>
 

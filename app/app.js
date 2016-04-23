@@ -15,7 +15,7 @@ app.config(function($routeProvider) {
 		templateUrl : 'app/baiye/baiye-list.html'
 	}).when('/baiye/detail', {
 		templateUrl : 'app/baiye/baiye-detail.html'
-	}).when('/index', {
+	}).when('/', {
 		templateUrl : 'app/home.html'
 	}).when('/aboutus', {
 		templateUrl : 'app/about-us/about-us.html'
@@ -24,6 +24,6 @@ app.config(function($routeProvider) {
 	}).when('/case', {
 		templateUrl : 'app/case/case.html'
 	}).otherwise({
-		redirectTo : '/index'
+		redirectTo : '/'
 	})
 });

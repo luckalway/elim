@@ -26,7 +26,6 @@ app.controller('itemListCtrl', function($scope) {
 		if(name == 'price'){
 			var minPrice = parseInt(value.split('-')[0]);
 			var maxPrice = parseInt(value.split('-')[1]);
-			console.log(minPrice);
 			
 			for(var i = 0; i < window.curtainItems.length; i++){
 				var item = window.curtainItems[i];
@@ -37,6 +36,20 @@ app.controller('itemListCtrl', function($scope) {
 					continue;
 				}
 				$scope.filterCurtainItems.push(item);
+			}
+		}else if(name == 'craft'){
+			for(var i = 0; i < window.curtainItems.length; i++){
+				var item = window.curtainItems[i];
+				if(item.craft == value){
+					$scope.filterCurtainItems.push(item);
+				}
+			}
+		}else if(name == 'style'){
+			for(var i = 0; i < window.curtainItems.length; i++){
+				var item = window.curtainItems[i];
+				if(item.style == value){
+					$scope.filterCurtainItems.push(item);
+				}
 			}
 		}
 		console.log($scope.filterCurtainItems);

@@ -15,7 +15,7 @@ app.controller('itemDetailCtrl', function($scope, $routeParams) {
 				});
 				var images = item.galleryGroups[colorId];
 				for(var i=0;i<images.length;i++){
-					images[i]=encodeURI(images[i]);
+					images[i]=images[i];
 				}
 			}
 			$scope.selectedColor = $scope.colors[0].id;
@@ -77,11 +77,11 @@ app.controller('itemDetailCtrl', function($scope, $routeParams) {
 		sliderContainer.empty();
 		sliderContainer.height($(window).height());
 		var containerInner = $("<ul/>")
-		var selectedColor = $(".elim-gallery").find(".nav li.active a").text();
-		$("#" + selectedColor).find("img").each(function(i,element){
+		var selectedColor = $(".elim-gallery").find(".nav li.active a").data('target');
+		$(selectedColor).find("img").each(function(i,element){
 			var liElement = $("<li/>")
 			var imageElement = $("<img/>");
-			imageElement.attr('src',element.src.replace("_160x160.jpg",""));
+			imageElement.attr('src',element.src.replace("_160.jpg",""));
 			imageElement.width(sliderContainer.innerWidth());
 			liElement.append(imageElement);
 			containerInner.append(liElement);
@@ -133,7 +133,7 @@ app.controller('itemDetailCtrl', function($scope, $routeParams) {
 				lock = true;
 				containerInner.animate({
 					top : '+=' + moveSteps
-				}, defaults.animateSpeed, animateDone);
+				}, 200, animateDone);
 			}
 			return false;
 		});

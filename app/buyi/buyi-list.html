@@ -46,7 +46,7 @@
 			<table cellspacing="0px">
 				<tr>
 					<td class="category_name">布料</td>
-					<td ng-repeat="cat in categoryObj.clothCategories"><a href="#" onclick="return false">{{cat.name}}</a></td>
+					<td ng-repeat="cat in categoryObj.clothCategories"><a href="#" onclick="return false" ng-click="filterItems('craft',cat.name)">{{cat.name}}</a></td>
 				</tr>
 				<tr>
 					<td class="category_name">价格</td>
@@ -54,7 +54,7 @@
 				</tr>
 				<tr>
 					<td class="category_name">风格</td>
-					<td ng-repeat="cat in categoryObj.styleCategories"><a href="#" onclick="return false">{{cat.name}}</a></td>
+					<td ng-repeat="cat in categoryObj.styleCategories"><a href="#" onclick="return false" ng-click="filterItems('style',cat.name)">{{cat.name}}</a></td>
 				</tr>
 			</table>
 		</div>
@@ -62,7 +62,7 @@
 	<div class="sort_panel"></div>
 
 	<div class="preview-item thumbnail" ng-repeat="item in filterCurtainItems">
-		<a href="#/buyi/detail?id={{item.id}}"><img style="width: 280px; height: 280px;" ng-src="{{item.previewImages[0]}}">
+		<a href="#/buyi/detail?id={{item.id}}"><img style="width: 280px; height: 280px;" ng-src="{{item.previewImages[0]}}_280.jpg">
 			<div class="preview-item-price">
 				<span>¥</span><strong>{{item.price}}</strong>
 			</div>

@@ -6,7 +6,7 @@ import java.io.IOException;
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.BaiyeDao;
 import com._10yilin.elim.dao.CategoryDao;
-import com._10yilin.elim.dao.CurtainProductDao;
+import com._10yilin.elim.dao.BuyiProductDao;
 import com._10yilin.elim.dao.GuidaoDao;
 import com._10yilin.elim.dao.LuomaganDao;
 import com._10yilin.elim.dao.SaleShowDao;
@@ -14,7 +14,7 @@ import com._10yilin.elim.dao.SlideItemDao;
 import com._10yilin.elim.dao.SlideItemDaoImpl;
 import com._10yilin.elim.dao.xml.BaiyeDaoImpl;
 import com._10yilin.elim.dao.xml.CategoryDaoImpl;
-import com._10yilin.elim.dao.xml.CurtainProductDaoImpl;
+import com._10yilin.elim.dao.xml.BuyiProductDaoImpl;
 import com._10yilin.elim.dao.xml.GuidaoDaoImpl;
 import com._10yilin.elim.dao.xml.LuomaganDaoImpl;
 import com._10yilin.elim.dao.xml.SoldShowDaoImpl;
@@ -22,7 +22,7 @@ import com._10yilin.elim.util.JsonUtils;
 
 public class JsFileGenerator {
 
-	private static CurtainProductDao curtainProductDao = new CurtainProductDaoImpl();
+	private static BuyiProductDao curtainProductDao = new BuyiProductDaoImpl();
 	private static SaleShowDao saleShowDao = new SoldShowDaoImpl();
 	private static SlideItemDao slideItemDao = new SlideItemDaoImpl();
 	private static CategoryDao categoryDao = new CategoryDaoImpl();

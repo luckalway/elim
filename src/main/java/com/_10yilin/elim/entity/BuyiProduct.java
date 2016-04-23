@@ -3,12 +3,13 @@ package com._10yilin.elim.entity;
 import java.util.List;
 import java.util.Map;
 
-public class CurtainProduct {
+public class BuyiProduct {
 	private String id;
 	private String title;
 	private double price;
 	private int shadingPercent;
 	private String material;
+	private String craft;
 	private String style;
 	private String colors;
 
@@ -85,6 +86,14 @@ public class CurtainProduct {
 
 	public void setColors(String colors) {
 		this.colors = colors;
+	}
+
+	public String getCraft() {
+		return craft;
+	}
+
+	public void setCraft(String craft) {
+		this.craft = craft;
 	}
 
 	@Override

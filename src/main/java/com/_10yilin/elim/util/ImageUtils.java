@@ -49,13 +49,13 @@ public class ImageUtils {
 		File biggest = new File(outFolder, imageName);
 		ImageIO.write(Scalr.resize(ImageIO.read(image), IMAGE_WITH_BIGGEST), "jpg", biggest);
 		File middle = new File(outFolder, imageName + "_" + IMAGE_WITH_MIDDLE + ".jpg");
-		ImageIO.write(Scalr.resize(ImageIO.read(image), IMAGE_WITH_MIDDLE), "jpg", middle);
+		ImageIO.write(Scalr.resize(ImageIO.read(biggest), IMAGE_WITH_MIDDLE), "jpg", middle);
 		File small = new File(outFolder, imageName + "_" + IMAGE_WITH_SMALL + ".jpg");
-		ImageIO.write(Scalr.resize(ImageIO.read(image), IMAGE_WITH_SMALL), "jpg", small);
+		ImageIO.write(Scalr.resize(ImageIO.read(biggest), IMAGE_WITH_SMALL), "jpg", small);
 		File smaller = new File(outFolder, imageName + "_" + IMAGE_WITH_SMALLER + ".jpg");
-		ImageIO.write(Scalr.resize(ImageIO.read(image), IMAGE_WITH_SMALLER), "jpg", smaller);
+		ImageIO.write(Scalr.resize(ImageIO.read(biggest), IMAGE_WITH_SMALLER), "jpg", smaller);
 		File smallest = new File(outFolder, imageName + "_" + IMAGE_WITH_SMALLEST + ".jpg");
-		ImageIO.write(Scalr.resize(ImageIO.read(image), IMAGE_WITH_SMALLEST), "jpg", smallest);
+		ImageIO.write(Scalr.resize(ImageIO.read(biggest), IMAGE_WITH_SMALLEST), "jpg", smallest);
 		LOG.info("Generated mutiple size images of " + biggest);
 	}
 

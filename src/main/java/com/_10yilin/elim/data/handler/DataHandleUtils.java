@@ -19,7 +19,7 @@ public class DataHandleUtils {
 
 	public static void checkIfExistPreview(File inFolder) {
 		File[] previews = inFolder.listFiles(new PreviewFilenameFilter());
-		if (previews.length != 1)
+		if (previews == null || previews.length != 1)
 			throw new DataHandleException("Preview image or folder is not exist in " + inFolder.getAbsolutePath());
 		File preview = previews[0];
 		if (preview.isFile() && !ImageUtils.isImage(preview))

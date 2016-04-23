@@ -15,10 +15,13 @@ public class BuYiDataHandler extends AbstractDataHandler {
 	private static final Pattern PATTERN1 = Pattern.compile(REG_EXP_1);
 	private static final Pattern PATTERN2 = Pattern.compile(REG_EXP_2);
 
-	private String category = null;
+	private String craft = null;
+	private String material = null;
 
 	@Override
 	protected boolean precheck(File inFolder, File outFolder) {
+		if (inFolder.isFile())
+			return false;
 		DataHandleUtils.checkIfExistPreview(inFolder);
 		boolean chineseColor = false;
 		boolean nonChineseColor = false;
@@ -46,6 +49,12 @@ public class BuYiDataHandler extends AbstractDataHandler {
 	void process(File inFolder, File outFolder) {
 		try {
 			generateItemXml(inFolder, outFolder);
+			if (DataHandleUtils.isSkuFolder(inFolder)) {
+				DataHandleUtils.processImages(inFolder,
+						new File(outFolder, inFolder.getName().replaceAll("-[\u4E00-\u9FA5]+", "")));
+				return;
+			}
+
 			for (File sku : inFolder.listFiles()) {
 				DataHandleUtils.processImages(sku, new File(outFolder, sku.getName()
 						.replaceAll("-[\u4E00-\u9FA5]+", "")));
@@ -65,7 +74,8 @@ public class BuYiDataHandler extends AbstractDataHandler {
 		doc.setRootElement(rootElement);
 		rootElement.addContent(XmlUtils.createElement("title"));
 		rootElement.addContent(XmlUtils.createElement("shading-percent", 85));
-		rootElement.addContent(XmlUtils.createElement("material", category));
+		rootElement.addContent(XmlUtils.createElement("material", material));
+		rootElement.addContent(XmlUtils.createElement("craft", craft));
 		rootElement.addContent(XmlUtils.createElement("style"));
 		rootElement.addContent(XmlUtils.createElement("price", 0));
 
@@ -84,8 +94,12 @@ public class BuYiDataHandler extends AbstractDataHandler {
 		return true;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCraft(String category) {
+		this.craft = category;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
 	}
 
 }

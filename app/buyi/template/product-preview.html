@@ -38,21 +38,21 @@
 }
 
 .product-parameter .sub-title {
-	color: #c9033b;
 	font-weight: normal;
-	word-break: break-all;
-	word-wrap: break-word;
 	font-weight: 700;
 	text-align: left;
 	padding-left: 8px;
+	font-family: 微软雅黑;
+	font-size: 15px;
+	color: #c9033b;
 }
 
 .product-parameter .price {
 	background-color: #fff2e8;
-	margin: 8px;
 	width: 400px;
-	padding: 20px 0 20px 15px;
+	padding: 10px 0 10px 15px;
 	text-align: left;
+	border-radius: 4px;
 }
 
 .product-parameter .price li {
@@ -101,10 +101,33 @@
 	text-align: left;
 	list-style-type: none;
 	clear: left;
+	color: #666;
+	font-family: tahoma, arial, 微软雅黑, sans-serif;
 }
 
-.detail-parameter-container {
-	clear: left;
+.detail-parameter label {
+	margin-right: 3px;
+	font-weight: 550;
+}
+
+.detail-parameter-container h3 {
+	text-align: left;
+	font-weight: 900;
+	color: #999;
+	line-height: 22px;
+	margin-bottom: 0px;
+	font-size: 16px;
+}
+
+.detail-parameter-container hr {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+.detail-parameter li {
+	width: 30%;
+	float: left;
+	margin-top: 5px;
 }
 
 .swMain ul.anchor li a {
@@ -159,22 +182,23 @@
 <div class="product-show">
 	<div class="preview">
 		<div class="preview-single">
-			<img ng-repeat="image in item.previewImages" data-u="image" ng-src="{{image}}" />
+			<img ng-repeat="image in item.previewImages" data-u="image" ng-src="{{image}}_410.jpg" />
 		</div>
 
 		<div class="thumbnails">
-			<img ng-repeat="image in item.previewImages" data-u="image" ng-src="{{image}}_80x80.jpg" repeat-done="initPreviewImages()" />
+			<img ng-repeat="image in item.previewImages" data-u="image" ng-src="{{image}}_80.jpg" repeat-done="initPreviewImages()" />
 		</div>
 	</div>
 	<div class="product-parameter">
 		<div class="title">
 			<a href="#" target="_blank">{{item.title}}</a>
 		</div>
-		<div class="sub-title">标价为1米单价，幅宽2.7M，免辅料加工费</div>
 		<ul class="price">
-			<li class="original-price"><label>原价：</label><span>¥35.00</span></li>
-			<li class="promotion-price"><label>促销价：</label><span>¥35.00</span></li>
+			<li class="promotion-price"><label>挂钩成品：</label><span>¥{{item.price}}.00元/米</span></li>
+			<li class="promotion-price"><label>打孔成品：</label><span>¥{{item.price+5}}.00元/米</span></li>
+			<li class="promotion-price"><label>韩褶成品：</label><span>¥{{item.price+5}}.00元/米</span></li>
 		</ul>
+		<div class="sub-title">单价包含一米布料、加工费，辅料费用；幅高2.7米</div>
 		<div class="favorable-activity">
 			<h1>优惠活动</h1>
 			<p>
@@ -197,13 +221,22 @@
 		</div>
 	</div>
 </div>
+<div class="clear"></div>
 <div class="detail-parameter-container">
-	<legend>详细参数</legend>
+	<h3>产品参数</h3>
+	<hr>
 	<ul class="detail-parameter">
-		<li><lable>颜色分类:</lable>{{item.colors}}</li>
-		<li><lable>遮光率:</lable>{{item.shadingPercent}}</li>
-		<li><lable>材料:</lable>{{item.material}}</li>
-		<li><lable>风格:</lable>{{item.style}}</li>
+		<li><label>品牌:</label>Elim/以琳</li>
+		<li><label>颜色分类:</label><span ng-repeat="color in colors">{{color.name}}&nbsp;</span></li>
+		<li><label>款式:</label>普通打褶 打孔帘 韩式打褶</li>
+		<li><label>适用对象:</label>落地窗 飘窗 阳台 其他</li>
+		<li><label>遮光率:</label>{{item.shadingPercent}}</li>
+		<li><label>工艺:</label>{{item.craft}}</li>
+		<li><label>风格:</label>{{item.style}}</li>
+		<li><label>计价单位:</label>米</li>
+		<li><label>是否含加工辅料费:</label>含加工辅料费</li>
+		<li><label>原料:</label>{{item.material}}</li>
+		<li><label>货号:</label>{{item.id}}</li>
 	</ul>
 </div>
 </div>

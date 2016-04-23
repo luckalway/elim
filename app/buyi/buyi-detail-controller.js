@@ -3,15 +3,22 @@ app.controller('itemDetailCtrl', function($scope, $routeParams) {
 	for (var i = 0; i < window.curtainItems.length; i++) {
 		var item = window.curtainItems[i];
 		if (item.id == $scope.itemId) {
-			$scope.colorIds = [];
-			for ( var colorId in item.galleryGroups) {
-				$scope.colorIds.push(colorId);
+			$scope.colors = [];
+			for (var colorId in item.galleryGroups) {
+				var colorName = colorId;
+				if (/.+-[\u4E00-\u9FA5]+$/.test(colorId)) {
+					colorName = colorId.substring(colorId.lastIndexOf("-") + 1);
+				}
+				$scope.colors.push({
+					id : colorId,
+					name : colorName
+				});
 				var images = item.galleryGroups[colorId];
 				for(var i=0;i<images.length;i++){
 					images[i]=encodeURI(images[i]);
 				}
 			}
-			$scope.selectedColor = $scope.colorIds[0];
+			$scope.selectedColor = $scope.colors[0].id;
 			$scope.item = item;
 			break;
 		}

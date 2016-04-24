@@ -37,6 +37,13 @@
 	width: 280px;
 	height: 280px;
 }
+
+.pagination-container {
+	width: 100%;
+	text-align: right;
+	padding-right: 40px;
+	clear: both;
+}
 </style>
 
 <div ng-controller="itemListCtrl">
@@ -61,12 +68,28 @@
 	</div>
 	<div class="sort_panel"></div>
 
+	<div class="pagination-container">
+		<ul class="pagination">
+			<li><a ng-hide="page==1" href="#buyi?page={{page-1}}">&laquo;</a></li>
+			<li ng-repeat="page in pages"><a href="#buyi?page={{page}}">{{page}}</a></li>
+			<li><a ng-hide="page==pageCount" href="#buyi?page={{page-1+2}}">&raquo;</a></li>
+		</ul>
+	</div>
+
 	<div class="preview-item thumbnail" ng-repeat="item in filterCurtainItems">
 		<a href="#/buyi/detail?id={{item.id}}"><img style="width: 280px; height: 280px;" ng-src="{{item.previewImages[0]}}_280.jpg">
 			<div class="preview-item-price">
 				<span>¥</span><strong>{{item.price}}</strong>
 			</div>
 			<div class="preview-item-title">{{item.title}}</div></a>
+	</div>
+
+	<div class="pagination-container">
+		<ul class="pagination">
+			<li><a ng-hide="page==1" href="#buyi?page={{page-1}}">&laquo;</a></li>
+			<li ng-repeat="page in pages"><a href="#buyi?page={{page}}">{{page}}</a></li>
+			<li><a ng-hide="page==pageCount" href="#buyi?page={{page-1+2}}">&raquo;</a></li>
+		</ul>
 	</div>
 
 </div>

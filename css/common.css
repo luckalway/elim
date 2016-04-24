@@ -137,6 +137,12 @@ a:hover {
 	box-shadow: -2px 0 3px rgba(0, 0, 0, 0.25);
 }
 
+.online-phone {
+	font-weight: bold;
+	font-size: 25px;
+	color: #ff6600;
+}
+
 .floatShadow {
 	background: #fff;
 	box-shadow: -2px 0 3px rgba(0, 0, 0, 0.25);
@@ -160,7 +166,6 @@ a:hover {
 .preview-item {
 	width: 280px;
 	height: 348px;
-	margin-top: 20px;
 	float: left;
 	margin-left: 15x;
 	margin-right: 15px;

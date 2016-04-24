@@ -1,4 +1,5 @@
-app.controller('itemListCtrl', function($scope) {
+app.controller('itemListCtrl', function($scope, $routeParams) {
+	$scope.page = $routeParams.page||1;
 	$scope.categoryObj = window.categoryObj;
 	var maxSize = 0;
 	for (attrName in $scope.categoryObj) {
@@ -18,8 +19,16 @@ app.controller('itemListCtrl', function($scope) {
 		}
 	}
 
-	$scope.filterCurtainItems = window.curtainItems;
-	
+	var beginIndex = ($scope.page - 1) * 16;
+	var endIndex = $scope.page * 16 - 1;
+	$scope.filterCurtainItems = window.curtainItems.slice(beginIndex, endIndex);
+	var pageCount = parseInt(window.curtainItems.length/16+1);
+	pageCount = parseInt(pageCount) < pageCount ? parseInt(pageCount) + 1: pageCount;
+	$scope.pages = [];
+	$scope.pageCount = pageCount;
+	for(var i=1;i<=pageCount;i++){
+		$scope.pages.push(i);
+	}
 
 	$scope.filterItems = function(name, value) {
 		$scope.filterCurtainItems = [];
@@ -52,7 +61,6 @@ app.controller('itemListCtrl', function($scope) {
 				}
 			}
 		}
-		console.log($scope.filterCurtainItems);
 		return false;
 	}
 })

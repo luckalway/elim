@@ -207,3 +207,23 @@ a:hover {
 	text-align: left;
 	float: left;
 }
+
+.category-bar {
+	font-size: 25px;
+	border-bottom: 2px solid gray;
+	text-align: left;
+	width: 95%;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.category-bar .click-more {
+	font-size: 20px;
+	float: right;
+	margin-top: 10px;
+}
+
+.category-bar .click-more .arrow {
+	font-size: 15px;
+}

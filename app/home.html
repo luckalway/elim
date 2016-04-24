@@ -6,6 +6,9 @@
 	</div>
 	<div ng-init="slideShow()"></div>
 
+	<div class="category-bar" ng-click="toBuyiPage()">
+		布艺窗帘 <span class="click-more">click more <span class="arrow">➢</span></span>
+	</div>
 	<div class="preview-item thumbnail" ng-repeat="item in curtainItems">
 		<a href="#/buyi/detail?id={{item.id}}"><img style="width: 280px; height: 280px;" ng-src="{{item.previewImages[0]}}_280.jpg">
 			<div class="preview-item-price">

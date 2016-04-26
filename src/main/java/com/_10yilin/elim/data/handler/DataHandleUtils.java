@@ -1,12 +1,21 @@
 package com._10yilin.elim.data.handler;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
+import com._10yilin.elim.Constants;
 import com._10yilin.elim.util.ImageUtils;
+import com._10yilin.elim.util.XmlUtils;
 
 public class DataHandleUtils {
 	private static final Logger LOG = Logger.getLogger(DataHandleUtils.class);
@@ -71,5 +80,51 @@ public class DataHandleUtils {
 			}
 		}
 		return true;
+	}
+
+	public static void batchSetValues(String cate, Map<String, String> filter, Map<String, Object> values)
+			throws IOException {
+		File folderForScan = new File(Constants.PROJECT_HOME + "app/data/" + cate);
+		if (!folderForScan.exists())
+			throw new DataHandleException("fold not exist," + folderForScan);
+		if (filter.isEmpty())
+			throw new IllegalArgumentException("filter must not be empty.");
+
+		SAXBuilder builder = new SAXBuilder();
+		for (File itemFolder : folderForScan.listFiles()) {
+			File itemXML = new File(itemFolder, "item.xml");
+			try {
+				Document document = builder.build(new FileInputStream(itemXML));
+				Element root = document.getRootElement();
+				boolean match = true;
+				for (String key : filter.keySet()) {
+					if (root.getChildText(key) == null) {
+						throw new IllegalArgumentException("can not found a field with name " + key + " on "
+								+ document.toString());
+					}
+					if (!root.getChildText(key).trim().equals(filter.get(key).trim())) {
+						match = false;
+						break;
+					}
+				}
+
+				if (match) {
+					for (String key : values.keySet()) {
+						root.getChild(key).setText(values.get(key).toString());
+					}
+					XmlUtils.outputXmlFile(document, itemXML);
+				}
+			} catch (JDOMException e) {
+				throw new DataHandleException(e);
+			}
+		}
+	}
+
+	public static void main(String[] args) throws IOException {
+		Map<String, Object> values = new HashMap<String, Object>();
+		Map<String, String> filter = new HashMap<String, String>();
+		filter.put("craft", "提花");
+		values.put("price", 35);
+		batchSetValues("buyi", filter, values);
 	}
 }

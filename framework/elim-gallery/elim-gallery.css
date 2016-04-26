@@ -45,7 +45,7 @@
 .elim-gallery-slider {
 	border-left: 10px solid red;
 	border-right: 10px solid red;
-	width: 600px;
+	width: 700px;
 	z-index: 999;
 	position: fixed;
 	z-index: 1200;
@@ -65,7 +65,8 @@
 }
 
 .elim-gallery-slider li {
-	margin-top: 0px;
+	border-top: 2px solid #FFF;
+	border-bottom: 2px solid #FFF;
 	list-style: outside none none;
 }
 

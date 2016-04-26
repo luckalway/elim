@@ -227,3 +227,13 @@ a:hover {
 .category-bar .click-more .arrow {
 	font-size: 15px;
 }
+
+.baiye-detail .detail-images-container li {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.peijian-detail .detail-images-container li {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

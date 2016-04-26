@@ -7,7 +7,6 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 
 import org.apache.log4j.Logger;
 import org.imgscalr.Scalr;
@@ -21,32 +20,16 @@ public class ImageUtils {
 	private static final int IMAGE_WITH_SMALLER = 160;
 	private static final int IMAGE_WITH_SMALLEST = 80;
 
+	private static final String IMAGE_PATTERN = "([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)";
+	private static Pattern PATTERN = Pattern.compile(IMAGE_PATTERN);
+
 	public static boolean isImage(File image) {
-		if (image.getName().endsWith(".xml"))
-			return false;
-
-		ImageInputStream is = null;
-		try {
-			return null != ImageIO.createImageInputStream(image);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			close(is);
-		}
-		return false;
-	}
-
-	private static void close(ImageInputStream is) {
-		if (is != null)
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		return PATTERN.matcher(image.getName()).matches();
 	}
 
 	public static void generateMutiSizeImages(File image, File outFolder, String imageName) throws IOException {
 		File biggest = new File(outFolder, imageName);
+		LOG.info("Start to process " + image);
 		ImageIO.write(Scalr.resize(ImageIO.read(image), IMAGE_WITH_BIGGEST), "jpg", biggest);
 		File middle = new File(outFolder, imageName + "_" + IMAGE_WITH_MIDDLE + ".jpg");
 		ImageIO.write(Scalr.resize(ImageIO.read(biggest), IMAGE_WITH_MIDDLE), "jpg", middle);

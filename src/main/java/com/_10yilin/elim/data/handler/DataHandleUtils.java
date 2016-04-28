@@ -123,8 +123,8 @@ public class DataHandleUtils {
 	public static void main(String[] args) throws IOException {
 		Map<String, Object> values = new HashMap<String, Object>();
 		Map<String, String> filter = new HashMap<String, String>();
-		filter.put("craft", "提花");
-		values.put("price", 35);
+		filter.put("style", "null");
+		values.put("style", "无");
 		batchSetValues("buyi", filter, values);
 	}
 }

@@ -20,7 +20,7 @@ app.controller('itemListCtrl', function($scope, $routeParams) {
 	}
 
 	var beginIndex = ($scope.page - 1) * 16;
-	var endIndex = $scope.page * 16 - 1;
+	var endIndex = $scope.page * 16;
 	$scope.filterCurtainItems = window.curtainItems.slice(beginIndex, endIndex);
 	var pageCount = parseInt(window.curtainItems.length/16+1);
 	pageCount = parseInt(pageCount) < pageCount ? parseInt(pageCount) + 1: pageCount;

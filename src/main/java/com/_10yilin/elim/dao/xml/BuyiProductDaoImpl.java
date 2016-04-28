@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +54,18 @@ public class BuyiProductDaoImpl implements BuyiProductDao {
 			e.printStackTrace();
 			throw new IllegalArgumentException(e);
 		}
+		Collections.sort(curtainProducts, new Comparator<BuyiProduct>() {
+
+			public int compare(BuyiProduct o1, BuyiProduct o2) {
+				if (o1.getCraft().equals(o2.getCraft()))
+					return 0;
+				if (o1.getCraft().equals("提花"))
+					return -1;
+				if (o2.getCraft().equals("提花"))
+					return 1;
+				return 0;
+			}
+		});
 		return curtainProducts;
 	}
 

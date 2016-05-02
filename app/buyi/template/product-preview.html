@@ -165,6 +165,15 @@
 	color: #fff;
 }
 
+.price-reference {
+	margin-top: 5px;
+}
+
+.price-reference hr {
+	margin-top: 3px;
+	margin-top: 6px;
+}
+
 .kefu-service {
 	border: 1px solid #ddd;
 	border-radius: 0.5px;
@@ -204,6 +213,16 @@
 			<p>
 				<span class="tag">(免费)上门测量</span><span class="tag">(免费)上门安装</span>
 			</p>
+		</div>
+		<div class="price-reference">
+			<span class="title" style="font-size: 20px; font-family: inherit; font-weight: 800; color: inherit; padding: 2px;">价格参考</span><span
+				class="note" style="color: #FF0000;">(价格不包含轨道或罗马杆)</span>
+			<hr>
+			<ul>
+				<li><label>A. 3米宽的满墙窗户,1.6倍褶皱</label>: 打孔成品 {{(item.price+5)*3*1.6}}元</li>
+				<li><label>B. 单片2.5米宽的窗帘</label>: 挂钩成品{{item.price*2.5}}元</li>
+				<li><label>C. 做满墙窗帘，墙宽4米，2.0倍褶皱</label>: 挂钩成品{{item.price*4*2}}元</li>
+			</ul>
 		</div>
 		<div class="kefu-service">
 			<ul class="floatDqq">

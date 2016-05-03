@@ -43,7 +43,7 @@ body {
 
 html, body {
 	font-size: 14px;
-	font-family: "å¾®è½¯é›…é»‘";
+	font-family: "microsoft yahei", Arial;
 	outline: none;
 	color: #666;
 	background: #fff;
@@ -68,7 +68,6 @@ a:hover {
 	color: #e8431f;
 }
 
-/*æµ®åŠ¨å®¢æœ�*/
 #floatDivBoxs {
 	width: 170px;
 	background: #fff;

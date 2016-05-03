@@ -1,19 +1,169 @@
-<div ng-controller="homeCtrl">
-	<div id="slide-show" class="owl-carousel owl-theme">
-		<div class="item" ng-repeat="item in slideShows">
-			<img ng-src="{{item.image}}" alt="The Last of us">
-		</div>
-	</div>
-	<div ng-init="slideShow()"></div>
+<style>
+.title .b {
+	color: #000;
+	font-size: 30px;
+	margin-bottom: 20px;
+}
 
-	<div class="category-bar" ng-click="toBuyiPage()">
-		布艺窗帘 <span class="click-more">click more <span class="arrow">➢</span></span>
+.title .desc {
+	color: #666;
+	font-size: 16px;
+}
+
+.advantage-section {
+	background-color: #c4e6e6;
+	height: 420px;
+	padding-top: 50px;
+}
+
+.advantage-section li {
+	display: inline;
+	float: left;
+	margin: 0 6px 45px;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	width: 285px;
+}
+
+.advantage-section .colorOne {
+	background: #f00065 none repeat scroll 0 0;
+	bottom: 0;
+	font-size: 24px;
+	height: 58px;
+	left: 0;
+	line-height: 58px;
+	opacity: 0.9;
+	overflow: hidden;
+	position: absolute;
+	text-overflow: ellipsis;
+	transition: all 0.5s ease 0s;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.bgOne {
+	background: #f00065 none repeat scroll 0 0;
+	font-size: 16px;
+	height: 100%;
+	left: 0;
+	opacity: 0.9;
+	position: absolute;
+	text-align: center;
+	transition: all 0.3s ease 0s;
+	width: 100%;
+	z-index: 2;
+	color: #fff;
+}
+
+.bgOne .b {
+	font-size: 24px;
+	overflow: hidden;
+	padding-bottom: 12px;
+	padding-top: 100px;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.bgOne .description {
+	text-align: left;
+	font: 16px/1.5 "microsoft yahei", Arial;
+	width: 200px;
+	margin: 0 auto;
+}
+
+.steps-section {
+	height: auto;
+	padding-top: 50px; padding-bottom : 50px;
+	background-color: #fff;
+	padding-bottom: 50px;
+}
+
+.service li {
+	color: #666;
+	display: inline;
+	float: left;
+	font-size: 14px;
+	margin: 0 25px;
+	text-align: center;
+	width: 228px;
+	list-style: outside none none;
+}
+
+.service-section {
+	background: #f2f2f2 none repeat scroll 0 0;
+	height: 430px;
+	width: 100%;
+	padding-top: 50px;
+}
+</style>
+<div ng-controller="homeCtrl">
+	<div class="title">
+		<p class="b">Elim•以琳互联网O2O透明家纺</p>
+		<p class="desc">测量、加工、安装一站式合包服务，省钱省心更省力！</p>
 	</div>
-	<div class="preview-item thumbnail" ng-repeat="item in curtainItems">
-		<a href="#/buyi/detail?id={{item.id}}"><img style="width: 280px; height: 280px;" ng-src="{{item.previewImages[0]}}_280.jpg">
-			<div class="preview-item-price">
-				<span>¥</span><strong>{{item.price}}</strong>
-			</div>
-			<div class="preview-item-title">{{item.title}}</div></a>
-	</div>
+	<section class="advantage-section">
+		<ul>
+			<li><img width="264" height="318" src="http://www.mjbang.cn/web/images/index_pic_01.jpg" alt=""><span class="colorOne">省时省心</span><a
+				href="javascript:;" title="" class="bgOne">
+					<p class="b">省时省心</p>
+					<p class="description">在线随时随地看工地，施工进度实时掌控，全程免费监管APP实时远程监督</p>
+			</a></li>
+			<li><img width="264" height="318" src="http://www.mjbang.cn/web/images/index_pic_04.jpg" alt=""><span class="colorOne">明码标价</span><a
+				href="javascript:;" title="" class="bgOne">
+					<p class="b">省时省心</p>
+					<p class="description">在线随时随地看工地，施工进度实时掌控，全程免费监管APP实时远程监督</p>
+			</a></li>
+			<li><img width="264" height="318" src="http://www.mjbang.cn/web/images/index_pic_04.jpg" alt=""><span class="colorOne">工厂直购</span><a
+				href="javascript:;" title="" class="bgOne">
+					<p class="b">省时省心</p>
+					<p class="description">在线随时随地看工地，施工进度实时掌控，全程免费监管APP实时远程监督</p>
+			</a></li>
+			<li><img width="264" height="318" src="http://www.mjbang.cn/web/images/index_pic_01.jpg" alt=""><span class="colorOne">绝不加价</span><a
+				href="javascript:;" title="" class="bgOne">
+					<p class="b">省时省心</p>
+					<p class="description">在线随时随地看工地，施工进度实时掌控，全程免费监管APP实时远程监督</p>
+			</a></li>
+
+		</ul>
+	</section>
+
+	<section class="steps-section">
+		<div class="title">
+			<p class="b">装修只需六步轻松搞定</p>
+			<p class="desc">测量、加工、安装一站式合包服务，省钱省心更省力！</p>
+		</div>
+		<div class="process">
+			<img src="images/process-icon.png">
+		</div>
+	</section>
+
+
+
+
+	<section class="service-section">
+		<div class="title">
+			<p class="b">郑重承诺&nbsp;&nbsp;贴心服务</p>
+			<p class="desc">测量、加工、安装一站式合包服务，省钱省心更省力！</p>
+		</div>
+		<ul class="service clearfix">
+			<li><img width="228" height="198" src="http://www.mjbang.cn/web/images/index_ser_one.jpg" alt="">
+				<p>
+					如果使用不环保材料，<span class="pink">十倍</span>赔款！
+				</p></li>
+			<li><img width="228" height="198" src="http://www.mjbang.cn/web/images/index_ser_two.jpg" alt="">
+				<p class="tLeft">
+					同样的材料，同样的工艺我们比传统公司<span class="pink">便宜30%</span>！
+				</p></li>
+			<li><img width="228" height="198" src="http://www.mjbang.cn/web/images/index_ser_three.jpg" alt="">
+				<p>
+					<span class="pink">全责</span>售后，1分钟响应机制！
+				</p></li>
+			<li><img width="228" height="198" src="http://www.mjbang.cn/web/images/index_ser_four.jpg" alt="">
+				<p>
+					客户投诉零推诿，<span class="pink">千万</span>质保基金先行赔付！
+				</p></li>
+		</ul>
+	</section>
 </div>

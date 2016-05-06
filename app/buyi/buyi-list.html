@@ -44,6 +44,76 @@
 	padding-right: 40px;
 	clear: both;
 }
+
+.crumbs-nav {
+	line-height: 24px;
+	padding-right: 125px;
+	padding-top: 10px;
+}
+
+.crumbs-nav-item {
+	float: left;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+.crumbs-first {
+	color: #999;
+	font-family: SimSun;
+}
+
+.crumbs-arrow {
+	float: left;
+	font-family: SimSun;
+	font-style: normal;
+	margin-right: 5px;
+}
+
+.crumb-select-item {
+	background: #f3f3f3 none repeat scroll 0 0;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	float: left;
+	font-size: 12px;
+	height: 22px;
+	line-height: 22px;
+	margin: 0 5px 5px 0;
+	padding: 0 26px 0 4px;
+	position: relative;
+	vertical-align: top;
+}
+
+.crumb-select-item em:hover {
+	color: #e4393c;
+}
+
+.crumbs-nav-item {
+	float: left;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+.crumb-select-item i {
+	background: rgba(0, 0, 0, 0)
+		url("//misc.360buyimg.com/product/search/0.0.17/css/i/search.ele.png")
+		no-repeat scroll 7px -140px;
+	display: block;
+	height: 22px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 25px;
+}
+
+.crumb-select-item:hover i {
+	background-color: #e4393c;
+	background-position: 7px -158px;
+}
+
+.crumb-select-item em {
+	color: #e4393c;
+	font-style: normal;
+}
 </style>
 
 <div ng-controller="itemListCtrl">
@@ -52,28 +122,33 @@
 		<div class="category">
 			<table cellspacing="0px">
 				<tr>
-					<td class="category_name">布料</td>
-					<td ng-repeat="cat in categoryObj.clothCategories"><a href="#" onclick="return false" ng-click="filterItems('craft',cat.name)">{{cat.name}}</a></td>
+					<td class="category_name">工艺</td>
+					<td ng-repeat="cat in categoryObj.clothCategories"><a href="#" onclick="return false"
+						ng-click="filterItems('craft',cat.name,'工艺' , cat.name)">{{cat.name}}</a></td>
 				</tr>
 				<tr>
 					<td class="category_name">价格</td>
-					<td ng-repeat="cat in categoryObj.priceCategories"><a href="#" onclick="return false" ng-click="filterItems('price',cat.id)">{{cat.name}}</a></td>
+					<td ng-repeat="cat in categoryObj.priceCategories"><a href="#" onclick="return false"
+						ng-click="filterItems('price',  cat.id,'价格', cat.name)">{{cat.name}}</a></td>
 				</tr>
 				<tr>
 					<td class="category_name">风格</td>
-					<td ng-repeat="cat in categoryObj.styleCategories"><a href="#" onclick="return false" ng-click="filterItems('style',cat.name)">{{cat.name}}</a></td>
+					<td ng-repeat="cat in categoryObj.styleCategories"><a href="#" onclick="return false"
+						ng-click="filterItems('style', cat.name,'风格', cat.name)">{{cat.name}}</a></td>
 				</tr>
 			</table>
 		</div>
 	</div>
-	<div class="sort_panel"></div>
 
-	<div class="pagination-container">
-		<ul class="pagination">
-			<li><a ng-hide="page==1" href="#buyi?page={{page-1}}">&laquo;</a></li>
-			<li ng-repeat="page in pages"><a href="#buyi?page={{page}}">{{page}}</a></li>
-			<li><a ng-hide="page==pageCount" href="#buyi?page={{page-1+2}}">&raquo;</a></li>
-		</ul>
+	<div class="crumbs-nav">
+		<div class="crumbs-nav-main clearfix">
+			<div class="crumbs-nav-item">
+				<div class="crumbs-first">
+					<a href="">全部结果</a>
+				</div>
+			</div>
+			<i class="crumbs-arrow">&gt;</i> <a ng-repeat="(name, obj) in query" title="{{name}}" rel="nofollow" href="" class="crumb-select-item"><b>{{obj.label}}：</b><em>{{obj.display}}</em><i></i></a>
+		</div>
 	</div>
 
 	<div class="preview-item thumbnail" ng-repeat="item in filterCurtainItems">

@@ -17,6 +17,10 @@ body {
 	clear: left;
 }
 
+a:hover {
+	text-decoration: none;
+}
+
 /* use navbar-wrapper to wrap navigation bar, the purpose is to overlay navigation bar above slider */
 .navbar-wrapper {
 	position: absolute;
@@ -138,7 +142,7 @@ a:hover {
 
 .online-phone {
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 23px;
 	color: #ff6600;
 }
 

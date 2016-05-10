@@ -116,7 +116,7 @@
 }
 </style>
 
-<div ng-controller="itemListCtrl">
+<div ng-controller="itemListCtrl as vm">
 
 	<div class="category_filter">
 		<div class="category">
@@ -151,7 +151,7 @@
 		</div>
 	</div>
 
-	<div class="preview-item thumbnail" ng-repeat="item in filterCurtainItems">
+	<div class="preview-item thumbnail" ng-repeat="item in itemsInCurrentPage">
 		<a href="#/buyi/detail?id={{item.id}}"><img style="width: 280px; height: 280px;" ng-src="{{item.previewImages[0]}}_280.jpg">
 			<div class="preview-item-price">
 				<span>¥</span><strong>{{item.price}}</strong>
@@ -160,10 +160,11 @@
 	</div>
 
 	<div class="pagination-container">
-		<ul class="pagination">
-			<li><a ng-hide="page==1" href="#buyi?page={{page-1}}">&laquo;</a></li>
-			<li ng-repeat="page in pages"><a href="#buyi?page={{page}}">{{page}}</a></li>
-			<li><a ng-hide="page==pageCount" href="#buyi?page={{page-1+2}}">&raquo;</a></li>
+		<ul ng-if="vm.pager.pages.length" class="pagination">
+			<li ng-class="{disabled:vm.pager.currentPage === 1}"><a ng-click="vm.setPage(vm.pager.currentPage - 1)">Previous</a></li>
+			<li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}"><a ng-click="vm.setPage(page)">{{page}}</a>
+			</li>
+			<li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}"><a ng-click="vm.setPage(vm.pager.currentPage + 1)">Next</a></li>
 		</ul>
 	</div>
 

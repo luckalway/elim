@@ -1,4 +1,4 @@
-app.controller('itemListCtrl', function($scope, $routeParams) {
+app.controller('itemListCtrl', function($scope, $routeParams, PagerService) {
 	$scope.page = $routeParams.page||1;
 	$scope.categoryObj = window.categoryObj;
 	var maxSize = 0;
@@ -18,18 +18,28 @@ app.controller('itemListCtrl', function($scope, $routeParams) {
 			});
 		}
 	}
-
-	var beginIndex = ($scope.page - 1) * 16;
-	var endIndex = $scope.page * 16;
-	$scope.filterCurtainItems = window.curtainItems.slice(beginIndex, endIndex);
-	var pageCount = parseInt(window.curtainItems.length/16+1);
-	pageCount = parseInt(pageCount) < pageCount ? parseInt(pageCount) + 1: pageCount;
-	$scope.pages = [];
-	$scope.pageCount = pageCount;
-	for(var i=1;i<=pageCount;i++){
-		$scope.pages.push(i);
+	
+	$scope.filterCurtainItems = window.curtainItems;
+	var vm = this;
+	vm.pager = {};
+    vm.setPage = setPage;
+	var setPage = function(page){
+		alert(page);
+		if (page < 1 || page > vm.pager.totalPages) {
+            return;
+        }
+        // get pager object from service
+        vm.pager = PagerService.GetPager($scope.filterCurtainItems.length, page);
+ 
+        // get current page of items
+        $scope.itemsInCurrentPage = $scope.filterCurtainItems.slice(vm.pager.startIndex, vm.pager.endIndex);
 	}
 
+	$scope.$watch('filterCurtainItems', function(newValue, oldValue){
+		setPage(1);
+	});
+	
+	
 	$scope.query = {};
 	$scope.filterItems = function(name, value, label, valueDisplay) {
 		if(!(name == 'price' || name == 'craft' || name == 'style')){
@@ -39,40 +49,36 @@ app.controller('itemListCtrl', function($scope, $routeParams) {
 			label: label,
 			value : value,
 			display : valueDisplay
-		};console.dir($scope.query);
+		};
 		
-		var filterCurtainItems = window.curtainItems;
-		for(var name in $scope.query){
-			if(name == 'price'){
-				var minPrice = parseInt($scope.query[name].value.split('-')[0]);
-				var maxPrice = parseInt($scope.query[name].value.split('-')[1]);
-				
-				for(var i = 0; i < filterCurtainItems.length; i++){
-					var item = filterCurtainItems[i];
-					if(!isNaN(minPrice) && item.price < minPrice){
-						filterCurtainItems.remove(i);
+		var filterCurtainItems = []
+		for (var i = 0; i < window.curtainItems.length; i++) {
+			var item = window.curtainItems[i];
+			var match = true;
+			for (var name in $scope.query) {
+				if (name == 'price') {
+					var lowerPrice = parseInt($scope.query[name].value.split('-')[0]);
+					var upperPrice = parseInt($scope.query[name].value.split('-')[1]);
+
+					var matchLowerPrice = isNaN(lowerPrice) || item.price >= lowerPrice;
+					var matchUpperPrice = isNaN(upperPrice) || item.price < upperPrice;
+					if (!matchLowerPrice || !matchUpperPrice) {
+						match = false;
 					}
-					if(!isNaN(maxPrice) && item.price >= maxPrice){
-						filterCurtainItems.remove(i);						
+				} else if (name == 'craft') {
+					if ($scope.query[name].value.indexOf(item.craft) == -1) {
+						match = false;
 					}
-				}
-			}else if(name == 'craft'){
-				for(var i = 0; i < filterCurtainItems.length; i++){
-					var item = filterCurtainItems[i];
-					if(item.craft != $scope.query[name].value){
-						filterCurtainItems.remove(i);
-					}
-				}
-			}else if(name == 'style'){
-				for(var i = 0; i < filterCurtainItems.length; i++){
-					var item = filterCurtainItems[i];
-					if(item.style != $scope.query[name].value){
-						filterCurtainItems.remove(i);
+				} else if (name == 'style') {
+					if (item.style != $scope.query[name].value) {
+						match = false;
 					}
 				}
 			}
+			if(match){
+				filterCurtainItems.push(item);
+			}
 		}
 		$scope.filterCurtainItems = filterCurtainItems;
-		return false;
-	}
+	}	
 })

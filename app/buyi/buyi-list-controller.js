@@ -22,55 +22,72 @@ app.controller('itemListCtrl', function($scope, $routeParams, PagerService) {
 	$scope.filterCurtainItems = window.curtainItems;
 	var vm = this;
 	vm.pager = {};
-    vm.setPage = setPage;
-	var setPage = function(page){
-		alert(page);
-		if (page < 1 || page > vm.pager.totalPages) {
+
+	$scope.setPage = function(page){
+		if (page < 1) {
             return;
+            $scope.itemsInCurrentPage = [];
         }
         // get pager object from service
-        vm.pager = PagerService.GetPager($scope.filterCurtainItems.length, page);
- 
+        vm.pager = PagerService.GetPager($scope.filterCurtainItems.length, page, 16);
+        if(page > vm.pager.totalPages){
+        	$scope.itemsInCurrentPage = [];
+        	return;
+        }
+        
         // get current page of items
         $scope.itemsInCurrentPage = $scope.filterCurtainItems.slice(vm.pager.startIndex, vm.pager.endIndex);
 	}
 
 	$scope.$watch('filterCurtainItems', function(newValue, oldValue){
-		setPage(1);
+		$scope.setPage(1);
 	});
 	
 	
-	$scope.query = {};
-	$scope.filterItems = function(name, value, label, valueDisplay) {
+	$scope.addFilterItems = function(name, value, label, valueDisplay) {
+		$scope.setPage(1);
+		
 		if(!(name == 'price' || name == 'craft' || name == 'style')){
 			return;
 		}
-		$scope.query[name] = {
+		var newQuery = $.extend({}, $scope.query || {});
+		newQuery[name] = {
 			label: label,
 			value : value,
 			display : valueDisplay
 		};
 		
+		$scope.query = newQuery;
+	}
+	
+	$scope.removeFilterItems = function(name){
+		var newQuery = $.extend({}, $scope.query || {});
+		newQuery[name]=undefined;
+		$scope.query = newQuery;
+	}
+	
+	$scope.$watch('query',function(query){
 		var filterCurtainItems = []
 		for (var i = 0; i < window.curtainItems.length; i++) {
 			var item = window.curtainItems[i];
 			var match = true;
-			for (var name in $scope.query) {
+			for (var name in query) {
 				if (name == 'price') {
-					var lowerPrice = parseInt($scope.query[name].value.split('-')[0]);
-					var upperPrice = parseInt($scope.query[name].value.split('-')[1]);
+					var lowerPrice = parseInt(query[name].value.split('-')[0]);
+					var upperPrice = parseInt(query[name].value.split('-')[1]);
 
 					var matchLowerPrice = isNaN(lowerPrice) || item.price >= lowerPrice;
 					var matchUpperPrice = isNaN(upperPrice) || item.price < upperPrice;
+					
 					if (!matchLowerPrice || !matchUpperPrice) {
 						match = false;
 					}
 				} else if (name == 'craft') {
-					if ($scope.query[name].value.indexOf(item.craft) == -1) {
+					if (query[name].value.indexOf(item.craft) == -1) {
 						match = false;
 					}
 				} else if (name == 'style') {
-					if (item.style != $scope.query[name].value) {
+					if (item.style != query[name].value) {
 						match = false;
 					}
 				}
@@ -80,5 +97,6 @@ app.controller('itemListCtrl', function($scope, $routeParams, PagerService) {
 			}
 		}
 		$scope.filterCurtainItems = filterCurtainItems;
-	}	
+	});
+		
 })

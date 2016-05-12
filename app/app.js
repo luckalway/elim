@@ -72,7 +72,7 @@ app.factory('PagerService', function() {
 
 		// create an array of pages to ng-repeat in the pager control
 		var pages = [];
-		for(var i=startPage;i<=endPage+1;i++){
+		for(var i=startPage;i<endPage+1;i++){
 			pages.push(i);
 		}
 

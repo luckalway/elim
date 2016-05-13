@@ -61,9 +61,14 @@ app.controller('itemListCtrl', function($scope, $routeParams, PagerService) {
 	}
 	
 	$scope.removeFilterItems = function(name){
-		var newQuery = $.extend({}, $scope.query || {});
-		newQuery[name]=undefined;
+		var newQuery = {};
+		for(var property in $scope.query){
+			if(property != name){
+				newQuery[property] = $scope.query[property];
+			}
+		}
 		$scope.query = newQuery;
+		return false;
 	}
 	
 	$scope.$watch('query',function(query){

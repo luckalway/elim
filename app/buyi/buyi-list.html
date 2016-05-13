@@ -147,7 +147,7 @@
 					<a href="">全部结果</a>
 				</div>
 			</div>
-			<i class="crumbs-arrow">&gt;</i> <a ng-repeat="(name, obj) in query" title="{{name}}" rel="nofollow" href="" class="crumb-select-item"><b>{{obj.label}}：</b><em>{{obj.display}}</em><i ng-click="removeFilterItems(name)"></i></a>
+			<i class="crumbs-arrow">&gt;</i> <a ng-repeat="(name, obj) in query" title="{{name}}" rel="nofollow" href="" class="crumb-select-item"><b>{{obj.label}}：</b><em>{{obj.display}}</em><i onclick="return false;" ng-click="removeFilterItems(name)"></i></a>
 		</div>
 	</div>
 

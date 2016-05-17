@@ -107,6 +107,11 @@
 	padding-top: 50px;
 }
 
+.service p {
+	line-height: 25px;
+	margin-top: 32px;
+}
+
 .customer-case-section {
 	height: 340px;
 	padding-top: 30px;
@@ -115,6 +120,10 @@
 
 .customer-case-section li {
 	border: 10px solid #CCCCFF;
+}
+
+.customer-case-section a:hover img {
+	transform: scale(1.2);
 }
 </style>
 <div ng-controller="homeCtrl">
@@ -161,8 +170,8 @@
 
 	<section class="customer-case-section">
 		<ul class="clearfix">
-			<li ng-repeat="case in customerCases"><a target="_blank" href="#/case-detail?id={{case.id}}" title=""><img width="270" height="269"
-					ng-src="{{case.previewImage}}" class="lazy" alt="" style="display: inline;"> </a></li>
+			<li ng-repeat="case in customerCases"><a target="_blank" href="#/case-detail?id={{case.id}}" title=""><img width="270"
+					height="269" ng-src="{{case.previewImage}}" class="lazy" alt="" style="display: inline;"> </a></li>
 		</ul>
 	</section>
 
@@ -174,9 +183,7 @@
 		</div>
 		<ul class="service clearfix">
 			<li><img width="228" height="198" src="images/index_ser_one.jpg" alt="">
-				<p>
-					采用物理遮光的环保材料！
-				</p></li>
+				<p>采用物理遮光的环保材料！</p></li>
 			<li><img width="228" height="198" src="images/index_ser_two.jpg" alt="">
 				<p class="tLeft">
 					同样的材料，同样的工艺我们比实体店<span class="pink">便宜50%</span>！
@@ -186,9 +193,7 @@
 					<span class="pink">全责</span>售后，即时响应机制！
 				</p></li>
 			<li><img width="228" height="198" src="images/index_ser_four.jpg" alt="">
-				<p>
-					淘宝担保交易，零风险；客户投诉零推诿！
-				</p></li>
+				<p>淘宝担保交易，零风险；客户投诉零推诿！</p></li>
 		</ul>
 	</section>
 </div>

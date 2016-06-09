@@ -19,8 +19,8 @@ import com._10yilin.elim.util.XmlUtils;
 
 public class BaiyeDaoImpl implements BaiyeDao {
 	private File rootFolder = null;
-	private String BASE_FOLDER = Constants.PROJECT_HOME + "/app/data/baiye";
-	private String BASE_URL = Constants.BASE_URL + "/app/data/baiye";
+	private String BASE_FOLDER = Constants.BASE_DATA + "/baiye";
+	private String BASE_URL = Constants.BASE_URL + "/data/baiye";
 
 	public BaiyeDaoImpl() {
 		this.rootFolder = new File(BASE_FOLDER);
@@ -34,8 +34,8 @@ public class BaiyeDaoImpl implements BaiyeDao {
 				Baiye baiye = new Baiye();
 				File xmlFile = new File(itemFolder, "item.xml");
 				if (!xmlFile.exists()) {
-					throw new IllegalArgumentException("Please create item.xml for " + itemFolder.getAbsolutePath()
-							+ " first");
+					throw new IllegalArgumentException(
+							"Please create item.xml for " + itemFolder.getAbsolutePath() + " first");
 				}
 				Document document = builder.build(new FileInputStream(xmlFile));
 				baiye.setId(itemFolder.getName());

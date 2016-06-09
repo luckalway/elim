@@ -19,8 +19,8 @@ import com._10yilin.elim.util.XmlUtils;
 public class SoldShowDaoImpl implements SaleShowDao {
 
 	private File rootFolder = null;
-	private String BASE_FOLDER = Constants.PROJECT_HOME + "app/data/sold-show";
-	private String BASE_URL = Constants.BASE_URL + "/" + "app/data/sold-show";
+	private String BASE_FOLDER = Constants.BASE_DATA + "/sold-show";
+	private String BASE_URL = Constants.BASE_URL + "/data/sold-show";
 
 	public SoldShowDaoImpl() {
 		rootFolder = new File(BASE_FOLDER);

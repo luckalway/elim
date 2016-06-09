@@ -20,8 +20,8 @@ import com._10yilin.elim.util.XmlUtils;
 
 public class LuomaganDaoImpl implements LuomaganDao {
 	private File rootFolder = null;
-	private String BASE_FOLDER = Constants.PROJECT_HOME + "/app/data/peijian/luomagan";
-	private String BASE_URL = Constants.BASE_URL + "/app/data/peijian/luomagan";
+	private String BASE_FOLDER = Constants.BASE_DATA + "/peijian/luomagan";
+	private String BASE_URL = Constants.BASE_URL + "/data/peijian/luomagan";
 
 	public LuomaganDaoImpl() {
 		this.rootFolder = new File(BASE_FOLDER);

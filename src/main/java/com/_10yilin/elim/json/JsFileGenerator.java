@@ -1,20 +1,21 @@
 package com._10yilin.elim.json;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import com._10yilin.elim.Constants;
 import com._10yilin.elim.dao.BaiyeDao;
-import com._10yilin.elim.dao.CategoryDao;
 import com._10yilin.elim.dao.BuyiProductDao;
+import com._10yilin.elim.dao.CategoryDao;
 import com._10yilin.elim.dao.GuidaoDao;
 import com._10yilin.elim.dao.LuomaganDao;
 import com._10yilin.elim.dao.SaleShowDao;
 import com._10yilin.elim.dao.SlideItemDao;
 import com._10yilin.elim.dao.SlideItemDaoImpl;
 import com._10yilin.elim.dao.xml.BaiyeDaoImpl;
-import com._10yilin.elim.dao.xml.CategoryDaoImpl;
 import com._10yilin.elim.dao.xml.BuyiProductDaoImpl;
+import com._10yilin.elim.dao.xml.CategoryDaoImpl;
 import com._10yilin.elim.dao.xml.GuidaoDaoImpl;
 import com._10yilin.elim.dao.xml.LuomaganDaoImpl;
 import com._10yilin.elim.dao.xml.SoldShowDaoImpl;
@@ -32,10 +33,11 @@ public class JsFileGenerator {
 
 	public static void main(String[] args) {
 		try {
-			FileWriter jsFileWriter = new FileWriter(Constants.FOLDER_OUTPUT_JS);
+			File jsFile = new File(Constants.FOLDER_OUTPUT_JS);
+			FileWriter jsFileWriter = new FileWriter(jsFile);
 			jsFileWriter.write("var curtainItems=" + JsonUtils.toJson(curtainProductDao.getAllProducts()) + ";");
-			jsFileWriter.write("var recommendItemIds=" + JsonUtils.toJson(curtainProductDao.getRecommendProductIds())
-					+ ";");
+			jsFileWriter.write(
+					"var recommendItemIds=" + JsonUtils.toJson(curtainProductDao.getRecommendProductIds()) + ";");
 			jsFileWriter.write("var saleShows=" + JsonUtils.toJson(saleShowDao.getAllSaleShowList()) + ";");
 
 			jsFileWriter.write("var slideShows=" + JsonUtils.toJson(slideItemDao.getAllSlideItems()) + ";");
@@ -48,6 +50,7 @@ public class JsFileGenerator {
 
 			jsFileWriter.flush();
 			jsFileWriter.close();
+			System.out.println("Gererated " + jsFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

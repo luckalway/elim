@@ -19,8 +19,8 @@ import com._10yilin.elim.util.XmlUtils;
 
 public class GuidaoDaoImpl implements GuidaoDao {
 	private File rootFolder = null;
-	private String BASE_FOLDER = Constants.PROJECT_HOME + "/app/data/peijian/guidao";
-	private String BASE_URL = Constants.BASE_URL + "/app/data/peijian/guidao";
+	private String BASE_FOLDER = Constants.BASE_DATA + "/peijian/guidao";
+	private String BASE_URL = Constants.BASE_URL + "/data/peijian/guidao";
 
 	public GuidaoDaoImpl() {
 		this.rootFolder = new File(BASE_FOLDER);

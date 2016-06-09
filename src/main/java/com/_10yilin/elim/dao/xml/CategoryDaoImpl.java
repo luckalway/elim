@@ -16,7 +16,7 @@ import com._10yilin.elim.entity.Category;
 import com._10yilin.elim.entity.CategoryData;
 
 public class CategoryDaoImpl implements CategoryDao {
-	private String CATEGORY_XML = Constants.PROJECT_HOME + "/app/data/category.xml";
+	private String CATEGORY_XML = Constants.BASE_DATA + "/category.xml";
 
 	public CategoryData getCategoryData() {
 		CategoryData categoryData = new CategoryData();

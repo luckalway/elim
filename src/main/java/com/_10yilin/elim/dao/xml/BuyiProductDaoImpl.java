@@ -25,8 +25,8 @@ import com._10yilin.elim.util.XmlUtils;
 public class BuyiProductDaoImpl implements BuyiProductDao {
 	private File rootFolder = null;
 
-	private String BASE_FOLDER = Constants.PROJECT_HOME + "/app/data/buyi/";
-	private String BASE_URL = Constants.BASE_URL + "/app/data/buyi/";
+	private String BASE_FOLDER = Constants.BASE_DATA + "/buyi/";
+	private String BASE_URL = Constants.BASE_URL + "/data/buyi/";
 
 	public BuyiProductDaoImpl() {
 		this.rootFolder = new File(BASE_FOLDER);

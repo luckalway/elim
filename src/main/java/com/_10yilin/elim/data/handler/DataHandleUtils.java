@@ -35,15 +35,19 @@ public class DataHandleUtils {
 			throw new DataHandleException("Upexpected file type of " + preview.getAbsolutePath());
 	}
 
-	public static void processImage(File image, File outFolder) throws IOException {
+	public static void processImage(String scope, File image, File outFolder) throws IOException {
 		String imageName = null;
 		if (isPreviewImage(image)) {
 			imageName = "preview.jpg";
+			ImageUtils.generateMutiSizeImages(image, outFolder, imageName.toLowerCase());
 		} else {
 			imageName = ImageUtils.generateNormImageName(outFolder);
+			if (scope.equals("flag.all")) {
+				ImageUtils.generateMutiSizeImages(image, outFolder, imageName.toLowerCase());
+			} else {
+				ImageUtils.generateOneImage(image, outFolder, imageName.toLowerCase());
+			}
 		}
-
-		ImageUtils.generateMutiSizeImages(image, outFolder, imageName.toLowerCase());
 	}
 
 	public static void processImages(File inFolder, File outFolder) throws IOException {
@@ -58,7 +62,11 @@ public class DataHandleUtils {
 				continue;
 			}
 
-			DataHandleUtils.processImage(image, outFolder);
+			if (new File(inFolder, "flag.preview").exists()) {
+				DataHandleUtils.processImage("flag.preview", image, outFolder);
+			} else {
+				DataHandleUtils.processImage("flag.all", image, outFolder);
+			}
 		}
 	}
 
@@ -99,8 +107,8 @@ public class DataHandleUtils {
 				boolean match = true;
 				for (String key : filter.keySet()) {
 					if (root.getChildText(key) == null) {
-						throw new IllegalArgumentException("can not found a field with name " + key + " on "
-								+ document.toString());
+						throw new IllegalArgumentException(
+								"can not found a field with name " + key + " on " + document.toString());
 					}
 					if (!root.getChildText(key).trim().equals(filter.get(key).trim())) {
 						match = false;

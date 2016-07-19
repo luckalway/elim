@@ -1,5 +1,6 @@
 package com._10yilin.elim.util;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.SortedSet;
@@ -8,6 +9,7 @@ import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.imgscalr.Scalr;
 
@@ -30,7 +32,12 @@ public class ImageUtils {
 	public static void generateMutiSizeImages(File image, File outFolder, String imageName) throws IOException {
 		File biggest = new File(outFolder, imageName);
 		LOG.info("Start to process " + image);
-		ImageIO.write(Scalr.resize(ImageIO.read(image), IMAGE_WITH_BIGGEST), "jpg", biggest);
+		BufferedImage originImage = ImageIO.read(image);
+		if (originImage.getWidth() <= IMAGE_WITH_BIGGEST) {
+			FileUtils.copyFile(image, biggest);
+		} else {
+			ImageIO.write(Scalr.resize(originImage, IMAGE_WITH_BIGGEST), "jpg", biggest);
+		}
 		File middle = new File(outFolder, imageName + "_" + IMAGE_WITH_MIDDLE + ".jpg");
 		ImageIO.write(Scalr.resize(ImageIO.read(biggest), IMAGE_WITH_MIDDLE), "jpg", middle);
 		File small = new File(outFolder, imageName + "_" + IMAGE_WITH_SMALL + ".jpg");
@@ -40,6 +47,17 @@ public class ImageUtils {
 		File smallest = new File(outFolder, imageName + "_" + IMAGE_WITH_SMALLEST + ".jpg");
 		ImageIO.write(Scalr.resize(ImageIO.read(biggest), IMAGE_WITH_SMALLEST), "jpg", smallest);
 		LOG.info("Generated mutiple size images of " + biggest);
+	}
+
+	public static void generateOneImage(File image, File outFolder, String imageName) throws IOException {
+		File biggest = new File(outFolder, imageName);
+		LOG.info("Start to process " + image);
+		BufferedImage originImage = ImageIO.read(image);
+		if (originImage.getWidth() <= IMAGE_WITH_BIGGEST) {
+			FileUtils.copyFile(image, biggest);
+		} else {
+			ImageIO.write(Scalr.resize(originImage, IMAGE_WITH_BIGGEST), "jpg", biggest);
+		}
 	}
 
 	public static String generateNormImageName(File folder) {
@@ -62,4 +80,5 @@ public class ImageUtils {
 			return "0" + index + ".jpg";
 		return "" + index + ".jpg";
 	}
+
 }

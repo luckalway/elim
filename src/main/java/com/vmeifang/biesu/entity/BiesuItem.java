@@ -1,4 +1,4 @@
-package com.vmeifang.biesu;
+package com.vmeifang.biesu.entity;
 
 import java.util.HashMap;
 import java.util.List;

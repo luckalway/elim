@@ -4,7 +4,7 @@
 	<groupId>com._10yilin.elim</groupId>
 	<artifactId>elim</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
